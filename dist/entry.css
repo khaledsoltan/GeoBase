@@ -8365,16 +8365,6 @@ html[dir=ltr] [class*=tabpanel] {
   background: rgba(184, 134, 11, 0.05);
   font-weight: 600;
 }
-[class*=measurement] {
-  background: transparent;
-  color: #333333;
-}
-[class*=measurement] [class*=header],
-[class*=measurement] [class*=title] {
-  background: #1B6B3A;
-  color: #ffffff;
-  border-bottom: 2px solid #B8860B;
-}
 [class*=catalog] [class*=header],
 [class*=catalog] [class*=title] {
   background: #1B6B3A;

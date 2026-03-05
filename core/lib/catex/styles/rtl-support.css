@@ -837,19 +837,6 @@ html[dir="ltr"] [class*="tabpanel"] {
   font-weight: 600;
 }
 
-/* Measurement tools - if in tabpanel */
-[class*="measurement"] {
-  background: transparent;
-  color: #333333;
-}
-
-[class*="measurement"] [class*="header"],
-[class*="measurement"] [class*="title"] {
-  background: #1B6B3A;
-  color: #ffffff;
-  border-bottom: 2px solid #B8860B;
-}
-
 /* Catalog tools - if in tabpanel */
 [class*="catalog"] [class*="header"],
 [class*="catalog"] [class*="title"] {
