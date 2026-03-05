@@ -1,0 +1,99 @@
+/* ============================================================
+   CATEX SIDEBAR
+   ============================================================ */
+
+.catex-sidebar {
+  position: fixed;
+  left: 0;
+  top: 62px;
+  bottom: 28px;
+  width: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 0;
+  z-index: 8000;
+}
+
+.catex-sidebar-rtl {
+  left: auto;
+  right: 10px;
+}
+
+.catex-sidebar-toggle {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  cursor: pointer;
+  background: #1B6B3A;
+  border: 1.5px solid #1B6B3A;
+  box-shadow: 0 2px 8px rgba(27,107,58,0.3);
+  margin-bottom: 8px;
+  transition: all 0.18s ease;
+  flex-shrink: 0;
+}
+
+.catex-sidebar-toggle i { font-size: 16px; color: #fff; }
+.catex-sidebar-toggle:hover { background: #0F4D28; }
+
+.catex-sidebar-toggle.active {
+  background: #B8860B;
+  border-color: #B8860B;
+  box-shadow: 0 2px 8px rgba(184,134,11,0.4);
+}
+
+.catex-sidebar-toggle.active:hover { background: #9a7209; }
+
+.catex-sidebar-plugins {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  overflow: visible;
+  padding-bottom: 4px;
+}
+
+.catex-sidebar-btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  cursor: pointer;
+  background: #fff;
+  border: 1.5px solid rgba(27,107,58,0.25);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  transition: all 0.18s ease;
+  animation: catex-btnIn 0.15s ease both;
+  flex-shrink: 0;
+}
+
+.catex-sidebar-btn i { font-size: 15px; color: #1B6B3A; transition: color 0.18s ease; }
+.catex-sidebar-btn:hover { background: #1B6B3A; border-color: #1B6B3A; box-shadow: 0 2px 8px rgba(27,107,58,0.3); }
+.catex-sidebar-btn:hover i { color: #fff; }
+.catex-sidebar-btn.active { background: #B8860B; border-color: #B8860B; box-shadow: 0 2px 8px rgba(184,134,11,0.4); }
+.catex-sidebar-btn.active i { color: #fff; }
+
+.catex-sidebar-3d-icon { font-size: 15px; font-weight: 800; font-family: 'Segoe UI', Arial, sans-serif; letter-spacing: -0.5px; line-height: 1; color: #1B6B3A; }
+.catex-sidebar-btn:hover .catex-sidebar-3d-icon { color: #fff; }
+.catex-sidebar-btn.active .catex-sidebar-3d-icon { color: #fff; }
+
+@keyframes catex-btnIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.overlay-container-toggle-button {
+  opacity: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}
+

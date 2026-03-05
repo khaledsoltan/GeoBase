@@ -6,9 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "build:catex": "node build-catex.js",
+    "watch:catex": "node build-catex.js --watch",
+    "serve:catex": "node server-catex.js",
+    "dev:catex": "concurrently \"npm run watch:catex\" \"npm run serve:catex\""
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.2.0",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3"
@@ -18,8 +23,14 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "chokidar": "^5.0.0",
+    "concurrently": "^9.2.1",
+    "cors": "^2.8.6",
+    "esbuild": "^0.27.3",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "express": "^5.2.1",
+    "serve": "^14.2.6",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

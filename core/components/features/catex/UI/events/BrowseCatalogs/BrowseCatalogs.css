@@ -1,0 +1,203 @@
+/* ============================================================
+   BROWSE CATALOGS SLIDING PANEL
+   ============================================================ */
+
+/* Overlay Background */
+.catex-browse-catalogs-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 9000;
+  animation: fadeIn 0.2s ease;
+}
+
+/* Sliding Panel Container */
+.catex-sliding-panel {
+  position: fixed;
+  top: 62px;
+  left: 56px;
+  bottom: 28px;
+  width: 340px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  z-index: 9001;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(-100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+/* Show state */
+.catex-sliding-panel.visible {
+  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+/* RTL positioning */
+.catex-sliding-panel.rtl {
+  left: auto;
+  right: 56px;
+  transform: translateX(100%);
+}
+
+.catex-sliding-panel.rtl.visible {
+  transform: translateX(0);
+}
+
+/* Panel Header */
+.catex-sliding-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid #e5e5e5;
+  flex-shrink: 0;
+  gap: 12px;
+}
+
+/* Close Button */
+.catex-close-button {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  transition: color 0.2s ease;
+  order: -1; /* Place close button first in LTR */
+}
+
+.catex-close-button:hover {
+  color: #1B6B3A;
+}
+
+.catex-close-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* RTL - close button on the right */
+.catex-sliding-panel.rtl .catex-close-button {
+  order: 1;
+}
+
+/* Panel Title */
+.catex-sliding-panel-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  flex: 1;
+  text-align: center;
+}
+
+/* Panel Body */
+.catex-sliding-panel-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  direction: inherit; /* Inherits RTL/LTR from parent */
+}
+
+/* Empty State */
+.catex-catalogs-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+}
+
+.catex-catalogs-empty p {
+  margin: 0;
+  color: #999;
+  font-size: 14px;
+}
+
+/* Catalogs List */
+.catex-catalogs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Catalog Item */
+.catex-catalog-item {
+  padding: 12px;
+  background: #f8f8f8;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #333;
+  font-size: 14px;
+}
+
+.catex-catalog-item:hover {
+  background: #efefef;
+  border-color: #1B6B3A;
+  color: #1B6B3A;
+}
+
+/* Scrollbar styling */
+.catex-sliding-panel-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.catex-sliding-panel-body::-webkit-scrollbar-track {
+  background: #f5f5f5;
+  border-radius: 3px;
+}
+
+.catex-sliding-panel-body::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+.catex-sliding-panel-body::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .catex-sliding-panel {
+    width: 100%;
+    left: 0;
+    right: auto;
+    transform: translateX(-100%);
+  }
+
+  .catex-sliding-panel.visible {
+    transform: translateX(0);
+  }
+
+  .catex-sliding-panel.rtl {
+    left: 0;
+    right: auto;
+    transform: translateX(100%);
+  }
+
+  .catex-sliding-panel.rtl.visible {
+    transform: translateX(0);
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "data": {
+    "i18n": "nav.data",
+    "items": [
+      {
+        "i18n": "data.basemap",
+        "items": [
+          { "i18n": "data.basemap.osm", "action": 1101 },
+          {
+            "i18n": "data.basemap.bing",
+            "items": [
+              { "i18n": "data.basemap.satellite", "action": 1105 },
+              { "i18n": "data.basemap.roads", "action": 1106 },
+              { "i18n": "data.basemap.hybrid", "action": 1107 },
+              { "i18n": "data.basemap.light", "action": 1108 },
+              { "i18n": "data.basemap.dark", "action": 1109 },
+              { "i18n": "data.basemap.gray", "action": 1110 }
+            ]
+          },
+          {
+            "i18n": "data.basemap.google",
+            "items": [
+              { "i18n": "data.basemap.satellite", "action": 1102 },
+              { "i18n": "data.basemap.roads", "action": 1103 },
+              { "i18n": "data.basemap.hybrid", "action": 1104 },
+              { "i18n": "data.google2d", "action": 2017 }
+            ]
+          },
+          {
+            "i18n": "data.basemap.azure",
+            "items": [
+              { "i18n": "data.azureLayer", "action": 2018 }
+            ]
+          },
+          {
+            "i18n": "data.basemap.here",
+            "items": [
+              { "i18n": "data.hereLayer", "action": 2019 }
+            ]
+          },
+          { "i18n": "data.basemap.custom", "action": 1111 }
+        ]
+      },
+      { "divider": true },
+      {
+        "i18n": "data.ogc",
+        "items": [
+          { "i18n": "data.ogc.wfs", "action": 402 },
+          { "i18n": "data.ogc.wms", "action": 404 },
+          { "i18n": "data.ogc.wmts", "action": 403 }
+        ]
+      },
+      {
+        "i18n": "data.ogcapi",
+        "items": [
+          { "i18n": "data.ogcapi.features", "action": 411 },
+          { "i18n": "data.ogcapi.maps", "action": 1121 },
+          { "i18n": "data.ogcapi.tiles", "action": 1122 }
+        ]
+      },
+      {
+        "i18n": "data.3dtiles",
+        "items": [
+          { "i18n": "data.3dtiles.ogc", "action": 406 },
+          { "i18n": "data.3dtiles.google", "action": 416 }
+        ]
+      },
+      { "divider": true },
+      { "i18n": "data.lts", "action": 401 },
+      { "i18n": "data.panoramics", "action": 415 },
+      { "i18n": "data.hxdr", "action": 414 },
+      { "i18n": "data.ecwp", "action": 1120 },
+      { "i18n": "data.hspc", "action": 412 },
+      { "i18n": "data.cog", "action": 417 },
+      { "divider": true },
+      { "i18n": "data.tms", "action": 408 },
+      { "i18n": "data.importFile", "action": 407 },
+      { "i18n": "data.importUrl", "action": 2016 },
+      { "divider": true },
+      {
+        "i18n": "data.live",
+        "items": [
+          { "i18n": "data.live.tracks", "action": 410 }
+        ]
+      },
+      { "divider": true },
+      { "i18n": "data.grid", "action": 409 },
+      { "i18n": "data.layerGroup", "action": 405 }
+    ]
+  },
+  "view": {
+    "i18n": "nav.view",
+    "items": [
+      { "i18n": "view.fullScreen", "action": 201 },
+      { "i18n": "view.mouseCoords", "action": 202 },
+      { "i18n": "view.scaleIndicator", "action": 203 },
+      { "i18n": "view.mapProjection", "action": 204 },
+      { "i18n": "view.compass", "action": 205 },
+      { "i18n": "view.pan", "action": 206 },
+      { "i18n": "view.zoom", "action": 207 },
+      { "i18n": "view.overview", "action": 209 },
+      { "i18n": "view.layerManager", "action": 210 },
+      { "i18n": "view.timeControl", "action": 211 },
+      { "i18n": "view.tableView", "action": 212 },
+      { "i18n": "view.crossSection", "action": 214 }
+    ]
+  },
+  "tools": {
+    "i18n": "nav.tools",
+    "items": [
+      { "i18n": "tools.advancedSearch", "action": 301 },
+      { "i18n": "tools.screenshot", "action": 302 },
+      { "i18n": "tools.editMeasure", "action": 303 },
+      { "i18n": "tools.browseCatalogs", "action": 304 },
+      { "i18n": "tools.slicing", "action": 306 },
+      { "i18n": "tools.effects", "action": 2004 },
+      { "i18n": "tools.pictureSettings", "action": 2005 }
+    ]
+  },
+  "user": {
+    "i18n": "nav.admin",
+    "items": [
+      { "i18n": "user.adminDashboard", "action": 500 },
+      { "i18n": "user.preferences", "action": 501 },
+      { "divider": true },
+      {
+        "i18n": "user.workspace",
+        "items": [
+          { "i18n": "user.workspace.new", "action": 511 },
+          { "i18n": "user.workspace.save", "action": 516 },
+          { "i18n": "user.workspace.saveAs", "action": 515 },
+          { "i18n": "user.workspace.explore", "action": 514 },
+          { "i18n": "user.workspace.export", "action": 512 },
+          { "i18n": "user.workspace.import", "action": 513 }
+        ]
+      },
+      { "divider": true },
+      { "i18n": "user.wfstLocks", "action": 518 },
+      { "i18n": "user.catalogs", "action": 504 },
+      { "divider": true },
+      { "i18n": "user.refresh", "action": 2021 },
+      { "i18n": "user.logout", "action": 506 },
+      { "divider": true },
+      { "i18n": "user.about", "action": 10000 },
+      { "i18n": "user.onlineHelp", "action": 10002 },
+      { "i18n": "user.logFile", "action": 10001 }
+    ]
+  },
+  "search": { "action": 1001 },
+  "cart": { "action": 2003 }
+}

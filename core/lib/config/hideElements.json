@@ -1,0 +1,22 @@
+{
+  "hide": [
+        "[data-cy='navbar']",
+        ".Workspace-header",
+        ".main-navbar",
+        ".navbar-dark.bg-dark",
+        "[data-cy='layer-manager']",
+        "[title='Toggle visibility of layer control']",
+        "[title='Toggle visibility of overview map']",
+        "[title='Catalog search results']",
+        "[title='Measurement tools']",
+        "[title='Advanced search']",
+        "[title='Search in map bounds']",
+        ".search-box__control",
+        ".overlay-container-compass",
+        ".overlay-container-pancontrol",
+        ".overlay-container-zoomcontrol",
+        "#application-curtain",
+        ".SlidingPanel-window"
+
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "plugins": [
+    { "id": "3d", "icon": "fa-vr-cardboard", "iconAlt": "fa-map", "i18n": "plugin.3d", "toggle": "3D" },
+    { "id": "catalog", "icon": "fa-folder-open", "i18n": "plugin.catalog", "action": 304 }
+  ]
+}

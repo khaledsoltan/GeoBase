@@ -1,0 +1,12 @@
+{
+  "nav": {
+    "data": ".cy-data .dropdown-toggle",
+    "view": ".navbar-collapse > .navbar-nav > .nav-item.dropdown:nth-child(2) .dropdown-toggle",
+    "tools": ".cy-tools-dropdown-menu .dropdown-toggle",
+    "apps": "#apps-dropdown > .dropdown-toggle",
+    "search": "#navbar-search-btn",
+    "cart": ".ms-auto > .nav-link.dropdown-item",
+    "user": ".cy-user-dropdown-menu .dropdown-toggle",
+    "lang": "#navbar-lang-switch-button"
+  }
+}
