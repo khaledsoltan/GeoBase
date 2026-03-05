@@ -29,47 +29,12 @@
   margin-right: 0;
 }
 
-.catex-sidebar-secondary .catex-sidebar-toggle {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 9px;
-  cursor: pointer;
-  background: #1B6B3A;
-  border: 1.5px solid #1B6B3A;
-  box-shadow: 0 2px 8px rgba(27,107,58,0.3);
-  margin-bottom: 8px;
-  transition: all 0.18s ease;
-  flex-shrink: 0;
-}
-
-.catex-sidebar-secondary .catex-sidebar-toggle i {
-  font-size: 16px;
-  color: #fff;
-}
-
-.catex-sidebar-secondary .catex-sidebar-toggle:hover {
-  background: #0F4D28;
-}
-
-.catex-sidebar-secondary .catex-sidebar-toggle.active {
-  background: #B8860B;
-  border-color: #B8860B;
-  box-shadow: 0 2px 8px rgba(184,134,11,0.4);
-}
-
-.catex-sidebar-secondary .catex-sidebar-toggle.active:hover {
-  background: #9a7209;
-}
 
 .catex-sidebar-secondary .catex-sidebar-plugins {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  flex: 1;
   overflow: visible;
   padding-bottom: 4px;
 }

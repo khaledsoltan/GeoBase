@@ -51,7 +51,6 @@ function Tooltip({ text, anchorRect, isRTL }: {
 }
 
 const CatexSidebarSecondary: React.FC = () => {
-  const [open, setOpen] = useState(false);
   const [activePlugin, setActivePlugin] = useState<string | null>(null);
   const [hoveredPlugin, setHoveredPlugin] = useState<string | null>(null);
   const [hoverRect, setHoverRect] = useState<DOMRect | null>(null);
@@ -64,12 +63,74 @@ const CatexSidebarSecondary: React.FC = () => {
     return () => window.removeEventListener("catex:sidebar:resetActive", handleReset);
   }, []);
 
-  const handleToggle = () => {
-    if (open) setActivePlugin(null);
-    setOpen(!open);
-  };
+  // Clone and move the layer toggle button to sidebar + Apply RTL to layer panel
+  useEffect(() => {
+    // Apply RTL CSS to layer-manager panel
+    let rtlStyleEl = document.getElementById("catex-layer-manager-rtl");
+    if (!rtlStyleEl) {
+      rtlStyleEl = document.createElement("style");
+      rtlStyleEl.id = "catex-layer-manager-rtl";
+      document.head.appendChild(rtlStyleEl);
+    }
+
+    if (isRTL) {
+      rtlStyleEl.textContent = `
+        [data-cy='layer-manager'] {
+          left: 80px !important;
+          right: auto !important;
+          top: 80px !important;
+        }
+      `;
+    } else {
+      rtlStyleEl.textContent = `
+        [data-cy='layer-manager'] {
+          right: 80px !important;
+          left: auto !important;
+          top: 80px !important;
+        }
+      `;
+    }
+
+    // Clone and move the layer toggle button to sidebar
+    const originalBtn = document.querySelector(".overlay-modular-container-toggle-button") as HTMLElement;
+    const sidebarRoot = document.getElementById("catex-sidebar-secondary-root");
+
+    if (originalBtn && sidebarRoot && !document.getElementById("catex-layer-toggle-clone")) {
+      // Clone the button
+      const clonedBtn = originalBtn.cloneNode(true) as HTMLElement;
+      clonedBtn.id = "catex-layer-toggle-clone";
+      clonedBtn.style.cssText = `
+        position: absolute !important;
+        top: 10px !important;
+        ${isRTL ? "left: 10px !important;" : "right: 10px !important;"}
+        z-index: 9999 !important;
+        cursor: pointer;
+      `;
+
+      // Add click handler to cloned button
+      clonedBtn.addEventListener("click", () => {
+        originalBtn.click();
+      });
+
+      sidebarRoot.appendChild(clonedBtn);
+    }
+  }, [isRTL]);
 
   const handlePluginClick = (plugin: PluginItem) => {
+    // Special handling for layer-manager
+    if (plugin.id === "layer-manager") {
+      if (activePlugin === plugin.id) {
+        // Hide
+        setActivePlugin(null);
+        document.body.style.setProperty("--layer-show", "none");
+      } else {
+        // Show
+        setActivePlugin(plugin.id);
+        document.body.style.setProperty("--layer-show", "block");
+      }
+      return;
+    }
+
     // Toggle: if clicking the same button, close the dialog
     if (activePlugin === plugin.id) {
       setActivePlugin(null);
@@ -110,29 +171,20 @@ const CatexSidebarSecondary: React.FC = () => {
 
   return (
     <div className={`catex-sidebar-secondary ${isRTL ? "catex-sidebar-secondary-rtl" : ""}`}>
-      <div
-        className={`catex-sidebar-toggle ${open ? "active" : ""}`}
-        onClick={handleToggle}
-      >
-        <i className={`fa-solid ${open ? "fa-xmark" : "fa-bars"}`} />
+      <div className="catex-sidebar-plugins">
+        {plugins.slice(0, 3).map((plugin, i) => (
+          <div
+            key={plugin.id}
+            className={`catex-sidebar-btn ${activePlugin === plugin.id ? "active" : ""}`}
+            onClick={() => handlePluginClick(plugin)}
+            onMouseEnter={(e) => handleMouseEnter(plugin, e)}
+            onMouseLeave={handleMouseLeave}
+            style={{ animationDelay: `${i * 25}ms` }}
+          >
+            <i className={`fa-solid ${plugin.icon}`} />
+          </div>
+        ))}
       </div>
-
-      {open && (
-        <div className="catex-sidebar-plugins">
-          {plugins.map((plugin, i) => (
-            <div
-              key={plugin.id}
-              className={`catex-sidebar-btn ${activePlugin === plugin.id ? "active" : ""}`}
-              onClick={() => handlePluginClick(plugin)}
-              onMouseEnter={(e) => handleMouseEnter(plugin, e)}
-              onMouseLeave={handleMouseLeave}
-              style={{ animationDelay: `${i * 25}ms` }}
-            >
-              <i className={`fa-solid ${plugin.icon}`} />
-            </div>
-          ))}
-        </div>
-      )}
 
       {hoveredPlugin && hoverRect && (
         <Tooltip

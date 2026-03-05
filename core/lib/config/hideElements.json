@@ -4,8 +4,6 @@
         ".Workspace-header",
         ".main-navbar",
         ".navbar-dark.bg-dark",
-        "[data-cy='layer-manager']",
-        "[title='Toggle visibility of layer control']",
         "[title='Toggle visibility of overview map']",
         "[title='Catalog search results']",
         "[title='Measurement tools']",
@@ -15,7 +13,8 @@
         ".overlay-container-compass",
         ".overlay-container-pancontrol",
         ".overlay-container-zoomcontrol",
-        "#application-curtain"
+        "#application-curtain",
+        ".overlay-modular-container-toggle-button"
 
   ]
 }

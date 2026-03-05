@@ -255,8 +255,8 @@ html[dir="rtl"] .SlidingPanel > div.visible.left {
   margin-right: 66px !important;  /* Space for sidebar on right */
   transition: all 125ms ease 0s;
   border-top-left-radius: 0;
-  height: 1000px !important;
-  top: 100px !important;
+  height: 670px !important;
+  top: 80px !important;
 }
 
 /* Position dialog on LEFT when English (LTR) - behind sidebar */
@@ -265,13 +265,47 @@ html[dir="ltr"] .SlidingPanel > div.visible.left {
   right: auto !important;
   margin-left: 66px !important;  /* Space for sidebar on left */
   transition: all 125ms ease 0s;
-  height: 1000px !important;
-  top: 100px !important;
+  height: 670px !important;
+  top: 80px !important;
+}
+
+/* Layer Manager - Dynamic visibility */
+[data-cy='layer-manager'] {
+  display: var(--layer-show, none) !important;
+}
+
+/* Layer Manager - Brand Styling */
+[data-cy='layer-manager'] .floating-window-header {
+  background: #1B6B3A !important;
+  border-bottom: 2px solid #B8860B !important;
+  padding: 12px !important;
+  border-radius: 8px 8px 0 0 !important;
+}
+
+[data-cy='layer-manager'] .floating-window-title {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+}
+
+[data-cy='layer-manager'] .close_button {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 4px !important;
+  padding: 4px 8px !important;
+  transition: background 0.2s ease !important;
+}
+
+[data-cy='layer-manager'] .close_button:hover {
+  background: rgba(255, 255, 255, 0.3) !important;
 }
 
 /* Browse Catalogs Form Height */
+.BrowseCatalogsForm {
+  height: calc(82vh - 180px) !important;
+}
+
 .BrowseCatalogsTreeControlForm.BrowseCatalogsForm {
-  height: 850px !important;
+  height: calc(82vh - 180px) !important;
 }
 
 /* Browse Catalogs Tree Control - RTL Support */
