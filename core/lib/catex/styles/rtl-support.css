@@ -735,3 +735,125 @@ html[dir="rtl"] .catex-sidebar-secondary {
 .catex-sidebar-secondary .catex-sidebar-btn.active i {
   color: #fff;
 }
+
+/* ============================================
+   Tabpanel - Generic RTL/LTR Support
+   ============================================ */
+
+/* Tabpanel containers - text direction based on document */
+[role="tabpanel"],
+.tabpanel,
+[class*="tabpanel"] {
+  direction: inherit;
+  text-align: inherit;
+}
+
+/* RTL - Tabpanel alignment */
+html[dir="rtl"] [role="tabpanel"],
+html[dir="rtl"] .tabpanel,
+html[dir="rtl"] [class*="tabpanel"] {
+  direction: rtl;
+  text-align: right;
+}
+
+/* LTR - Tabpanel alignment */
+html[dir="ltr"] [role="tabpanel"],
+html[dir="ltr"] .tabpanel,
+html[dir="ltr"] [class*="tabpanel"] {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Tabpanel header - centered text */
+[role="tabpanel"] .header,
+[role="tabpanel"] .tabpanel-header,
+[role="tabpanel"] [class*="header"],
+.tabpanel .header,
+.tabpanel .tabpanel-header,
+.tabpanel [class*="header"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #1B6B3A;
+  color: #ffffff;
+  padding: 14px 16px;
+  border-bottom: 2px solid #B8860B;
+  font-weight: 600;
+}
+
+/* Tabpanel content - transparent backgrounds */
+[role="tabpanel"] .content,
+[role="tabpanel"] .tabpanel-content,
+[role="tabpanel"] [class*="body"],
+[role="tabpanel"] [class*="content"],
+.tabpanel .content,
+.tabpanel .tabpanel-content,
+.tabpanel [class*="body"],
+.tabpanel [class*="content"] {
+  background: #ffffff;
+  color: #333333;
+}
+
+/* Tabpanel tabs - proper RTL/LTR flex ordering */
+[role="tablist"],
+.tablist,
+[class*="tablist"] {
+  display: flex;
+  border-bottom: 1px solid #e5e5e5;
+  background: #f9f9f9;
+}
+
+/* Individual tabs */
+[role="tab"],
+.tab,
+[class*="tab"][class*="item"] {
+  padding: 12px 16px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  color: #666;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+
+/* Tab hover state */
+[role="tab"]:hover,
+.tab:hover,
+[class*="tab"][class*="item"]:hover {
+  background: rgba(27, 107, 58, 0.05);
+  color: #1B6B3A;
+}
+
+/* Active tab */
+[role="tab"][aria-selected="true"],
+.tab.active,
+[class*="tab"][class*="item"].active {
+  color: #1B6B3A;
+  border-bottom-color: #B8860B;
+  background: rgba(184, 134, 11, 0.05);
+  font-weight: 600;
+}
+
+/* Measurement tools - if in tabpanel */
+[class*="measurement"] {
+  background: transparent;
+  color: #333333;
+}
+
+[class*="measurement"] [class*="header"],
+[class*="measurement"] [class*="title"] {
+  background: #1B6B3A;
+  color: #ffffff;
+  border-bottom: 2px solid #B8860B;
+}
+
+/* Catalog tools - if in tabpanel */
+[class*="catalog"] [class*="header"],
+[class*="catalog"] [class*="title"] {
+  background: #1B6B3A;
+  color: #ffffff;
+  border-bottom: 2px solid #B8860B;
+}
