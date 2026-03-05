@@ -15,8 +15,7 @@
         ".overlay-container-compass",
         ".overlay-container-pancontrol",
         ".overlay-container-zoomcontrol",
-        "#application-curtain",
-        ".SlidingPanel-window"
+        "#application-curtain"
 
   ]
 }

@@ -3,8 +3,8 @@ import { createPortal } from "react-dom";
 import { emitAction } from "@/core/lib/catex/handlers/actionHandlers";
 import { clickElement, clickToggleByText } from "@/core/lib/catex/handlers/domProxyHandlers";
 import { useLanguage } from "@/core/lib/catex/language/useLanguage";
-import sidebarConfig from "@/core/lib/config/sidebar.json";
-import "./CatexSidebar.css";
+import sidebarConfig from "@/core/lib/config/sidebarSecondary.json";
+import "./CatexSidebarSecondary.css";
 
 interface PluginItem {
   id: string;
@@ -40,42 +40,22 @@ function Tooltip({ text, anchorRect, isRTL }: {
   };
 
   if (isRTL) {
-    style.right = window.innerWidth - anchorRect.left + 8;
-  } else {
+    // In RTL, sidebar is on left, tooltip on right
     style.left = anchorRect.right + 8;
+  } else {
+    // In LTR, sidebar is on right, tooltip on left
+    style.right = window.innerWidth - anchorRect.left + 8;
   }
 
   return createPortal(<div style={style}>{text}</div>, document.body);
 }
 
-function use3DState(): boolean {
-  const [is3D, setIs3D] = useState(false);
-
-  useEffect(() => {
-    const check = () => {
-      const icons = document.querySelectorAll(".toggle-button .toggle-icon");
-      for (const icon of icons) {
-        const text = icon.textContent?.trim();
-        if (text === "2D") { setIs3D(true); return; }
-        if (text === "3D") { setIs3D(false); return; }
-      }
-    };
-    check();
-    const observer = new MutationObserver(check);
-    observer.observe(document.body, { childList: true, subtree: true, characterData: true });
-    return () => observer.disconnect();
-  }, []);
-
-  return is3D;
-}
-
-const CatexSidebar: React.FC = () => {
+const CatexSidebarSecondary: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [activePlugin, setActivePlugin] = useState<string | null>(null);
   const [hoveredPlugin, setHoveredPlugin] = useState<string | null>(null);
   const [hoverRect, setHoverRect] = useState<DOMRect | null>(null);
   const { t, isRTL } = useLanguage();
-  const is3D = use3DState();
 
   // Listen for reset active state event
   useEffect(() => {
@@ -83,13 +63,6 @@ const CatexSidebar: React.FC = () => {
     window.addEventListener("catex:sidebar:resetActive", handleReset);
     return () => window.removeEventListener("catex:sidebar:resetActive", handleReset);
   }, []);
-
-  const renderIcon = (plugin: PluginItem) => {
-    if (plugin.id === "3d") {
-      return <span className="catex-sidebar-3d-icon">{is3D ? "2D" : "3D"}</span>;
-    }
-    return <i className={`fa-solid ${plugin.icon}`} />;
-  };
 
   const handleToggle = () => {
     if (open) setActivePlugin(null);
@@ -136,7 +109,7 @@ const CatexSidebar: React.FC = () => {
   };
 
   return (
-    <div className={`catex-sidebar ${isRTL ? "catex-sidebar-rtl" : ""}`}>
+    <div className={`catex-sidebar-secondary ${isRTL ? "catex-sidebar-secondary-rtl" : ""}`}>
       <div
         className={`catex-sidebar-toggle ${open ? "active" : ""}`}
         onClick={handleToggle}
@@ -155,7 +128,7 @@ const CatexSidebar: React.FC = () => {
               onMouseLeave={handleMouseLeave}
               style={{ animationDelay: `${i * 25}ms` }}
             >
-              {renderIcon(plugin)}
+              <i className={`fa-solid ${plugin.icon}`} />
             </div>
           ))}
         </div>
@@ -172,4 +145,4 @@ const CatexSidebar: React.FC = () => {
   );
 };
 
-export default CatexSidebar;
+export default CatexSidebarSecondary;

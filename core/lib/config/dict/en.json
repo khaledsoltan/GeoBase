@@ -100,6 +100,9 @@
   "plugin.export": "Export",
   "plugin.print": "Print",
   "plugin.more": "More",
+  "plugin.layerManager": "Layer Manager",
+  "plugin.measurement": "Measurement Tools",
+  "plugin.catalogResults": "Catalogue Results",
 
   "footer.lon": "Lon: {value}",
   "footer.lat": "Lat: {value}",
@@ -109,9 +112,11 @@
   "general.close": "Close",
   "general.cancel": "Cancel",
   "general.confirm": "Confirm",
-  "general.loading": "Loading..."
+  "general.loading": "Loading...",
 
+  "plugin.3d": "3D View",
 
-  ,"plugin.3d": "3D View"
+  "catalog.tree": "Catalog Tree",
+  "catalog.apolloCatalog": "Apollo Catalog"
 
 }

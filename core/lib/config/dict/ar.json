@@ -100,6 +100,9 @@
   "plugin.export": "تصدير",
   "plugin.print": "طباعة",
   "plugin.more": "المزيد",
+  "plugin.layerManager": "مدير الطبقات",
+  "plugin.measurement": "أدوات القياس",
+  "plugin.catalogResults": "نتائج الفهرس",
 
   "footer.lon": "خط الطول: {value}",
   "footer.lat": "خط العرض: {value}",
@@ -111,6 +114,9 @@
   "general.confirm": "تأكيد",
   "general.loading": "جاري التحميل...",
 
-  "plugin.3d": "عرض ثلاثي الأبعاد"
+  "plugin.3d": "عرض ثلاثي الأبعاد",
+
+  "catalog.tree": "شجرة الفهرس",
+  "catalog.apolloCatalog": "فهرس أبولو"
 
 }

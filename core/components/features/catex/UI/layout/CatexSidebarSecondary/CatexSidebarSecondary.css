@@ -1,0 +1,129 @@
+/* ============================================================
+   CATEX SIDEBAR SECONDARY - Opposite Positioning
+   ============================================================ */
+
+.catex-sidebar-secondary {
+  position: fixed;
+  top: 120px;
+  bottom: 28px;
+  width: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 0;
+  z-index: 8000;
+  transition: all 0.3s ease;
+}
+
+/* English (LTR) - Secondary sidebar on RIGHT */
+.catex-sidebar-secondary {
+  right: 0;
+  margin-right: 10px;
+}
+
+/* Arabic (RTL) - Secondary sidebar on LEFT */
+.catex-sidebar-secondary-rtl {
+  right: auto;
+  left: 0;
+  margin-left: 10px;
+  margin-right: 0;
+}
+
+.catex-sidebar-secondary .catex-sidebar-toggle {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  cursor: pointer;
+  background: #1B6B3A;
+  border: 1.5px solid #1B6B3A;
+  box-shadow: 0 2px 8px rgba(27,107,58,0.3);
+  margin-bottom: 8px;
+  transition: all 0.18s ease;
+  flex-shrink: 0;
+}
+
+.catex-sidebar-secondary .catex-sidebar-toggle i {
+  font-size: 16px;
+  color: #fff;
+}
+
+.catex-sidebar-secondary .catex-sidebar-toggle:hover {
+  background: #0F4D28;
+}
+
+.catex-sidebar-secondary .catex-sidebar-toggle.active {
+  background: #B8860B;
+  border-color: #B8860B;
+  box-shadow: 0 2px 8px rgba(184,134,11,0.4);
+}
+
+.catex-sidebar-secondary .catex-sidebar-toggle.active:hover {
+  background: #9a7209;
+}
+
+.catex-sidebar-secondary .catex-sidebar-plugins {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  overflow: visible;
+  padding-bottom: 4px;
+}
+
+.catex-sidebar-secondary .catex-sidebar-btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  cursor: pointer;
+  background: #fff;
+  border: 1.5px solid rgba(27,107,58,0.25);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  transition: all 0.18s ease;
+  animation: catex-btnIn 0.15s ease both;
+  flex-shrink: 0;
+}
+
+.catex-sidebar-secondary .catex-sidebar-btn i {
+  font-size: 15px;
+  color: #1B6B3A;
+  transition: color 0.18s ease;
+}
+
+.catex-sidebar-secondary .catex-sidebar-btn:hover {
+  background: #1B6B3A;
+  border-color: #1B6B3A;
+  box-shadow: 0 2px 8px rgba(27,107,58,0.3);
+}
+
+.catex-sidebar-secondary .catex-sidebar-btn:hover i {
+  color: #fff;
+}
+
+.catex-sidebar-secondary .catex-sidebar-btn.active {
+  background: #B8860B;
+  border-color: #B8860B;
+  box-shadow: 0 2px 8px rgba(184,134,11,0.4);
+}
+
+.catex-sidebar-secondary .catex-sidebar-btn.active i {
+  color: #fff;
+}
+
+@keyframes catex-btnIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

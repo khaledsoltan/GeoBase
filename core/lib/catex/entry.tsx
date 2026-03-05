@@ -9,7 +9,20 @@ import hideConfig from  "./../config/hideElements.json";
 import * as Components from "@/core/components/features/catex";
 import CatexNavbar from "@/core/components/features/catex/UI/layout/CatexSidebar/CatexSidebar";
 import CatexSidebar from "@/core/components/features/catex/UI/layout/CatexSidebar/CatexSidebar";
+import CatexSidebarSecondary from "@/core/components/features/catex/UI/layout/CatexSidebarSecondary/CatexSidebarSecondary";
+import { LanguageSettings } from "@/core/lib/catex/language/LanguageSettings";
+import { watchLanguage } from "@/core/lib/catex/handlers/langHandlers";
+import "@/core/lib/catex/styles/rtl-support.css";
 
+
+// Initialize language system
+LanguageSettings.setLanguage("ar"); // Default to Arabic
+
+// Watch host app language changes
+watchLanguage((lang) => {
+  LanguageSettings.setLanguage(lang);
+  console.log(`[catex] Language changed to: ${lang}`);
+});
 
 // Remove elements
 removeElements(removeConfig.remove);
@@ -28,6 +41,10 @@ sideMount.id = "catex-sidebar-root";
 document.body.appendChild(sideMount);
 createRoot(sideMount).render(<CatexSidebar />);
 
+const sideMountSecondary = document.createElement("div");
+sideMountSecondary.id = "catex-sidebar-secondary-root";
+document.body.appendChild(sideMountSecondary);
+createRoot(sideMountSecondary).render(<CatexSidebarSecondary />);
 
 // Register generic handler
 catexRegistry.on("map", "onMouseClick", (event, callback) => {
