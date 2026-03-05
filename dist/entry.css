@@ -7645,42 +7645,11 @@
   margin-left: 10px;
   margin-right: 0;
 }
-.catex-sidebar-secondary .catex-sidebar-toggle {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 9px;
-  cursor: pointer;
-  background: #1B6B3A;
-  border: 1.5px solid #1B6B3A;
-  box-shadow: 0 2px 8px rgba(27, 107, 58, 0.3);
-  margin-bottom: 8px;
-  transition: all 0.18s ease;
-  flex-shrink: 0;
-}
-.catex-sidebar-secondary .catex-sidebar-toggle i {
-  font-size: 16px;
-  color: #fff;
-}
-.catex-sidebar-secondary .catex-sidebar-toggle:hover {
-  background: #0F4D28;
-}
-.catex-sidebar-secondary .catex-sidebar-toggle.active {
-  background: #B8860B;
-  border-color: #B8860B;
-  box-shadow: 0 2px 8px rgba(184, 134, 11, 0.4);
-}
-.catex-sidebar-secondary .catex-sidebar-toggle.active:hover {
-  background: #9a7209;
-}
 .catex-sidebar-secondary .catex-sidebar-plugins {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  flex: 1;
   overflow: visible;
   padding-bottom: 4px;
 }
@@ -7929,19 +7898,185 @@ html[dir=rtl] .SlidingPanel > div.visible.left {
   margin-right: 66px !important;
   transition: all 125ms ease 0s;
   border-top-left-radius: 0;
-  height: 1000px !important;
-  top: 100px !important;
+  height: 670px !important;
+  top: 80px !important;
 }
 html[dir=ltr] .SlidingPanel > div.visible.left {
   left: 0 !important;
   right: auto !important;
   margin-left: 66px !important;
   transition: all 125ms ease 0s;
-  height: 1000px !important;
-  top: 100px !important;
+  height: 670px !important;
+  top: 80px !important;
+}
+[data-cy=layer-manager] {
+  display: none !important;
+  background: #ffffff !important;
+  border-radius: 8px !important;
+  border: 2px solid #B8860B !important;
+  box-shadow: 0 8px 24px rgba(27, 107, 58, 0.25) !important;
+  overflow: hidden !important;
+  all: revert !important;
+}
+[data-cy=layer-manager] * {
+  background-image: none !important;
+}
+[data-cy=layer-manager].catex-layer-show {
+  display: block !important;
+  visibility: visible !important;
+  position: fixed !important;
+  width: 450px !important;
+}
+[data-cy=layer-manager] .floating-window-header {
+  background: #1B6B3A !important;
+  background-color: #1B6B3A !important;
+  background-image: none !important;
+  background-gradient: none !important;
+  border-bottom: 3px solid #B8860B !important;
+  padding: 14px 16px !important;
+  border-radius: 6px 6px 0 0 !important;
+  box-shadow: 0 2px 8px rgba(27, 107, 58, 0.3) !important;
+  text-align: center !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.floating-window-header {
+  background: #1B6B3A !important;
+  background-color: #1B6B3A !important;
+  background-image: none !important;
+}
+[data-cy=layer-manager] .draggable-handle {
+  background: #1B6B3A !important;
+  background-color: #1B6B3A !important;
+  background-image: none !important;
+}
+.floating-window .floating-window-title {
+  z-index: 9 !important;
+  width: 100% !important;
+  text-align: center !important;
+  transition: opacity 0.3s 0.5s, top 0s 0.8s !important;
+  background-color: transparent !important;
+  color: #1B6B3A !important;
+  font-weight: 700 !important;
+}
+[data-cy=layer-manager] .floating-window-title {
+  color: #1B6B3A !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  z-index: 9 !important;
+  width: 100% !important;
+  text-align: center !important;
+  transition: opacity 0.3s 0.5s, top 0s 0.8s !important;
+  background-color: transparent !important;
+}
+[data-cy=layer-manager] .floating-window-content {
+  background: #ffffff !important;
+}
+[data-cy=layer-manager] .floating-window-content-scrollable {
+  width: 100% !important;
+  height: 100% !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  background: #ffffff !important;
+}
+[data-cy=layer-manager] .floating-window-content-scrollable > div {
+  background-color: transparent !important;
+}
+[data-cy=layer-manager] .close_button {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-radius: 4px !important;
+  padding: 6px 8px !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+  border: none !important;
+}
+[data-cy=layer-manager] .close_button:hover {
+  background: rgba(255, 255, 255, 0.3) !important;
+}
+[data-cy=layer-manager] .close_button svg,
+[data-cy=layer-manager] .close_button svg path {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+}
+[data-cy=layer-manager] ul,
+[data-cy=layer-manager] ul.layer-manager-tree {
+  background: transparent !important;
+  background-color: transparent !important;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+[data-cy=layer-manager] ul li,
+[data-cy=layer-manager] li[data-cy=layer-node] {
+  background: transparent !important;
+  background-color: transparent !important;
+  padding: 8px 4px !important;
+  margin: 0 !important;
+  list-style: none !important;
+  border: none !important;
+}
+[data-cy=layer-manager] li:hover {
+  background: rgba(27, 107, 58, 0.1) !important;
+  background-color: rgba(27, 107, 58, 0.1) !important;
+}
+[data-cy=layer-manager] .layer-manager-span {
+  background: transparent !important;
+  background-color: transparent !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+[data-cy=layer-manager] .layer-manager-span.active {
+  background: rgba(184, 134, 11, 0.15) !important;
+  background-color: rgba(184, 134, 11, 0.15) !important;
+  border-left: 2px solid #B8860B !important;
+  padding-left: 8px !important;
+}
+[data-cy=layer-manager] .layer-manager-label {
+  color: #333333 !important;
+  font-weight: 500 !important;
+}
+[data-cy=layer-manager] .layer-manager-button-folder {
+  background: transparent !important;
+  border: none !important;
+  color: #1B6B3A !important;
+  cursor: pointer !important;
+}
+[data-cy=layer-manager] .layer-manager-button-folder:hover {
+  color: #B8860B !important;
+}
+[data-cy=layer-manager] .layer-manager-span.active .layer-manager-button-folder {
+  color: #B8860B !important;
+}
+[data-cy=layer-manager] .lcdIcon {
+  color: inherit !important;
+  fill: inherit !important;
+}
+[data-cy=layer-manager] .layer-manager-button {
+  background: transparent !important;
+  border: none !important;
+  color: #888888 !important;
+  transition: color 0.2s ease !important;
+  padding: 4px 6px !important;
+  cursor: pointer !important;
+}
+[data-cy=layer-manager] .layer-manager-button:hover {
+  color: #B8860B !important;
+}
+[data-cy=layer-manager] .layer-manager-button svg {
+  color: inherit !important;
+  fill: inherit !important;
+}
+[data-cy=layer-manager] .layer-manager-button svg path {
+  fill: currentColor !important;
+}
+.BrowseCatalogsForm {
+  height: calc(82vh - 180px) !important;
 }
 .BrowseCatalogsTreeControlForm.BrowseCatalogsForm {
-  height: 850px !important;
+  height: calc(82vh - 180px) !important;
 }
 html[dir=rtl] .BrowseCatalogsForm .BrowseCatalogsTreeControl {
   text-align: right !important;

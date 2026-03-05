@@ -21810,8 +21810,6 @@ var CatexExtensions = (() => {
       ".Workspace-header",
       ".main-navbar",
       ".navbar-dark.bg-dark",
-      "[data-cy='layer-manager']",
-      "[title='Toggle visibility of layer control']",
       "[title='Toggle visibility of overview map']",
       "[title='Catalog search results']",
       "[title='Measurement tools']",
@@ -21821,7 +21819,8 @@ var CatexExtensions = (() => {
       ".overlay-container-compass",
       ".overlay-container-pancontrol",
       ".overlay-container-zoomcontrol",
-      "#application-curtain"
+      "#application-curtain",
+      ".overlay-modular-container-toggle-button"
     ]
   };
 
@@ -22836,7 +22835,6 @@ var CatexExtensions = (() => {
     return (0, import_react_dom2.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { style, children: text }), document.body);
   }
   var CatexSidebarSecondary = () => {
-    const [open, setOpen] = (0, import_react5.useState)(false);
     const [activePlugin, setActivePlugin] = (0, import_react5.useState)(null);
     const [hoveredPlugin, setHoveredPlugin] = (0, import_react5.useState)(null);
     const [hoverRect, setHoverRect] = (0, import_react5.useState)(null);
@@ -22846,11 +22844,99 @@ var CatexExtensions = (() => {
       window.addEventListener("catex:sidebar:resetActive", handleReset);
       return () => window.removeEventListener("catex:sidebar:resetActive", handleReset);
     }, []);
-    const handleToggle = () => {
-      if (open) setActivePlugin(null);
-      setOpen(!open);
-    };
+    (0, import_react5.useEffect)(() => {
+      const handleCloseClick = () => {
+        setActivePlugin(null);
+      };
+      const closeBtn = document.querySelector("[data-cy='layer-manager'] .close_button");
+      if (closeBtn) {
+        closeBtn.addEventListener("click", handleCloseClick);
+        return () => closeBtn.removeEventListener("click", handleCloseClick);
+      }
+    }, []);
+    (0, import_react5.useEffect)(() => {
+      let rtlStyleEl = document.getElementById("catex-layer-manager-rtl");
+      if (!rtlStyleEl) {
+        rtlStyleEl = document.createElement("style");
+        rtlStyleEl.id = "catex-layer-manager-rtl";
+        document.head.appendChild(rtlStyleEl);
+      }
+      if (isRTL) {
+        rtlStyleEl.textContent = `
+        [data-cy='layer-manager'] {
+          left: 80px !important;
+          right: auto !important;
+          top: 120px !important;
+        }
+      `;
+      } else {
+        rtlStyleEl.textContent = `
+        [data-cy='layer-manager'] {
+          right: 80px !important;
+          left: auto !important;
+          top: 120px !important;
+        }
+      `;
+      }
+      const originalBtn = document.querySelector(".overlay-modular-container-toggle-button");
+      const sidebarRoot = document.getElementById("catex-sidebar-secondary-root");
+      if (originalBtn && sidebarRoot && !document.getElementById("catex-layer-toggle-clone")) {
+        const clonedBtn = originalBtn.cloneNode(true);
+        clonedBtn.id = "catex-layer-toggle-clone";
+        clonedBtn.style.cssText = `
+        position: absolute !important;
+        top: 10px !important;
+        ${isRTL ? "left: 10px !important;" : "right: 10px !important;"}
+        z-index: 9999 !important;
+        cursor: pointer;
+      `;
+        clonedBtn.addEventListener("click", () => {
+          originalBtn.click();
+        });
+        sidebarRoot.appendChild(clonedBtn);
+      }
+    }, [isRTL]);
     const handlePluginClick = (plugin) => {
+      if (plugin.id === "layer-manager") {
+        const layerPanel = document.querySelector("[data-cy='layer-manager']");
+        if (activePlugin === plugin.id) {
+          if (layerPanel) {
+            layerPanel.classList.remove("catex-layer-show");
+          }
+          setActivePlugin(null);
+        } else {
+          if (layerPanel) {
+            layerPanel.classList.add("catex-layer-show");
+            const headerEl = layerPanel.querySelector(".floating-window-header");
+            const titleEl = layerPanel.querySelector(".floating-window-title");
+            if (headerEl) {
+              headerEl.setAttribute("style", "");
+              headerEl.style.cssText = `
+              background: #1B6B3A !important;
+              background-color: #1B6B3A !important;
+              background-image: none !important;
+              border-bottom: 3px solid #B8860B !important;
+              padding: 14px 16px !important;
+              border-radius: 6px 6px 0 0 !important;
+            `;
+            }
+            if (titleEl) {
+              titleEl.setAttribute("style", "");
+              titleEl.style.cssText = `
+              background: transparent !important;
+              background-color: transparent !important;
+              color: #1B6B3A !important;
+              width: 100% !important;
+              text-align: center !important;
+              z-index: 9 !important;
+              font-weight: 700 !important;
+            `;
+            }
+          }
+          setActivePlugin(plugin.id);
+        }
+        return;
+      }
       if (activePlugin === plugin.id) {
         setActivePlugin(null);
         const openDialog = document.querySelector(".SlidingPanel-window.visible, .SlidingPanel-window.left, .SlidingPanel-window.right");
@@ -22881,15 +22967,7 @@ var CatexExtensions = (() => {
       setHoverRect(null);
     };
     return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { className: `catex-sidebar-secondary ${isRTL ? "catex-sidebar-secondary-rtl" : ""}`, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
-        "div",
-        {
-          className: `catex-sidebar-toggle ${open ? "active" : ""}`,
-          onClick: handleToggle,
-          children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("i", { className: `fa-solid ${open ? "fa-xmark" : "fa-bars"}` })
-        }
-      ),
-      open && /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { className: "catex-sidebar-plugins", children: plugins2.map((plugin, i) => /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { className: "catex-sidebar-plugins", children: plugins2.slice(0, 3).map((plugin, i) => /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
         "div",
         {
           className: `catex-sidebar-btn ${activePlugin === plugin.id ? "active" : ""}`,

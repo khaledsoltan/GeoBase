@@ -63,6 +63,19 @@ const CatexSidebarSecondary: React.FC = () => {
     return () => window.removeEventListener("catex:sidebar:resetActive", handleReset);
   }, []);
 
+  // Listen for layer-manager close button clicks
+  useEffect(() => {
+    const handleCloseClick = () => {
+      setActivePlugin(null);
+    };
+
+    const closeBtn = document.querySelector("[data-cy='layer-manager'] .close_button");
+    if (closeBtn) {
+      closeBtn.addEventListener("click", handleCloseClick);
+      return () => closeBtn.removeEventListener("click", handleCloseClick);
+    }
+  }, []);
+
   // Clone and move the layer toggle button to sidebar + Apply RTL to layer panel
   useEffect(() => {
     // Apply RTL CSS to layer-manager panel
@@ -78,7 +91,7 @@ const CatexSidebarSecondary: React.FC = () => {
         [data-cy='layer-manager'] {
           left: 80px !important;
           right: auto !important;
-          top: 80px !important;
+          top: 120px !important;
         }
       `;
     } else {
@@ -86,7 +99,7 @@ const CatexSidebarSecondary: React.FC = () => {
         [data-cy='layer-manager'] {
           right: 80px !important;
           left: auto !important;
-          top: 80px !important;
+          top: 120px !important;
         }
       `;
     }
@@ -119,14 +132,51 @@ const CatexSidebarSecondary: React.FC = () => {
   const handlePluginClick = (plugin: PluginItem) => {
     // Special handling for layer-manager
     if (plugin.id === "layer-manager") {
+      const layerPanel = document.querySelector("[data-cy='layer-manager']") as HTMLElement;
+
       if (activePlugin === plugin.id) {
         // Hide
+        if (layerPanel) {
+          layerPanel.classList.remove("catex-layer-show");
+        }
         setActivePlugin(null);
-        document.body.style.setProperty("--layer-show", "none");
       } else {
         // Show
+        if (layerPanel) {
+          layerPanel.classList.add("catex-layer-show");
+
+          // AGGRESSIVE: Remove ALL blue, force GREEN
+          const headerEl = layerPanel.querySelector(".floating-window-header") as HTMLElement;
+          const titleEl = layerPanel.querySelector(".floating-window-title") as HTMLElement;
+
+          if (headerEl) {
+            // Remove ALL existing styles
+            headerEl.setAttribute("style", "");
+            // Force GREEN
+            headerEl.style.cssText = `
+              background: #1B6B3A !important;
+              background-color: #1B6B3A !important;
+              background-image: none !important;
+              border-bottom: 3px solid #B8860B !important;
+              padding: 14px 16px !important;
+              border-radius: 6px 6px 0 0 !important;
+            `;
+          }
+
+          if (titleEl) {
+            titleEl.setAttribute("style", "");
+            titleEl.style.cssText = `
+              background: transparent !important;
+              background-color: transparent !important;
+              color: #1B6B3A !important;
+              width: 100% !important;
+              text-align: center !important;
+              z-index: 9 !important;
+              font-weight: 700 !important;
+            `;
+          }
+        }
         setActivePlugin(plugin.id);
-        document.body.style.setProperty("--layer-show", "block");
       }
       return;
     }
