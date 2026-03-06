@@ -720,17 +720,17 @@ html[dir="rtl"] .catex-sidebar-secondary {
   border: none !important;
 }
 
-/* Tabpanel LTR - positioned with left: 1650px and reduced margin-right */
+/* Tabpanel LTR - positioned with left: 1680px and margin-right: 10px */
 html[dir="ltr"] .tabpanel {
   right: auto;
-  left: 1650px;
+  left: 1680px;
   margin-right: 10px;
 }
 
-/* Tabpanel RTL - positioned with right: 1650px and reduced margin-left */
+/* Tabpanel RTL - positioned with right: 1680px and margin-left: 10px */
 html[dir="rtl"] .tabpanel {
   left: auto;
-  right: 1650px;
+  right: 1680px;
   margin-left: 10px;
 }
 

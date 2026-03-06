@@ -8270,12 +8270,12 @@ html[dir=rtl] .catex-sidebar-secondary {
 }
 html[dir=ltr] .tabpanel {
   right: auto;
-  left: 1650px;
+  left: 1680px;
   margin-right: 10px;
 }
 html[dir=rtl] .tabpanel {
   left: auto;
-  right: 1650px;
+  right: 1680px;
   margin-left: 10px;
 }
 .floating-window .close_button {
