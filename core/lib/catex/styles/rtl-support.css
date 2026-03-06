@@ -837,17 +837,22 @@ html[dir="rtl"] .tabpanel {
   justify-content: center !important;
   width: 100% !important;
   height: 100% !important;
+  background-color: #1a750d !important;
 }
 
 .Edit-Tools-Button-SVG,
 .Measure-Tools-Button-SVG,
+.Edit-Tools-Button-SVG,
+.Measure-Tools-Button-SVG,
 .Edit-Tools-Button-SVG img,
-.Measure-Tools-Button-SVG img {
+.Measure-Tools-Button-SVG img,
+img.Edit-Tools-Button-SVG {
   width: 18px !important;
   height: 18px !important;
   color: inherit !important;
   fill: currentColor !important;
   pointer-events: none !important;
+  background-color: #1a750d !important;
 }
 
 /* Remove ALL hover effects on images inside buttons */
@@ -872,6 +877,12 @@ svg {
   color: #c8c8c8 !important;
   font-weight: 600 !important;
   margin-right: 8px !important;
+}
+
+/* lcdIcon hover styling */
+span.lcdIcon.lcdIconRectangle:hover,
+span.lcdIcon.lcdIconRectangle:hover {
+  background-color: #1a750d !important;
 }
 
 /* Remove scrollbars from containers */
