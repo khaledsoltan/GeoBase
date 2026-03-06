@@ -756,10 +756,10 @@ html[dir="ltr"] .tabpanel {
   margin-right: 66px;
 }
 
-/* Tabpanel RTL - margin-left to sit behind left sidebar */
+/* Tabpanel RTL - positioned with right: 1650px and margin-left: 100px */
 html[dir="rtl"] .tabpanel {
   left: auto;
-  right: 0;
-  margin-left: 66px;
+  right: 1650px;
+  margin-left: 100px;
 }
 

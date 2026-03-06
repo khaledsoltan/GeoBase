@@ -8301,8 +8301,8 @@ html[dir=ltr] .tabpanel {
 }
 html[dir=rtl] .tabpanel {
   left: auto;
-  right: 0;
-  margin-left: 66px;
+  right: 1650px;
+  margin-left: 100px;
 }
 /*! Bundled license information:
 
