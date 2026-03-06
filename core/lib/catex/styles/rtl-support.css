@@ -840,11 +840,30 @@ html[dir="rtl"] .tabpanel {
 }
 
 .Edit-Tools-Button-SVG,
-.Measure-Tools-Button-SVG {
+.Measure-Tools-Button-SVG,
+.Edit-Tools-Button-SVG img,
+.Measure-Tools-Button-SVG img {
   width: 18px !important;
   height: 18px !important;
   color: inherit !important;
   fill: currentColor !important;
+  pointer-events: none !important;
+}
+
+/* Remove ALL hover effects on images inside buttons */
+img,
+svg {
+  pointer-events: none !important;
+}
+
+.Edit-Tools-Button img,
+.Edit-Tools-Button svg,
+.Measure-Tools-Button img,
+.Measure-Tools-Button svg {
+  pointer-events: none !important;
+  opacity: inherit !important;
+  filter: none !important;
+  transform: none !important;
 }
 
 /* Label styling in tools */
