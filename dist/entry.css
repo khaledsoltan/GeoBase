@@ -8281,6 +8281,9 @@ html[dir=rtl] .tabpanel {
 .floating-window .close_button {
   display: none;
 }
+.tabpanel-content {
+  border: none !important;
+}
 /*! Bundled license information:
 
 @fortawesome/fontawesome-free/css/all.min.css:

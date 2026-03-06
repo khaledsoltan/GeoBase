@@ -739,3 +739,8 @@ html[dir="rtl"] .tabpanel {
   display: none;
 }
 
+/* Remove border from tabpanel-content */
+.tabpanel-content {
+  border: none !important;
+}
+
