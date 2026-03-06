@@ -8322,6 +8322,13 @@ html[dir=rtl] .tabpanel {
   background-color: #1a750d !important;
   color: #d1d1e1 !important;
 }
+button:not(:disabled),
+[type=button]:not(:disabled),
+[type=reset]:not(:disabled),
+[type=submit]:not(:disabled) {
+  cursor: pointer !important;
+  background-color: #026102 !important;
+}
 /*! Bundled license information:
 
 @fortawesome/fontawesome-free/css/all.min.css:

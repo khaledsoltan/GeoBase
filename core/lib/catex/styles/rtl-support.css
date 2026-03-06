@@ -794,3 +794,12 @@ html[dir="rtl"] .tabpanel {
   color: #d1d1e1 !important;
 }
 
+/* Style non-disabled buttons */
+button:not(:disabled),
+[type=button]:not(:disabled),
+[type=reset]:not(:disabled),
+[type=submit]:not(:disabled) {
+  cursor: pointer !important;
+  background-color: #026102 !important;
+}
+
