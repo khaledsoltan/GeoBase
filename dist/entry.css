@@ -8322,6 +8322,15 @@ html[dir=rtl] .tabpanel {
   background-color: #1a750d !important;
   color: #d1d1e1 !important;
 }
+.Edit-Tools-Button {
+  transition: all 0.2s ease !important;
+}
+.Edit-Tools-Button:hover {
+  background-color: #1a750d !important;
+  color: #ffffff !important;
+  transform: scale(1.05) !important;
+  transition: all 0.2s ease !important;
+}
 button:not(:disabled),
 [type=button]:not(:disabled),
 [type=reset]:not(:disabled),

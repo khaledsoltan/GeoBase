@@ -794,6 +794,18 @@ html[dir="rtl"] .tabpanel {
   color: #d1d1e1 !important;
 }
 
+/* Smooth hover effect for Edit-Tools-Button */
+.Edit-Tools-Button {
+  transition: all 0.2s ease !important;
+}
+
+.Edit-Tools-Button:hover {
+  background-color: #1a750d !important;
+  color: #ffffff !important;
+  transform: scale(1.05) !important;
+  transition: all 0.2s ease !important;
+}
+
 /* Style non-disabled buttons */
 button:not(:disabled),
 [type=button]:not(:disabled),
