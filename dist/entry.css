@@ -8318,6 +8318,10 @@ html[dir=rtl] .tabpanel {
   margin-bottom: 5px !important;
   background-color: #ffffff !important;
 }
+.Measure-Tools-Button.selected {
+  background-color: #1a750d !important;
+  color: #d1d1e1 !important;
+}
 /*! Bundled license information:
 
 @fortawesome/fontawesome-free/css/all.min.css:

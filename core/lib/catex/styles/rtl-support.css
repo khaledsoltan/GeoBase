@@ -788,3 +788,9 @@ html[dir="rtl"] .tabpanel {
   background-color: #ffffff !important;
 }
 
+/* Style selected Measure-Tools-Button */
+.Measure-Tools-Button.selected {
+  background-color: #1a750d !important;
+  color: #d1d1e1 !important;
+}
+
