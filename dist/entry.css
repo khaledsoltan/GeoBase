@@ -8296,7 +8296,7 @@ html[dir=rtl] .catex-sidebar-secondary {
 }
 html[dir=ltr] .tabpanel {
   right: auto;
-  left: 0;
+  left: 1650px;
   margin-right: 66px;
 }
 html[dir=rtl] .tabpanel {

@@ -749,10 +749,10 @@ html[dir="rtl"] .catex-sidebar-secondary {
   border: none !important;
 }
 
-/* Tabpanel LTR - margin-right to sit behind right sidebar */
+/* Tabpanel LTR - positioned with left: 1650px and margin-right: 66px */
 html[dir="ltr"] .tabpanel {
   right: auto;
-  left: 0;
+  left: 1650px;
   margin-right: 66px;
 }
 
