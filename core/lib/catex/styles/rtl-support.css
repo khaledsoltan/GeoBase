@@ -13,16 +13,7 @@
   font-weight: 600 !important;
 }
 
-.SlidingPanel-window .close_button {
-  background: rgba(255, 255, 255, 0.1) !important;
-  border-radius: 6px !important;
-  padding: 6px !important;
-  transition: background 0.2s ease !important;
-}
 
-.SlidingPanel-window .close_button:hover {
-  background: rgba(255, 255, 255, 0.2) !important;
-}
 
 /* Tree Control Header */
 .BrowseCatalogsTreeControl .header {
@@ -360,26 +351,6 @@ html[dir="ltr"] .SlidingPanel > div.visible.left {
   background-color: transparent !important;
 }
 
-/* Layer Manager - Close Button */
-[data-cy='layer-manager'] .close_button {
-  background: rgba(255, 255, 255, 0.15) !important;
-  border-radius: 4px !important;
-  padding: 6px 8px !important;
-  transition: all 0.2s ease !important;
-  cursor: pointer !important;
-  border: none !important;
-}
-
-[data-cy='layer-manager'] .close_button:hover {
-  background: rgba(255, 255, 255, 0.3) !important;
-}
-
-[data-cy='layer-manager'] .close_button svg,
-[data-cy='layer-manager'] .close_button svg path {
-  color: #ffffff !important;
-  fill: #ffffff !important;
-  stroke: #ffffff !important;
-}
 
 /* Layer Manager - Tree Items & Styling */
 [data-cy='layer-manager'] ul,
@@ -761,5 +732,10 @@ html[dir="rtl"] .tabpanel {
   left: auto;
   right: 1650px;
   margin-left: 100px;
+}
+
+/* Hide floating-window close button */
+.floating-window .close_button {
+  display: none;
 }
 
