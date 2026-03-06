@@ -8322,14 +8322,40 @@ html[dir=rtl] .tabpanel {
   background-color: #1a750d !important;
   color: #d1d1e1 !important;
 }
+.Measure-Tools-Button {
+  background-color: #ffffff !important;
+  color: #c8c8c8 !important;
+  border: 1px solid #d3d3d3 !important;
+  padding: 6px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+.Measure-Tools-Button:hover {
+  background-color: #1a750d !important;
+  color: #ffffff !important;
+  border-color: #1a750d !important;
+  transition: all 0.2s ease !important;
+}
 .Edit-Tools-Button {
+  background-color: #ffffff !important;
+  color: #c8c8c8 !important;
+  border: 1px solid #d3d3d3 !important;
+  padding: 6px !important;
+  cursor: pointer !important;
   transition: all 0.2s ease !important;
 }
 .Edit-Tools-Button:hover {
   background-color: #1a750d !important;
   color: #ffffff !important;
+  border-color: #1a750d !important;
   transform: scale(1.05) !important;
   transition: all 0.2s ease !important;
+}
+.Measure-Tools label,
+.Edit-Tools label {
+  color: #c8c8c8 !important;
+  font-weight: 600 !important;
+  margin-right: 8px !important;
 }
 button:not(:disabled),
 [type=button]:not(:disabled),
