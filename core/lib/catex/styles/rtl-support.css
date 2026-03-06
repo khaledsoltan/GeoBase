@@ -879,10 +879,20 @@ svg {
   margin-right: 8px !important;
 }
 
-/* lcdIcon hover styling */
-span.lcdIcon.lcdIconRectangle:hover,
-span.lcdIcon.lcdIconRectangle:hover {
+/* lcdIcon - consistent green background for all */
+span.lcdIcon,
+.lcdIcon {
   background-color: #1a750d !important;
+  color: #ffffff !important;
+}
+
+/* All lcdIcon variations with green hover */
+span.lcdIcon:hover,
+span.lcdIcon.lcdIconRectangle:hover,
+span.lcdIcon.lcdIconDrawPoint:hover,
+.lcdIcon:hover {
+  background-color: #1a750d !important;
+  color: #ffffff !important;
 }
 
 /* Remove scrollbars from containers */

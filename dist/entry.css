@@ -8393,9 +8393,17 @@ svg {
   font-weight: 600 !important;
   margin-right: 8px !important;
 }
-span.lcdIcon.lcdIconRectangle:hover,
-span.lcdIcon.lcdIconRectangle:hover {
+span.lcdIcon,
+.lcdIcon {
   background-color: #1a750d !important;
+  color: #ffffff !important;
+}
+span.lcdIcon:hover,
+span.lcdIcon.lcdIconRectangle:hover,
+span.lcdIcon.lcdIconDrawPoint:hover,
+.lcdIcon:hover {
+  background-color: #1a750d !important;
+  color: #ffffff !important;
 }
 .tabpanel-content-body {
   overflow: hidden !important;
