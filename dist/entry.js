@@ -22855,6 +22855,16 @@ var CatexExtensions = (() => {
       }
     }, []);
     (0, import_react5.useEffect)(() => {
+      const handleTabpanelCloseClick = () => {
+        setActivePlugin(null);
+      };
+      const tabpanelCloseBtn = document.querySelector(".tabpanel .close_button");
+      if (tabpanelCloseBtn) {
+        tabpanelCloseBtn.addEventListener("click", handleTabpanelCloseClick);
+        return () => tabpanelCloseBtn.removeEventListener("click", handleTabpanelCloseClick);
+      }
+    }, []);
+    (0, import_react5.useEffect)(() => {
       let rtlStyleEl = document.getElementById("catex-layer-manager-rtl");
       if (!rtlStyleEl) {
         rtlStyleEl = document.createElement("style");

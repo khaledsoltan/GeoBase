@@ -76,6 +76,19 @@ const CatexSidebarSecondary: React.FC = () => {
     }
   }, []);
 
+  // Listen for tabpanel close button clicks - toggle gold button off
+  useEffect(() => {
+    const handleTabpanelCloseClick = () => {
+      setActivePlugin(null);
+    };
+
+    const tabpanelCloseBtn = document.querySelector(".tabpanel .close_button");
+    if (tabpanelCloseBtn) {
+      tabpanelCloseBtn.addEventListener("click", handleTabpanelCloseClick);
+      return () => tabpanelCloseBtn.removeEventListener("click", handleTabpanelCloseClick);
+    }
+  }, []);
+
   // Clone and move the layer toggle button to sidebar + Apply RTL to layer panel
   useEffect(() => {
     // Apply RTL CSS to layer-manager panel
