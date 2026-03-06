@@ -76,23 +76,6 @@ const CatexSidebarSecondary: React.FC = () => {
     }
   }, []);
 
-  // Listen for measurement tabpanel close button clicks
-  useEffect(() => {
-    const handleMeasurementCloseClick = () => {
-      setActivePlugin(null);
-      const tabpanel = document.querySelector(".tabpanel") as HTMLElement;
-      if (tabpanel) {
-        tabpanel.style.display = "none";
-      }
-    };
-
-    const closeBtnMeasurement = document.querySelector(".tabpanel .close_button");
-    if (closeBtnMeasurement) {
-      closeBtnMeasurement.addEventListener("click", handleMeasurementCloseClick);
-      return () => closeBtnMeasurement.removeEventListener("click", handleMeasurementCloseClick);
-    }
-  }, []);
-
   // Clone and move the layer toggle button to sidebar + Apply RTL to layer panel
   useEffect(() => {
     // Apply RTL CSS to layer-manager panel
@@ -192,26 +175,6 @@ const CatexSidebarSecondary: React.FC = () => {
               font-weight: 700 !important;
             `;
           }
-        }
-        setActivePlugin(plugin.id);
-      }
-      return;
-    }
-
-    // Special handling for measurement tools
-    if (plugin.id === "measurement") {
-      const tabpanel = document.querySelector(".tabpanel") as HTMLElement;
-
-      if (activePlugin === plugin.id) {
-        // Hide
-        if (tabpanel) {
-          tabpanel.style.display = "none";
-        }
-        setActivePlugin(null);
-      } else {
-        // Show
-        if (tabpanel) {
-          tabpanel.style.display = "block";
         }
         setActivePlugin(plugin.id);
       }
