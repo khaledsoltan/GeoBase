@@ -23022,6 +23022,23 @@ var CatexExtensions = (() => {
       element.style.borderBottom = "none";
     });
   }, 1e3);
+  var disableButtonHovers = () => {
+    const buttons = document.querySelectorAll("button:not(:disabled), [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled)");
+    buttons.forEach((btn) => {
+      const element = btn;
+      element.style.pointerEvents = "auto";
+      element.onmouseenter = () => {
+      };
+      element.onmouseleave = () => {
+      };
+      element.onmouseover = () => {
+      };
+      element.onmouseout = () => {
+      };
+    });
+  };
+  disableButtonHovers();
+  document.addEventListener("DOMContentLoaded", disableButtonHovers);
   var navMount = document.createElement("div");
   navMount.id = "catex-navbar-root";
   document.body.prepend(navMount);

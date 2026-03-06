@@ -43,6 +43,22 @@ setTimeout(() => {
   });
 }, 1000);
 
+// Disable hover effects on buttons - remove pointer-events or CSS
+const disableButtonHovers = () => {
+  const buttons = document.querySelectorAll("button:not(:disabled), [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled)");
+  buttons.forEach((btn) => {
+    const element = btn as HTMLElement;
+    element.style.pointerEvents = "auto";
+    element.onmouseenter = () => {};
+    element.onmouseleave = () => {};
+    element.onmouseover = () => {};
+    element.onmouseout = () => {};
+  });
+};
+
+disableButtonHovers();
+document.addEventListener("DOMContentLoaded", disableButtonHovers);
+
 const navMount = document.createElement("div");
 navMount.id = "catex-navbar-root";
 document.body.prepend(navMount);
