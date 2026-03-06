@@ -736,35 +736,3 @@ html[dir="rtl"] .catex-sidebar-secondary {
   color: #fff;
 }
 
-/* ============================================
-   Tabpanel - Positioning & Cleanup
-   ============================================ */
-
-.tabpanel {
-  position: fixed;
-  padding: 0;
-  top: 120px;
-  width: auto;
-  height: 80%;
-  pointer-events: auto;
-  z-index: 8999;
-  border: none !important;
-}
-
-/* Remove gray border */
-.tabpanel-content-header {
-  border: none !important;
-  border-bottom: none !important;
-}
-
-/* Tabpanel LTR - Behind measurement button in right sidebar */
-html[dir="ltr"] .tabpanel {
-  right: 66px;
-  left: auto;
-}
-
-/* Tabpanel RTL - Behind measurement button in left sidebar */
-html[dir="rtl"] .tabpanel {
-  left: 66px;
-  right: auto;
-}

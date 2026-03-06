@@ -22897,17 +22897,6 @@ var CatexExtensions = (() => {
       }
     }, [isRTL]);
     const handlePluginClick = (plugin) => {
-      if (plugin.id === "measurement") {
-        const tabpanel = document.querySelector(".tabpanel");
-        if (activePlugin === plugin.id) {
-          if (tabpanel) tabpanel.style.display = "none";
-          setActivePlugin(null);
-        } else {
-          if (tabpanel) tabpanel.style.display = "block";
-          setActivePlugin(plugin.id);
-        }
-        return;
-      }
       if (plugin.id === "layer-manager") {
         const layerPanel = document.querySelector("[data-cy='layer-manager']");
         if (activePlugin === plugin.id) {

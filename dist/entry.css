@@ -8286,28 +8286,6 @@ html[dir=rtl] .catex-sidebar-secondary {
 .catex-sidebar-secondary .catex-sidebar-btn.active i {
   color: #fff;
 }
-.tabpanel {
-  position: fixed;
-  padding: 0;
-  top: 120px;
-  width: auto;
-  height: 80%;
-  pointer-events: auto;
-  z-index: 8999;
-  border: none !important;
-}
-.tabpanel-content-header {
-  border: none !important;
-  border-bottom: none !important;
-}
-html[dir=ltr] .tabpanel {
-  right: 66px;
-  left: auto;
-}
-html[dir=rtl] .tabpanel {
-  left: 66px;
-  right: auto;
-}
 /*! Bundled license information:
 
 @fortawesome/fontawesome-free/css/all.min.css:
