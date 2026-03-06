@@ -8328,6 +8328,23 @@ button:not(:disabled),
 [type=submit]:not(:disabled) {
   cursor: pointer !important;
   background-color: #026102 !important;
+  transition: all 0.2s ease !important;
+}
+button:not(:disabled):hover,
+[type=button]:not(:disabled):hover,
+[type=reset]:not(:disabled):hover,
+[type=submit]:not(:disabled):hover {
+  background-color: #1a750d !important;
+  transform: scale(1.02) !important;
+  transition: all 0.2s ease !important;
+}
+button:not(:disabled):active,
+[type=button]:not(:disabled):active,
+[type=reset]:not(:disabled):active,
+[type=submit]:not(:disabled):active {
+  background-color: #0f4d07 !important;
+  transform: scale(0.98) !important;
+  transition: all 0.1s ease !important;
 }
 /*! Bundled license information:
 
