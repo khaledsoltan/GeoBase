@@ -22855,14 +22855,15 @@ var CatexExtensions = (() => {
       }
     }, []);
     (0, import_react5.useEffect)(() => {
-      const handleTabpanelCloseClick = () => {
-        setActivePlugin(null);
+      const handleDocumentClick = (e) => {
+        const target = e.target;
+        const closeBtn = target.closest(".tabpanel .close_button");
+        if (closeBtn) {
+          setActivePlugin(null);
+        }
       };
-      const tabpanelCloseBtn = document.querySelector(".tabpanel .close_button");
-      if (tabpanelCloseBtn) {
-        tabpanelCloseBtn.addEventListener("click", handleTabpanelCloseClick);
-        return () => tabpanelCloseBtn.removeEventListener("click", handleTabpanelCloseClick);
-      }
+      document.addEventListener("click", handleDocumentClick, true);
+      return () => document.removeEventListener("click", handleDocumentClick, true);
     }, []);
     (0, import_react5.useEffect)(() => {
       let rtlStyleEl = document.getElementById("catex-layer-manager-rtl");
