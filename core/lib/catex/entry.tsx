@@ -41,7 +41,7 @@ setTimeout(() => {
     element.style.borderTop = "none";
     element.style.borderBottom = "none";
   });
-}, 500);
+}, 1000);
 
 const navMount = document.createElement("div");
 navMount.id = "catex-navbar-root";

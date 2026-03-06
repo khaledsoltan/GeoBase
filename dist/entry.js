@@ -23021,7 +23021,7 @@ var CatexExtensions = (() => {
       element.style.borderTop = "none";
       element.style.borderBottom = "none";
     });
-  }, 500);
+  }, 1e3);
   var navMount = document.createElement("div");
   navMount.id = "catex-navbar-root";
   document.body.prepend(navMount);

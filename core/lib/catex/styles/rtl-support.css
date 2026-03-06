@@ -744,3 +744,10 @@ html[dir="rtl"] .tabpanel {
   border: none !important;
 }
 
+/* Apply brand identity colors to tabpanel-content-header */
+.tabpanel-content-header {
+  background-color: #1B6B3A !important;
+  background-image: linear-gradient(#1B6B3A, #1B6B3A) !important;
+  color: #ffffff !important;
+}
+
