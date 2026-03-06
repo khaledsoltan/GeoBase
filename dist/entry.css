@@ -8295,6 +8295,21 @@ html[dir=rtl] .tabpanel {
   background-color: #ffffff !important;
   height: 100% !important;
 }
+.EditToolsContainer {
+  color: #c8c8c8 !important;
+  background-color: #ffffff !important;
+}
+.Edit-Tools {
+  padding: 0 !important;
+  padding-bottom: 5px !important;
+  margin: 0 !important;
+  margin-bottom: 5px !important;
+  background-color: #ffffff !important;
+  color: #c8c8c8 !important;
+  width: 100% !important;
+  min-width: 138px !important;
+  overflow-x: hidden !important;
+}
 /*! Bundled license information:
 
 @fortawesome/fontawesome-free/css/all.min.css:
