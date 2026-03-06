@@ -8294,6 +8294,14 @@ html[dir=rtl] .catex-sidebar-secondary {
   height: 80%;
   pointer-events: auto;
   z-index: 8999;
+  border: none !important;
+}
+.tabpanel .close_button {
+  display: none !important;
+}
+.tabpanel-content-header {
+  border: none !important;
+  border-bottom: none !important;
 }
 html[dir=ltr] .tabpanel {
   right: 66px;

@@ -737,7 +737,7 @@ html[dir="rtl"] .catex-sidebar-secondary {
 }
 
 /* ============================================
-   Tabpanel - Positioning
+   Tabpanel - Positioning & Cleanup
    ============================================ */
 
 .tabpanel {
@@ -748,6 +748,18 @@ html[dir="rtl"] .catex-sidebar-secondary {
   height: 80%;
   pointer-events: auto;
   z-index: 8999;
+  border: none !important;
+}
+
+/* Hide close button */
+.tabpanel .close_button {
+  display: none !important;
+}
+
+/* Remove gray border */
+.tabpanel-content-header {
+  border: none !important;
+  border-bottom: none !important;
 }
 
 /* Tabpanel LTR - Behind measurement button in right sidebar */
