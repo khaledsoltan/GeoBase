@@ -8351,11 +8351,34 @@ html[dir=rtl] .tabpanel {
   transform: scale(1.05) !important;
   transition: all 0.2s ease !important;
 }
+.Measure-Tools-Button-Wrapper,
+.Edit-Tools-Button-Wrapper {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+.Edit-Tools-Button-SVG,
+.Measure-Tools-Button-SVG {
+  width: 18px !important;
+  height: 18px !important;
+  color: inherit !important;
+  fill: currentColor !important;
+}
 .Measure-Tools label,
 .Edit-Tools label {
   color: #c8c8c8 !important;
   font-weight: 600 !important;
   margin-right: 8px !important;
+}
+.tabpanel-content-body {
+  overflow: hidden !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+.tabpanel-content-body::-webkit-scrollbar {
+  display: none !important;
 }
 button:not(:disabled),
 [type=button]:not(:disabled),
