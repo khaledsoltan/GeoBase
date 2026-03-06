@@ -778,3 +778,13 @@ html[dir="rtl"] .tabpanel {
   overflow-x: hidden !important;
 }
 
+/* Style Measure-Tools with light background */
+.Measure-Tools {
+  padding: 0 !important;
+  padding-left: 7px !important;
+  padding-bottom: 5px !important;
+  margin: 5px !important;
+  margin-bottom: 5px !important;
+  background-color: #fbfbfb !important;
+}
+

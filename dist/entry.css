@@ -8310,6 +8310,14 @@ html[dir=rtl] .tabpanel {
   min-width: 138px !important;
   overflow-x: hidden !important;
 }
+.Measure-Tools {
+  padding: 0 !important;
+  padding-left: 7px !important;
+  padding-bottom: 5px !important;
+  margin: 5px !important;
+  margin-bottom: 5px !important;
+  background-color: #fbfbfb !important;
+}
 /*! Bundled license information:
 
 @fortawesome/fontawesome-free/css/all.min.css:
