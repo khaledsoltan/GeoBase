@@ -23011,6 +23011,17 @@ var CatexExtensions = (() => {
   });
   removeElements(removeElements_default.remove);
   hideOnOpen(hideElements_default.hide);
+  setTimeout(() => {
+    const tabItems = document.querySelectorAll(".tabpanel-tab-item");
+    tabItems.forEach((item) => {
+      const element = item;
+      element.style.border = "none";
+      element.style.borderLeft = "none";
+      element.style.borderRight = "none";
+      element.style.borderTop = "none";
+      element.style.borderBottom = "none";
+    });
+  }, 500);
   var navMount = document.createElement("div");
   navMount.id = "catex-navbar-root";
   document.body.prepend(navMount);

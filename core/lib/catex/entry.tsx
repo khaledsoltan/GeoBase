@@ -30,6 +30,18 @@ removeElements(removeConfig.remove);
 // Hide elements when they appear
 hideOnOpen(hideConfig.hide);
 
+// Remove borders from tabpanel-tab-item elements
+setTimeout(() => {
+  const tabItems = document.querySelectorAll(".tabpanel-tab-item");
+  tabItems.forEach((item) => {
+    const element = item as HTMLElement;
+    element.style.border = "none";
+    element.style.borderLeft = "none";
+    element.style.borderRight = "none";
+    element.style.borderTop = "none";
+    element.style.borderBottom = "none";
+  });
+}, 500);
 
 const navMount = document.createElement("div");
 navMount.id = "catex-navbar-root";
