@@ -750,3 +750,15 @@ html[dir="rtl"] .catex-sidebar-secondary {
   pointer-events: none;
   z-index: 9;
 }
+
+/* Tabpanel RTL positioning */
+html[dir="rtl"] .tabpanel {
+  right: auto;
+  left: 1650px;
+}
+
+/* Tabpanel LTR positioning */
+html[dir="ltr"] .tabpanel {
+  right: 1650px;
+  left: auto;
+}

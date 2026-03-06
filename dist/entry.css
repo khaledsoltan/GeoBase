@@ -8296,6 +8296,14 @@ html[dir=rtl] .catex-sidebar-secondary {
   pointer-events: none;
   z-index: 9;
 }
+html[dir=rtl] .tabpanel {
+  right: auto;
+  left: 1650px;
+}
+html[dir=ltr] .tabpanel {
+  right: 1650px;
+  left: auto;
+}
 /*! Bundled license information:
 
 @fortawesome/fontawesome-free/css/all.min.css:
