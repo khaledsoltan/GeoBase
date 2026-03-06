@@ -735,3 +735,18 @@ html[dir="rtl"] .catex-sidebar-secondary {
 .catex-sidebar-secondary .catex-sidebar-btn.active i {
   color: #fff;
 }
+
+/* ============================================
+   Tabpanel - Positioning
+   ============================================ */
+
+.tabpanel {
+  position: absolute;
+  padding: 0;
+  top: 70px;
+  right: 400px;
+  width: auto;
+  height: 80%;
+  pointer-events: none;
+  z-index: 9;
+}
