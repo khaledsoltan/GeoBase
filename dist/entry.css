@@ -8296,9 +8296,6 @@ html[dir=rtl] .catex-sidebar-secondary {
   z-index: 8999;
   border: none !important;
 }
-.tabpanel .close_button {
-  display: none !important;
-}
 .tabpanel-content-header {
   border: none !important;
   border-bottom: none !important;
