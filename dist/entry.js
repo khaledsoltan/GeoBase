@@ -22855,6 +22855,20 @@ var CatexExtensions = (() => {
       }
     }, []);
     (0, import_react5.useEffect)(() => {
+      const handleMeasurementCloseClick = () => {
+        setActivePlugin(null);
+        const tabpanel = document.querySelector(".tabpanel");
+        if (tabpanel) {
+          tabpanel.style.display = "none";
+        }
+      };
+      const closeBtnMeasurement = document.querySelector(".tabpanel .close_button");
+      if (closeBtnMeasurement) {
+        closeBtnMeasurement.addEventListener("click", handleMeasurementCloseClick);
+        return () => closeBtnMeasurement.removeEventListener("click", handleMeasurementCloseClick);
+      }
+    }, []);
+    (0, import_react5.useEffect)(() => {
       let rtlStyleEl = document.getElementById("catex-layer-manager-rtl");
       if (!rtlStyleEl) {
         rtlStyleEl = document.createElement("style");
@@ -22932,6 +22946,21 @@ var CatexExtensions = (() => {
               font-weight: 700 !important;
             `;
             }
+          }
+          setActivePlugin(plugin.id);
+        }
+        return;
+      }
+      if (plugin.id === "measurement") {
+        const tabpanel = document.querySelector(".tabpanel");
+        if (activePlugin === plugin.id) {
+          if (tabpanel) {
+            tabpanel.style.display = "none";
+          }
+          setActivePlugin(null);
+        } else {
+          if (tabpanel) {
+            tabpanel.style.display = "block";
           }
           setActivePlugin(plugin.id);
         }

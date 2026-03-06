@@ -748,6 +748,7 @@ html[dir="rtl"] .catex-sidebar-secondary {
   height: 80%;
   pointer-events: auto;
   z-index: 8999;
+  display: none;
 }
 
 /* Tabpanel LTR - Behind measurement button in right sidebar */
