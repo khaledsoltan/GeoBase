@@ -993,4 +993,14 @@ button:not(:disabled):focus,
   overflow-x: hidden !important;
 }
 
+.sidepanel {
+  height: auto !important;
+  width: 100% !important;
+  min-width: 138px !important;
+  background-color: #ffffff !important;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+  padding: 5px !important;
+}
+
 
