@@ -8283,11 +8283,17 @@ html[dir=rtl] .tabpanel {
 }
 .tabpanel-content {
   border: none !important;
+  background-color: #ffffff !important;
 }
 .tabpanel-content-header {
   background-color: #1B6B3A !important;
   background-image: linear-gradient(#1B6B3A, #1B6B3A) !important;
   color: #ffffff !important;
+}
+.MeasureToolsContainer {
+  color: #c8c8c8 !important;
+  background-color: #ffffff !important;
+  height: 100% !important;
 }
 /*! Bundled license information:
 
