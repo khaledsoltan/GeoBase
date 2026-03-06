@@ -736,3 +736,30 @@ html[dir="rtl"] .catex-sidebar-secondary {
   color: #fff;
 }
 
+/* ============================================
+   Tabpanel - RTL/LTR Positioning with Margin
+   ============================================ */
+
+.tabpanel {
+  position: fixed;
+  top: 120px;
+  width: auto;
+  height: 80%;
+  padding: 0;
+  border: none !important;
+}
+
+/* Tabpanel LTR - margin-right to sit behind right sidebar */
+html[dir="ltr"] .tabpanel {
+  right: auto;
+  left: 0;
+  margin-right: 66px;
+}
+
+/* Tabpanel RTL - margin-left to sit behind left sidebar */
+html[dir="rtl"] .tabpanel {
+  left: auto;
+  right: 0;
+  margin-left: 66px;
+}
+
