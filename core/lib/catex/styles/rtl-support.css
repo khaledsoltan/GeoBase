@@ -801,7 +801,34 @@ button:not(:disabled),
 [type=submit]:not(:disabled) {
   cursor: pointer !important;
   background-color: #026102 !important;
-  transition: all 0.2s ease !important;
+  transition: none !important;
+}
+
+/* FORCE - Remove ALL hover effects */
+button:hover,
+button:not(:disabled):hover,
+[type=button]:hover,
+[type=button]:not(:disabled):hover,
+[type=reset]:hover,
+[type=reset]:not(:disabled):hover,
+[type=submit]:hover,
+[type=submit]:not(:disabled):hover,
+button:focus,
+button:not(:disabled):focus,
+[type=button]:focus,
+[type=button]:not(:disabled):focus,
+[type=reset]:focus,
+[type=reset]:not(:disabled):focus,
+[type=submit]:focus,
+[type=submit]:not(:disabled):focus {
+  background-color: #026102 !important;
+  background-image: none !important;
+  color: inherit !important;
+  border: none !important;
+  border-color: inherit !important;
+  transform: none !important;
+  box-shadow: none !important;
+  filter: none !important;
 }
 
 
