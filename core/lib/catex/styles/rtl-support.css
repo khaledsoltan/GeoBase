@@ -720,18 +720,18 @@ html[dir="rtl"] .catex-sidebar-secondary {
   border: none !important;
 }
 
-/* Tabpanel LTR - positioned with left: 1650px and margin-right: 66px */
+/* Tabpanel LTR - positioned with left: 1650px and reduced margin-right */
 html[dir="ltr"] .tabpanel {
   right: auto;
   left: 1650px;
-  margin-right: 66px;
+  margin-right: 10px;
 }
 
-/* Tabpanel RTL - positioned with right: 1650px and margin-left: 100px */
+/* Tabpanel RTL - positioned with right: 1650px and reduced margin-left */
 html[dir="rtl"] .tabpanel {
   left: auto;
   right: 1650px;
-  margin-left: 100px;
+  margin-left: 10px;
 }
 
 /* Hide floating-window close button */
