@@ -130,6 +130,22 @@ const CatexSidebarSecondary: React.FC = () => {
   }, [isRTL]);
 
   const handlePluginClick = (plugin: PluginItem) => {
+    // Measurement tools - simple toggle
+    if (plugin.id === "measurement") {
+      const tabpanel = document.querySelector(".tabpanel") as HTMLElement;
+
+      if (activePlugin === plugin.id) {
+        // Close
+        if (tabpanel) tabpanel.style.display = "none";
+        setActivePlugin(null);
+      } else {
+        // Open
+        if (tabpanel) tabpanel.style.display = "block";
+        setActivePlugin(plugin.id);
+      }
+      return;
+    }
+
     // Special handling for layer-manager
     if (plugin.id === "layer-manager") {
       const layerPanel = document.querySelector("[data-cy='layer-manager']") as HTMLElement;
