@@ -8287,22 +8287,21 @@ html[dir=rtl] .catex-sidebar-secondary {
   color: #fff;
 }
 .tabpanel {
-  position: absolute;
+  position: fixed;
   padding: 0;
-  top: 70px;
-  right: 1650px;
+  top: 120px;
   width: auto;
   height: 80%;
-  pointer-events: none;
-  z-index: 9;
-}
-html[dir=rtl] .tabpanel {
-  right: auto;
-  left: 1650px;
+  pointer-events: auto;
+  z-index: 8999;
 }
 html[dir=ltr] .tabpanel {
-  right: 1650px;
+  right: 66px;
   left: auto;
+}
+html[dir=rtl] .tabpanel {
+  left: 66px;
+  right: auto;
 }
 /*! Bundled license information:
 

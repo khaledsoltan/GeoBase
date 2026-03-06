@@ -741,24 +741,23 @@ html[dir="rtl"] .catex-sidebar-secondary {
    ============================================ */
 
 .tabpanel {
-  position: absolute;
+  position: fixed;
   padding: 0;
-  top: 70px;
-  right: 1650px;
+  top: 120px;
   width: auto;
   height: 80%;
-  pointer-events: none;
-  z-index: 9;
+  pointer-events: auto;
+  z-index: 8999;
 }
 
-/* Tabpanel RTL positioning */
-html[dir="rtl"] .tabpanel {
-  right: auto;
-  left: 1650px;
-}
-
-/* Tabpanel LTR positioning */
+/* Tabpanel LTR - Behind measurement button in right sidebar */
 html[dir="ltr"] .tabpanel {
-  right: 1650px;
+  right: 66px;
   left: auto;
+}
+
+/* Tabpanel RTL - Behind measurement button in left sidebar */
+html[dir="rtl"] .tabpanel {
+  left: 66px;
+  right: auto;
 }
