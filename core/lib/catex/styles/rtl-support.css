@@ -804,12 +804,15 @@ button:not(:disabled),
   transition: all 0.2s ease !important;
 }
 
-/* Smooth hover state */
+/* Smooth hover state - force override blue */
 button:not(:disabled):hover,
 [type=button]:not(:disabled):hover,
 [type=reset]:not(:disabled):hover,
 [type=submit]:not(:disabled):hover {
   background-color: #1a750d !important;
+  background-image: none !important;
+  color: #ffffff !important;
+  border-color: #1a750d !important;
   transform: scale(1.02) !important;
   transition: all 0.2s ease !important;
 }
