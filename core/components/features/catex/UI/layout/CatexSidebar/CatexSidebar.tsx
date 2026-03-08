@@ -97,6 +97,17 @@ const CatexSidebar: React.FC = () => {
   };
 
   const handlePluginClick = (plugin: PluginItem) => {
+    // Special handling for geoprocessing (custom Catex panel)
+    if (plugin.id === "geoprocessing") {
+      if (activePlugin === plugin.id) {
+        setActivePlugin(null);
+        return;
+      }
+      setActivePlugin(plugin.id);
+      window.dispatchEvent(new CustomEvent("catex:geoprocessing:open"));
+      return;
+    }
+
     // Toggle: if clicking the same button, close the dialog
     if (activePlugin === plugin.id) {
       setActivePlugin(null);

@@ -103,6 +103,7 @@
   "plugin.layerManager": "Layer Manager",
   "plugin.measurement": "Measurement Tools",
   "plugin.catalogResults": "Catalogue Results",
+  "plugin.geoprocessing": "Geoprocessing",
 
   "footer.lon": "Lon: {value}",
   "footer.lat": "Lat: {value}",
@@ -117,6 +118,26 @@
   "plugin.3d": "3D View",
 
   "catalog.tree": "Catalog Tree",
-  "catalog.apolloCatalog": "Apollo Catalog"
+  "catalog.apolloCatalog": "Apollo Catalog",
+
+  "geoprocessing.category": "Category",
+  "geoprocessing.geoprocessing": "Geoprocessing",
+  "geoprocessing.jobs": "Jobs",
+  "geoprocessing.jobsList": "Jobs List",
+  "geoprocessing.noJobs": "No jobs available",
+  "geoprocessing.tools": "Geoprocessing Tools",
+  "geoprocessing.selectAction": "Select Action",
+  "geoprocessing.chooseAction": "Choose an action...",
+  "geoprocessing.execute": "Execute",
+  "geoprocessing.buffer": "Buffer",
+  "geoprocessing.bufferDesc": "Create buffer zones around features",
+  "geoprocessing.intersect": "Intersect",
+  "geoprocessing.intersectDesc": "Find overlapping areas between layers",
+  "geoprocessing.union": "Union",
+  "geoprocessing.unionDesc": "Combine multiple features into one",
+  "geoprocessing.clip": "Clip",
+  "geoprocessing.clipDesc": "Extract features within a boundary",
+  "geoprocessing.dissolve": "Dissolve",
+  "geoprocessing.dissolveDesc": "Merge adjacent features with same attributes"
 
 }

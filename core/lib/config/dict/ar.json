@@ -103,6 +103,7 @@
   "plugin.layerManager": "مدير الطبقات",
   "plugin.measurement": "أدوات القياس",
   "plugin.catalogResults": "نتائج الفهرس",
+  "plugin.geoprocessing": "المعالجة الجغرافية",
 
   "footer.lon": "خط الطول: {value}",
   "footer.lat": "خط العرض: {value}",
@@ -117,6 +118,26 @@
   "plugin.3d": "عرض ثلاثي الأبعاد",
 
   "catalog.tree": "شجرة الفهرس",
-  "catalog.apolloCatalog": "فهرس أبولو"
+  "catalog.apolloCatalog": "فهرس أبولو",
+
+  "geoprocessing.category": "الفئة",
+  "geoprocessing.geoprocessing": "المعالجة الجغرافية",
+  "geoprocessing.jobs": "الوظائف",
+  "geoprocessing.jobsList": "قائمة الوظائف",
+  "geoprocessing.noJobs": "لا توجد وظائف متاحة",
+  "geoprocessing.tools": "أدوات المعالجة الجغرافية",
+  "geoprocessing.selectAction": "اختر الإجراء",
+  "geoprocessing.chooseAction": "اختر إجراء...",
+  "geoprocessing.execute": "تنفيذ",
+  "geoprocessing.buffer": "المنطقة العازلة",
+  "geoprocessing.bufferDesc": "إنشاء مناطق عازلة حول المعالم",
+  "geoprocessing.intersect": "التقاطع",
+  "geoprocessing.intersectDesc": "إيجاد المناطق المتداخلة بين الطبقات",
+  "geoprocessing.union": "الاتحاد",
+  "geoprocessing.unionDesc": "دمج معالم متعددة في واحدة",
+  "geoprocessing.clip": "القص",
+  "geoprocessing.clipDesc": "استخراج المعالم ضمن حدود معينة",
+  "geoprocessing.dissolve": "الإذابة",
+  "geoprocessing.dissolveDesc": "دمج المعالم المتجاورة بنفس الخصائص"
 
 }

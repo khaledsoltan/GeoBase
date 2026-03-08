@@ -720,18 +720,18 @@ html[dir="rtl"] .catex-sidebar-secondary {
   border: none !important;
 }
 
-/* Tabpanel LTR - positioned with left: 1680px and margin-right: 10px */
+/* Tabpanel LTR - positioned at same level as layer manager (right: 80px) */
 html[dir="ltr"] .tabpanel {
-  right: auto;
-  left: 1680px;
-  margin-right: 10px;
+  left: auto;
+  right: 80px !important;
+  margin-right: 0;
 }
 
-/* Tabpanel RTL - positioned with right: 1680px and margin-left: 10px */
+/* Tabpanel RTL - positioned at same level as layer manager (left: 80px) */
 html[dir="rtl"] .tabpanel {
-  left: auto;
-  right: 1680px;
-  margin-left: 10px;
+  right: auto;
+  left: 80px !important;
+  margin-left: 0;
 }
 
 /* Hide floating-window close button */

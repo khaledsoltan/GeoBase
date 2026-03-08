@@ -1334,7 +1334,7 @@ var CatexExtensions = (() => {
           return dispatcher;
         }
         "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-        var React6 = require_react(), Internals = {
+        var React7 = require_react(), Internals = {
           d: {
             f: noop,
             r: function() {
@@ -1352,7 +1352,7 @@ var CatexExtensions = (() => {
           },
           p: 0,
           findDOMNode: null
-        }, REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), ReactSharedInternals = React6.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
+        }, REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), ReactSharedInternals = React7.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
         "function" === typeof Map && null != Map.prototype && "function" === typeof Map.prototype.forEach && "function" === typeof Set && null != Set.prototype && "function" === typeof Set.prototype.clear && "function" === typeof Set.prototype.forEach || console.error(
           "React depends on Map and Set built-in types. Make sure that you load a polyfill in older browsers. https://reactjs.org/link/react-polyfills"
         );
@@ -2887,7 +2887,7 @@ var CatexExtensions = (() => {
           "number" === type && getActiveElement(node.ownerDocument) === node || node.defaultValue === "" + value || (node.defaultValue = "" + value);
         }
         function validateOptionProps(element, props) {
-          null == props.value && ("object" === typeof props.children && null !== props.children ? React6.Children.forEach(props.children, function(child) {
+          null == props.value && ("object" === typeof props.children && null !== props.children ? React7.Children.forEach(props.children, function(child) {
             null == child || "string" === typeof child || "number" === typeof child || "bigint" === typeof child || didWarnInvalidChild || (didWarnInvalidChild = true, console.error(
               "Cannot infer the option value of complex children. Pass a `value` prop or use a plain string as children to <option>."
             ));
@@ -18519,14 +18519,14 @@ var CatexExtensions = (() => {
           ));
         }
         "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-        var Scheduler = require_scheduler(), React6 = require_react(), ReactDOM = require_react_dom(), assign = Object.assign, REACT_LEGACY_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.element"), REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy");
+        var Scheduler = require_scheduler(), React7 = require_react(), ReactDOM = require_react_dom(), assign = Object.assign, REACT_LEGACY_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.element"), REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy");
         /* @__PURE__ */ Symbol.for("react.scope");
         var REACT_ACTIVITY_TYPE = /* @__PURE__ */ Symbol.for("react.activity");
         /* @__PURE__ */ Symbol.for("react.legacy_hidden");
         /* @__PURE__ */ Symbol.for("react.tracing_marker");
         var REACT_MEMO_CACHE_SENTINEL = /* @__PURE__ */ Symbol.for("react.memo_cache_sentinel");
         /* @__PURE__ */ Symbol.for("react.view_transition");
-        var MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference"), isArrayImpl = Array.isArray, ReactSharedInternals = React6.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, NotPending = Object.freeze({
+        var MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference"), isArrayImpl = Array.isArray, ReactSharedInternals = React7.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, NotPending = Object.freeze({
           pending: false,
           data: null,
           method: null,
@@ -19355,7 +19355,7 @@ var CatexExtensions = (() => {
           },
           defaultPrevented: 0,
           isTrusted: 0
-        }, SyntheticEvent = createSyntheticEvent(EventInterface), UIEventInterface = assign({}, EventInterface, { view: 0, detail: 0 }), SyntheticUIEvent = createSyntheticEvent(UIEventInterface), lastMovementX, lastMovementY, lastMouseEvent, MouseEventInterface = assign({}, UIEventInterface, {
+        }, SyntheticEvent = createSyntheticEvent(EventInterface), UIEventInterface2 = assign({}, EventInterface, { view: 0, detail: 0 }), SyntheticUIEvent = createSyntheticEvent(UIEventInterface2), lastMovementX, lastMovementY, lastMouseEvent, MouseEventInterface = assign({}, UIEventInterface2, {
           screenX: 0,
           screenY: 0,
           clientX: 0,
@@ -19380,7 +19380,7 @@ var CatexExtensions = (() => {
           movementY: function(event) {
             return "movementY" in event ? event.movementY : lastMovementY;
           }
-        }), SyntheticMouseEvent = createSyntheticEvent(MouseEventInterface), DragEventInterface = assign({}, MouseEventInterface, { dataTransfer: 0 }), SyntheticDragEvent = createSyntheticEvent(DragEventInterface), FocusEventInterface = assign({}, UIEventInterface, { relatedTarget: 0 }), SyntheticFocusEvent = createSyntheticEvent(FocusEventInterface), AnimationEventInterface = assign({}, EventInterface, {
+        }), SyntheticMouseEvent = createSyntheticEvent(MouseEventInterface), DragEventInterface = assign({}, MouseEventInterface, { dataTransfer: 0 }), SyntheticDragEvent = createSyntheticEvent(DragEventInterface), FocusEventInterface = assign({}, UIEventInterface2, { relatedTarget: 0 }), SyntheticFocusEvent = createSyntheticEvent(FocusEventInterface), AnimationEventInterface = assign({}, EventInterface, {
           animationName: 0,
           elapsedTime: 0,
           pseudoElement: 0
@@ -19445,7 +19445,7 @@ var CatexExtensions = (() => {
           Control: "ctrlKey",
           Meta: "metaKey",
           Shift: "shiftKey"
-        }, KeyboardEventInterface = assign({}, UIEventInterface, {
+        }, KeyboardEventInterface = assign({}, UIEventInterface2, {
           key: function(nativeEvent) {
             if (nativeEvent.key) {
               var key = normalizeKey[nativeEvent.key] || nativeEvent.key;
@@ -19482,7 +19482,7 @@ var CatexExtensions = (() => {
           twist: 0,
           pointerType: 0,
           isPrimary: 0
-        }), SyntheticPointerEvent = createSyntheticEvent(PointerEventInterface), TouchEventInterface = assign({}, UIEventInterface, {
+        }), SyntheticPointerEvent = createSyntheticEvent(PointerEventInterface), TouchEventInterface = assign({}, UIEventInterface2, {
           touches: 0,
           targetTouches: 0,
           changedTouches: 0,
@@ -21314,7 +21314,7 @@ var CatexExtensions = (() => {
           }
         };
         (function() {
-          var isomorphicReactPackageVersion = React6.version;
+          var isomorphicReactPackageVersion = React7.version;
           if ("19.2.3" !== isomorphicReactPackageVersion)
             throw Error(
               'Incompatible React versions: The "react" and "react-dom" packages must have the exact same version. Instead got:\n  - react:      ' + (isomorphicReactPackageVersion + "\n  - react-dom:  19.2.3\nLearn more: https://react.dev/warnings/version-mismatch")
@@ -21668,18 +21668,18 @@ var CatexExtensions = (() => {
         function isValidElement(object) {
           return "object" === typeof object && null !== object && object.$$typeof === REACT_ELEMENT_TYPE;
         }
-        var React6 = require_react(), REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = /* @__PURE__ */ Symbol.for("react.activity"), REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference"), ReactSharedInternals = React6.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, hasOwnProperty = Object.prototype.hasOwnProperty, isArrayImpl = Array.isArray, createTask = console.createTask ? console.createTask : function() {
+        var React7 = require_react(), REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = /* @__PURE__ */ Symbol.for("react.activity"), REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference"), ReactSharedInternals = React7.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, hasOwnProperty = Object.prototype.hasOwnProperty, isArrayImpl = Array.isArray, createTask = console.createTask ? console.createTask : function() {
           return null;
         };
-        React6 = {
+        React7 = {
           react_stack_bottom_frame: function(callStackForError) {
             return callStackForError();
           }
         };
         var specialPropKeyWarningShown;
         var didWarnAboutElementRef = {};
-        var unknownOwnerDebugStack = React6.react_stack_bottom_frame.bind(
-          React6,
+        var unknownOwnerDebugStack = React7.react_stack_bottom_frame.bind(
+          React7,
           UnknownOwner
         )();
         var unknownOwnerDebugTask = createTask(getTaskName(UnknownOwner));
@@ -21724,7 +21724,7 @@ var CatexExtensions = (() => {
   });
 
   // core/lib/catex/entry.tsx
-  var import_react6 = __toESM(require_react());
+  var import_react7 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
   // core/lib/catex/registry.tsx
@@ -21828,7 +21828,8 @@ var CatexExtensions = (() => {
   var catex_exports = {};
   __export(catex_exports, {
     CatexMapClick: () => CatexMapClick,
-    CatexNavbar: () => CatexNavbar_default
+    CatexNavbar: () => CatexNavbar_default,
+    GeoprocessingPanel: () => GeoprocessingPanel_default
   });
 
   // core/components/features/catex/UI/events/catexmapclick/CatexMapClick.tsx
@@ -21983,6 +21984,7 @@ var CatexExtensions = (() => {
     "plugin.layerManager": "Layer Manager",
     "plugin.measurement": "Measurement Tools",
     "plugin.catalogResults": "Catalogue Results",
+    "plugin.geoprocessing": "Geoprocessing",
     "footer.lon": "Lon: {value}",
     "footer.lat": "Lat: {value}",
     "footer.scale": "Scale 1: {value}",
@@ -21993,7 +21995,26 @@ var CatexExtensions = (() => {
     "general.loading": "Loading...",
     "plugin.3d": "3D View",
     "catalog.tree": "Catalog Tree",
-    "catalog.apolloCatalog": "Apollo Catalog"
+    "catalog.apolloCatalog": "Apollo Catalog",
+    "geoprocessing.category": "Category",
+    "geoprocessing.geoprocessing": "Geoprocessing",
+    "geoprocessing.jobs": "Jobs",
+    "geoprocessing.jobsList": "Jobs List",
+    "geoprocessing.noJobs": "No jobs available",
+    "geoprocessing.tools": "Geoprocessing Tools",
+    "geoprocessing.selectAction": "Select Action",
+    "geoprocessing.chooseAction": "Choose an action...",
+    "geoprocessing.execute": "Execute",
+    "geoprocessing.buffer": "Buffer",
+    "geoprocessing.bufferDesc": "Create buffer zones around features",
+    "geoprocessing.intersect": "Intersect",
+    "geoprocessing.intersectDesc": "Find overlapping areas between layers",
+    "geoprocessing.union": "Union",
+    "geoprocessing.unionDesc": "Combine multiple features into one",
+    "geoprocessing.clip": "Clip",
+    "geoprocessing.clipDesc": "Extract features within a boundary",
+    "geoprocessing.dissolve": "Dissolve",
+    "geoprocessing.dissolveDesc": "Merge adjacent features with same attributes"
   };
 
   // core/lib/config/dict/ar.json
@@ -22097,6 +22118,7 @@ var CatexExtensions = (() => {
     "plugin.layerManager": "\u0645\u062F\u064A\u0631 \u0627\u0644\u0637\u0628\u0642\u0627\u062A",
     "plugin.measurement": "\u0623\u062F\u0648\u0627\u062A \u0627\u0644\u0642\u064A\u0627\u0633",
     "plugin.catalogResults": "\u0646\u062A\u0627\u0626\u062C \u0627\u0644\u0641\u0647\u0631\u0633",
+    "plugin.geoprocessing": "\u0627\u0644\u0645\u0639\u0627\u0644\u062C\u0629 \u0627\u0644\u062C\u063A\u0631\u0627\u0641\u064A\u0629",
     "footer.lon": "\u062E\u0637 \u0627\u0644\u0637\u0648\u0644: {value}",
     "footer.lat": "\u062E\u0637 \u0627\u0644\u0639\u0631\u0636: {value}",
     "footer.scale": "\u0627\u0644\u0645\u0642\u064A\u0627\u0633 1: {value}",
@@ -22107,7 +22129,26 @@ var CatexExtensions = (() => {
     "general.loading": "\u062C\u0627\u0631\u064A \u0627\u0644\u062A\u062D\u0645\u064A\u0644...",
     "plugin.3d": "\u0639\u0631\u0636 \u062B\u0644\u0627\u062B\u064A \u0627\u0644\u0623\u0628\u0639\u0627\u062F",
     "catalog.tree": "\u0634\u062C\u0631\u0629 \u0627\u0644\u0641\u0647\u0631\u0633",
-    "catalog.apolloCatalog": "\u0641\u0647\u0631\u0633 \u0623\u0628\u0648\u0644\u0648"
+    "catalog.apolloCatalog": "\u0641\u0647\u0631\u0633 \u0623\u0628\u0648\u0644\u0648",
+    "geoprocessing.category": "\u0627\u0644\u0641\u0626\u0629",
+    "geoprocessing.geoprocessing": "\u0627\u0644\u0645\u0639\u0627\u0644\u062C\u0629 \u0627\u0644\u062C\u063A\u0631\u0627\u0641\u064A\u0629",
+    "geoprocessing.jobs": "\u0627\u0644\u0648\u0638\u0627\u0626\u0641",
+    "geoprocessing.jobsList": "\u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u0648\u0638\u0627\u0626\u0641",
+    "geoprocessing.noJobs": "\u0644\u0627 \u062A\u0648\u062C\u062F \u0648\u0638\u0627\u0626\u0641 \u0645\u062A\u0627\u062D\u0629",
+    "geoprocessing.tools": "\u0623\u062F\u0648\u0627\u062A \u0627\u0644\u0645\u0639\u0627\u0644\u062C\u0629 \u0627\u0644\u062C\u063A\u0631\u0627\u0641\u064A\u0629",
+    "geoprocessing.selectAction": "\u0627\u062E\u062A\u0631 \u0627\u0644\u0625\u062C\u0631\u0627\u0621",
+    "geoprocessing.chooseAction": "\u0627\u062E\u062A\u0631 \u0625\u062C\u0631\u0627\u0621...",
+    "geoprocessing.execute": "\u062A\u0646\u0641\u064A\u0630",
+    "geoprocessing.buffer": "\u0627\u0644\u0645\u0646\u0637\u0642\u0629 \u0627\u0644\u0639\u0627\u0632\u0644\u0629",
+    "geoprocessing.bufferDesc": "\u0625\u0646\u0634\u0627\u0621 \u0645\u0646\u0627\u0637\u0642 \u0639\u0627\u0632\u0644\u0629 \u062D\u0648\u0644 \u0627\u0644\u0645\u0639\u0627\u0644\u0645",
+    "geoprocessing.intersect": "\u0627\u0644\u062A\u0642\u0627\u0637\u0639",
+    "geoprocessing.intersectDesc": "\u0625\u064A\u062C\u0627\u062F \u0627\u0644\u0645\u0646\u0627\u0637\u0642 \u0627\u0644\u0645\u062A\u062F\u0627\u062E\u0644\u0629 \u0628\u064A\u0646 \u0627\u0644\u0637\u0628\u0642\u0627\u062A",
+    "geoprocessing.union": "\u0627\u0644\u0627\u062A\u062D\u0627\u062F",
+    "geoprocessing.unionDesc": "\u062F\u0645\u062C \u0645\u0639\u0627\u0644\u0645 \u0645\u062A\u0639\u062F\u062F\u0629 \u0641\u064A \u0648\u0627\u062D\u062F\u0629",
+    "geoprocessing.clip": "\u0627\u0644\u0642\u0635",
+    "geoprocessing.clipDesc": "\u0627\u0633\u062A\u062E\u0631\u0627\u062C \u0627\u0644\u0645\u0639\u0627\u0644\u0645 \u0636\u0645\u0646 \u062D\u062F\u0648\u062F \u0645\u0639\u064A\u0646\u0629",
+    "geoprocessing.dissolve": "\u0627\u0644\u0625\u0630\u0627\u0628\u0629",
+    "geoprocessing.dissolveDesc": "\u062F\u0645\u062C \u0627\u0644\u0645\u0639\u0627\u0644\u0645 \u0627\u0644\u0645\u062A\u062C\u0627\u0648\u0631\u0629 \u0628\u0646\u0641\u0633 \u0627\u0644\u062E\u0635\u0627\u0626\u0635"
   };
 
   // core/lib/catex/language/LanguageSettings.tsx
@@ -22126,8 +22167,10 @@ var CatexExtensions = (() => {
       this.language = lang;
       this.dictionary = dictionaries[lang] || dictionaries["en"];
       this.listeners.forEach((cb) => cb(lang));
-      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
-      document.documentElement.lang = lang;
+      if (typeof document !== "undefined") {
+        document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+        document.documentElement.lang = lang;
+      }
     }
     static getLanguage() {
       return this.language;
@@ -22155,7 +22198,6 @@ var CatexExtensions = (() => {
       ];
     }
   };
-  LanguageSettings.setLanguage("ar");
 
   // core/lib/catex/language/useLanguage.tsx
   function useLanguage() {
@@ -22631,20 +22673,303 @@ var CatexExtensions = (() => {
   };
   var CatexNavbar_default = CatexNavbar;
 
-  // core/components/features/catex/UI/layout/CatexSidebar/CatexSidebar.tsx
+  // core/components/features/catex/UI/geoprocessing/GeoprocessingPanel.tsx
   var import_react4 = __toESM(require_react());
+
+  // core/components/features/catex/types/UIEventTypes.ts
+  var UI_EVENT_TYPE = /* @__PURE__ */ ((UI_EVENT_TYPE2) => {
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["GEOPROCESSING_SERVERS"] = 2011] = "GEOPROCESSING_SERVERS";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["GEOPROCESSING_ADD_JOB"] = 2012] = "GEOPROCESSING_ADD_JOB";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["GEOPROCESSING_LIST_JOBS"] = 2013] = "GEOPROCESSING_LIST_JOBS";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["APPLICATION_LOGFILE"] = 10001] = "APPLICATION_LOGFILE";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["APPLICATION_ABOUT"] = 1e4] = "APPLICATION_ABOUT";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["APPLICATION_OPEN_EXTERNAL_LINK"] = 10002] = "APPLICATION_OPEN_EXTERNAL_LINK";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["SESSION_NEW_WORKSPACE"] = 511] = "SESSION_NEW_WORKSPACE";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["SESSION_EXPORT_WORKSPACE"] = 512] = "SESSION_EXPORT_WORKSPACE";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["SESSION_IMPORT_WORKSPACE"] = 513] = "SESSION_IMPORT_WORKSPACE";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["SESSION_EXPLORE_WORKSPACES"] = 514] = "SESSION_EXPLORE_WORKSPACES";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["SESSION_SAVE_AS_WORKSPACE"] = 515] = "SESSION_SAVE_AS_WORKSPACE";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["SESSION_SAVE_WORKSPACE"] = 516] = "SESSION_SAVE_WORKSPACE";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["SESSION_LOGIN_AGAIN"] = 517] = "SESSION_LOGIN_AGAIN";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["SESSION_LIST_WFST_LOCKS"] = 518] = "SESSION_LIST_WFST_LOCKS";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["SESSION_ADMIN_DASHBOARD"] = 500] = "SESSION_ADMIN_DASHBOARD";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["SESSION_PREFERENCES"] = 501] = "SESSION_PREFERENCES";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["SESSION_CATALOG_REGISTER"] = 504] = "SESSION_CATALOG_REGISTER";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["SESSION_CATALOG_FILTER"] = 505] = "SESSION_CATALOG_FILTER";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["SESSION_LOGOUT"] = 506] = "SESSION_LOGOUT";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["SESSION_REFRESH"] = 2021] = "SESSION_REFRESH";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["TOOLS_ADVANCED_SEARCH"] = 301] = "TOOLS_ADVANCED_SEARCH";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["TOOLS_SCREENSHOT"] = 302] = "TOOLS_SCREENSHOT";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["TOOLS_EDIT_MEASURE"] = 303] = "TOOLS_EDIT_MEASURE";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["TOOLS_BROWSE_CATALOGS"] = 304] = "TOOLS_BROWSE_CATALOGS";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["TOOLS_ECDIS_SETTINGS"] = 305] = "TOOLS_ECDIS_SETTINGS";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["TOOLS_SLICING"] = 306] = "TOOLS_SLICING";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["VIEW_FULL_SCREEN"] = 201] = "VIEW_FULL_SCREEN";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["VIEW_MOUSE_COORDINATES"] = 202] = "VIEW_MOUSE_COORDINATES";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["VIEW_SCALE_INDICATOR"] = 203] = "VIEW_SCALE_INDICATOR";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["VIEW_MAP_PROJECTION"] = 204] = "VIEW_MAP_PROJECTION";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["VIEW_COMPASS_CONTROL"] = 205] = "VIEW_COMPASS_CONTROL";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["VIEW_PAN_CONTROL"] = 206] = "VIEW_PAN_CONTROL";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["VIEW_ZOOM_CONTROL"] = 207] = "VIEW_ZOOM_CONTROL";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["VIEW_OVERVIEW_WINDOW"] = 209] = "VIEW_OVERVIEW_WINDOW";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["VIEW_LAYER_MANAGER"] = 210] = "VIEW_LAYER_MANAGER";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["VIEW_TABLE_VIEW"] = 212] = "VIEW_TABLE_VIEW";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["VIEW_CROSSSECTION_WINDOW"] = 214] = "VIEW_CROSSSECTION_WINDOW";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["VIEW_CLOSE_CUSTOM_WINDOW"] = 215] = "VIEW_CLOSE_CUSTOM_WINDOW";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["VIEW_CLOSE_ATTEMPT_CUSTOM_WINDOW"] = 216] = "VIEW_CLOSE_ATTEMPT_CUSTOM_WINDOW";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["NO_EVENT"] = 0] = "NO_EVENT";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["SHOPPING_CART"] = 2003] = "SHOPPING_CART";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["SHOW_EFFECTS_TOOLS"] = 2004] = "SHOW_EFFECTS_TOOLS";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["SHOW_PICTURE_SETTINGS"] = 2005] = "SHOW_PICTURE_SETTINGS";
+    UI_EVENT_TYPE2[UI_EVENT_TYPE2["CATALOG_ADVANCED_SEARCH"] = 2020] = "CATALOG_ADVANCED_SEARCH";
+    return UI_EVENT_TYPE2;
+  })(UI_EVENT_TYPE || {});
+
+  // core/components/features/catex/UI/geoprocessing/GeoprocessingPanel.tsx
+  var import_jsx_runtime3 = __toESM(require_jsx_runtime());
+  var GeoprocessingPanel = () => {
+    const [isOpen, setIsOpen] = (0, import_react4.useState)(false);
+    const [selectedCategory, setSelectedCategory] = (0, import_react4.useState)("geoprocessing");
+    const [selectedAction, setSelectedAction] = (0, import_react4.useState)("");
+    const { t, isRTL } = useLanguage();
+    (0, import_react4.useEffect)(() => {
+      const handleOpen = () => {
+        setIsOpen(true);
+        dispatchUIEvent({
+          action: 2011 /* GEOPROCESSING_SERVERS */
+        });
+      };
+      window.addEventListener("catex:geoprocessing:open", handleOpen);
+      return () => window.removeEventListener("catex:geoprocessing:open", handleOpen);
+    }, []);
+    (0, import_react4.useEffect)(() => {
+      const handleReset = () => setIsOpen(false);
+      window.addEventListener("catex:sidebar:resetActive", handleReset);
+      return () => window.removeEventListener("catex:sidebar:resetActive", handleReset);
+    }, []);
+    (0, import_react4.useEffect)(() => {
+      const handleSetCategory = (event) => {
+        const customEvent = event;
+        const { category } = customEvent.detail || {};
+        if (category) {
+          console.log("[Geoprocessing] Setting category from UI event:", category);
+          setSelectedCategory(category);
+        }
+      };
+      window.addEventListener("catex:geoprocessing:setCategory", handleSetCategory);
+      return () => window.removeEventListener("catex:geoprocessing:setCategory", handleSetCategory);
+    }, []);
+    (0, import_react4.useEffect)(() => {
+      const handleSelectTool = (event) => {
+        const customEvent = event;
+        const { toolId } = customEvent.detail || {};
+        if (toolId) {
+          console.log("[Geoprocessing] Tool selected from UI event:", toolId);
+          handleToolClick(toolId);
+        }
+      };
+      window.addEventListener("catex:geoprocessing:selectTool", handleSelectTool);
+      return () => window.removeEventListener("catex:geoprocessing:selectTool", handleSelectTool);
+    }, []);
+    const handleClose = () => {
+      setIsOpen(false);
+      window.dispatchEvent(new CustomEvent("catex:sidebar:resetActive"));
+    };
+    const dispatchUIEvent = (event) => {
+      console.log(`[Geoprocessing] Dispatching UI event:`, event);
+      window.dispatchEvent(
+        new CustomEvent("catex:ui:event", {
+          detail: event
+        })
+      );
+    };
+    const handleCategoryChange = (category) => {
+      setSelectedCategory(category);
+      if (category === "jobs") {
+        dispatchUIEvent({
+          action: 2013 /* GEOPROCESSING_LIST_JOBS */
+        });
+      } else if (category === "geoprocessing") {
+        dispatchUIEvent({
+          action: 2011 /* GEOPROCESSING_SERVERS */
+        });
+      }
+    };
+    const handleToolClick = (toolId) => {
+      console.log(`[Geoprocessing] Tool clicked: ${toolId}`);
+      dispatchUIEvent({
+        action: 2012 /* GEOPROCESSING_ADD_JOB */,
+        parameters: {
+          toolId,
+          toolName: toolId
+        }
+      });
+    };
+    const handleExecuteAction = () => {
+      if (!selectedAction) {
+        console.warn("[Geoprocessing] No action selected");
+        return;
+      }
+      console.log(`[Geoprocessing] Executing action: ${selectedAction}`);
+      dispatchUIEvent({
+        action: 2012 /* GEOPROCESSING_ADD_JOB */,
+        parameters: {
+          toolId: selectedAction,
+          toolName: selectedAction
+        }
+      });
+    };
+    const tools = [
+      {
+        id: "buffer",
+        icon: "fa-circle-notch",
+        nameKey: "geoprocessing.buffer",
+        descKey: "geoprocessing.bufferDesc"
+      },
+      {
+        id: "intersect",
+        icon: "fa-object-group",
+        nameKey: "geoprocessing.intersect",
+        descKey: "geoprocessing.intersectDesc"
+      },
+      {
+        id: "union",
+        icon: "fa-layer-group",
+        nameKey: "geoprocessing.union",
+        descKey: "geoprocessing.unionDesc"
+      },
+      {
+        id: "clip",
+        icon: "fa-cut",
+        nameKey: "geoprocessing.clip",
+        descKey: "geoprocessing.clipDesc"
+      },
+      {
+        id: "dissolve",
+        icon: "fa-compress",
+        nameKey: "geoprocessing.dissolve",
+        descKey: "geoprocessing.dissolveDesc"
+      }
+    ];
+    if (!isOpen) return null;
+    return /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(import_jsx_runtime3.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "catex-geoprocessing-overlay", onClick: handleClose }),
+      /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: `catex-geoprocessing-panel ${isOpen ? "visible" : ""}`, dir: isRTL ? "rtl" : "ltr", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "catex-geoprocessing-header", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
+            "button",
+            {
+              className: "catex-geoprocessing-close",
+              onClick: handleClose,
+              title: t("general.close"),
+              "aria-label": t("general.close"),
+              children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
+                "svg",
+                {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  viewBox: "0 0 384 512",
+                  fill: "currentColor",
+                  children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("path", { d: "M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" })
+                }
+              )
+            }
+          ),
+          /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("h4", { className: "catex-geoprocessing-title", children: t("plugin.geoprocessing") })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "catex-geoprocessing-body", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "catex-geoprocessing-category", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("label", { htmlFor: "category-select", children: [
+              t("geoprocessing.category"),
+              ":"
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
+              "select",
+              {
+                id: "category-select",
+                className: "catex-geoprocessing-select",
+                value: selectedCategory,
+                onChange: (e) => handleCategoryChange(e.target.value),
+                children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("option", { value: "geoprocessing", children: t("geoprocessing.geoprocessing") }),
+                  /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("option", { value: "jobs", children: t("geoprocessing.jobs") })
+                ]
+              }
+            )
+          ] }),
+          selectedCategory === "geoprocessing" && /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "catex-geoprocessing-section", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("h3", { children: t("geoprocessing.tools") }),
+            /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "catex-geoprocessing-action-selector", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("label", { htmlFor: "action-select", children: [
+                t("geoprocessing.selectAction"),
+                ":"
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
+                "select",
+                {
+                  id: "action-select",
+                  className: "catex-geoprocessing-select",
+                  value: selectedAction,
+                  onChange: (e) => setSelectedAction(e.target.value),
+                  children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("option", { value: "", children: t("geoprocessing.chooseAction") }),
+                    tools.map((tool) => /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("option", { value: tool.id, children: t(tool.nameKey) }, tool.id))
+                  ]
+                }
+              ),
+              /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
+                "button",
+                {
+                  className: "catex-geoprocessing-execute-btn",
+                  onClick: handleExecuteAction,
+                  disabled: !selectedAction,
+                  children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("i", { className: "fa-solid fa-play" }),
+                    t("geoprocessing.execute")
+                  ]
+                }
+              )
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "catex-geoprocessing-tools", children: tools.map((tool) => /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
+              "div",
+              {
+                className: `catex-geoprocessing-tool ${selectedAction === tool.id ? "selected" : ""}`,
+                onClick: () => setSelectedAction(tool.id),
+                children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("i", { className: `fa-solid ${tool.icon} catex-geoprocessing-tool-icon` }),
+                  /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "catex-geoprocessing-tool-content", children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", { className: "catex-geoprocessing-tool-name", children: t(tool.nameKey) }),
+                    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", { className: "catex-geoprocessing-tool-desc", children: t(tool.descKey) })
+                  ] })
+                ]
+              },
+              tool.id
+            )) })
+          ] }),
+          selectedCategory === "jobs" && /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "catex-geoprocessing-section", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("h3", { children: t("geoprocessing.jobsList") }),
+            /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "catex-geoprocessing-jobs", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", { className: "catex-geoprocessing-empty", children: t("geoprocessing.noJobs") }) })
+          ] })
+        ] })
+      ] })
+    ] });
+  };
+  var GeoprocessingPanel_default = GeoprocessingPanel;
+
+  // core/components/features/catex/UI/layout/CatexSidebar/CatexSidebar.tsx
+  var import_react5 = __toESM(require_react());
   var import_react_dom = __toESM(require_react_dom());
 
   // core/lib/config/sidebar.json
   var sidebar_default = {
     plugins: [
       { id: "3d", icon: "fa-vr-cardboard", iconAlt: "fa-map", i18n: "plugin.3d", toggle: "3D" },
-      { id: "catalog", icon: "fa-folder-open", i18n: "plugin.catalog", action: 304 }
+      { id: "catalog", icon: "fa-folder-open", i18n: "plugin.catalog", action: 304 },
+      { id: "geoprocessing", icon: "fa-project-diagram", i18n: "plugin.geoprocessing" }
     ]
   };
 
   // core/components/features/catex/UI/layout/CatexSidebar/CatexSidebar.tsx
-  var import_jsx_runtime3 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime4 = __toESM(require_jsx_runtime());
   var plugins = sidebar_default.plugins;
   function Tooltip({ text, anchorRect, isRTL }) {
     const style = {
@@ -22668,11 +22993,11 @@ var CatexExtensions = (() => {
     } else {
       style.left = anchorRect.right + 8;
     }
-    return (0, import_react_dom.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { style, children: text }), document.body);
+    return (0, import_react_dom.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { style, children: text }), document.body);
   }
   function use3DState() {
-    const [is3D, setIs3D] = (0, import_react4.useState)(false);
-    (0, import_react4.useEffect)(() => {
+    const [is3D, setIs3D] = (0, import_react5.useState)(false);
+    (0, import_react5.useEffect)(() => {
       const check = () => {
         const icons = document.querySelectorAll(".toggle-button .toggle-icon");
         for (const icon of icons) {
@@ -22695,28 +23020,37 @@ var CatexExtensions = (() => {
     return is3D;
   }
   var CatexSidebar = () => {
-    const [open, setOpen] = (0, import_react4.useState)(false);
-    const [activePlugin, setActivePlugin] = (0, import_react4.useState)(null);
-    const [hoveredPlugin, setHoveredPlugin] = (0, import_react4.useState)(null);
-    const [hoverRect, setHoverRect] = (0, import_react4.useState)(null);
+    const [open, setOpen] = (0, import_react5.useState)(false);
+    const [activePlugin, setActivePlugin] = (0, import_react5.useState)(null);
+    const [hoveredPlugin, setHoveredPlugin] = (0, import_react5.useState)(null);
+    const [hoverRect, setHoverRect] = (0, import_react5.useState)(null);
     const { t, isRTL } = useLanguage();
     const is3D = use3DState();
-    (0, import_react4.useEffect)(() => {
+    (0, import_react5.useEffect)(() => {
       const handleReset = () => setActivePlugin(null);
       window.addEventListener("catex:sidebar:resetActive", handleReset);
       return () => window.removeEventListener("catex:sidebar:resetActive", handleReset);
     }, []);
     const renderIcon = (plugin) => {
       if (plugin.id === "3d") {
-        return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("span", { className: "catex-sidebar-3d-icon", children: is3D ? "2D" : "3D" });
+        return /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("span", { className: "catex-sidebar-3d-icon", children: is3D ? "2D" : "3D" });
       }
-      return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("i", { className: `fa-solid ${plugin.icon}` });
+      return /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("i", { className: `fa-solid ${plugin.icon}` });
     };
     const handleToggle = () => {
       if (open) setActivePlugin(null);
       setOpen(!open);
     };
     const handlePluginClick = (plugin) => {
+      if (plugin.id === "geoprocessing") {
+        if (activePlugin === plugin.id) {
+          setActivePlugin(null);
+          return;
+        }
+        setActivePlugin(plugin.id);
+        window.dispatchEvent(new CustomEvent("catex:geoprocessing:open"));
+        return;
+      }
       if (activePlugin === plugin.id) {
         setActivePlugin(null);
         const openDialog = document.querySelector(".SlidingPanel-window.visible, .SlidingPanel-window.left, .SlidingPanel-window.right");
@@ -22746,16 +23080,16 @@ var CatexExtensions = (() => {
       setHoveredPlugin(null);
       setHoverRect(null);
     };
-    return /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: `catex-sidebar ${isRTL ? "catex-sidebar-rtl" : ""}`, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { className: `catex-sidebar ${isRTL ? "catex-sidebar-rtl" : ""}`, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
         "div",
         {
           className: `catex-sidebar-toggle ${open ? "active" : ""}`,
           onClick: handleToggle,
-          children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("i", { className: `fa-solid ${open ? "fa-xmark" : "fa-bars"}` })
+          children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("i", { className: `fa-solid ${open ? "fa-xmark" : "fa-bars"}` })
         }
       ),
-      open && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "catex-sidebar-plugins", children: plugins.map((plugin, i) => /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
+      open && /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { className: "catex-sidebar-plugins", children: plugins.map((plugin, i) => /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
         "div",
         {
           className: `catex-sidebar-btn ${activePlugin === plugin.id ? "active" : ""}`,
@@ -22767,7 +23101,7 @@ var CatexExtensions = (() => {
         },
         plugin.id
       )) }),
-      hoveredPlugin && hoverRect && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
+      hoveredPlugin && hoverRect && /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
         Tooltip,
         {
           text: t(plugins.find((p) => p.id === hoveredPlugin)?.i18n || ""),
@@ -22780,7 +23114,7 @@ var CatexExtensions = (() => {
   var CatexSidebar_default = CatexSidebar;
 
   // core/components/features/catex/UI/layout/CatexSidebarSecondary/CatexSidebarSecondary.tsx
-  var import_react5 = __toESM(require_react());
+  var import_react6 = __toESM(require_react());
   var import_react_dom2 = __toESM(require_react_dom());
 
   // core/lib/config/sidebarSecondary.json
@@ -22802,7 +23136,7 @@ var CatexExtensions = (() => {
   };
 
   // core/components/features/catex/UI/layout/CatexSidebarSecondary/CatexSidebarSecondary.tsx
-  var import_jsx_runtime4 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime5 = __toESM(require_jsx_runtime());
   var plugins2 = sidebarSecondary_default.plugins;
   function Tooltip2({ text, anchorRect, isRTL }) {
     const style = {
@@ -22826,19 +23160,19 @@ var CatexExtensions = (() => {
     } else {
       style.right = window.innerWidth - anchorRect.left + 8;
     }
-    return (0, import_react_dom2.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { style, children: text }), document.body);
+    return (0, import_react_dom2.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { style, children: text }), document.body);
   }
   var CatexSidebarSecondary = () => {
-    const [activePlugin, setActivePlugin] = (0, import_react5.useState)(null);
-    const [hoveredPlugin, setHoveredPlugin] = (0, import_react5.useState)(null);
-    const [hoverRect, setHoverRect] = (0, import_react5.useState)(null);
+    const [activePlugin, setActivePlugin] = (0, import_react6.useState)(null);
+    const [hoveredPlugin, setHoveredPlugin] = (0, import_react6.useState)(null);
+    const [hoverRect, setHoverRect] = (0, import_react6.useState)(null);
     const { t, isRTL } = useLanguage();
-    (0, import_react5.useEffect)(() => {
+    (0, import_react6.useEffect)(() => {
       const handleReset = () => setActivePlugin(null);
       window.addEventListener("catex:sidebar:resetActive", handleReset);
       return () => window.removeEventListener("catex:sidebar:resetActive", handleReset);
     }, []);
-    (0, import_react5.useEffect)(() => {
+    (0, import_react6.useEffect)(() => {
       const handleCloseClick = () => {
         setActivePlugin(null);
       };
@@ -22848,7 +23182,7 @@ var CatexExtensions = (() => {
         return () => closeBtn.removeEventListener("click", handleCloseClick);
       }
     }, []);
-    (0, import_react5.useEffect)(() => {
+    (0, import_react6.useEffect)(() => {
       const handleDocumentClick = (e) => {
         const target = e.target;
         const closeBtn = target.closest(".tabpanel .close_button");
@@ -22859,7 +23193,7 @@ var CatexExtensions = (() => {
       document.addEventListener("click", handleDocumentClick, true);
       return () => document.removeEventListener("click", handleDocumentClick, true);
     }, []);
-    (0, import_react5.useEffect)(() => {
+    (0, import_react6.useEffect)(() => {
       let rtlStyleEl = document.getElementById("catex-layer-manager-rtl");
       if (!rtlStyleEl) {
         rtlStyleEl = document.createElement("style");
@@ -22971,8 +23305,8 @@ var CatexExtensions = (() => {
       setHoveredPlugin(null);
       setHoverRect(null);
     };
-    return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { className: `catex-sidebar-secondary ${isRTL ? "catex-sidebar-secondary-rtl" : ""}`, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { className: "catex-sidebar-plugins", children: plugins2.slice(0, 3).map((plugin, i) => /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { className: `catex-sidebar-secondary ${isRTL ? "catex-sidebar-secondary-rtl" : ""}`, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: "catex-sidebar-plugins", children: plugins2.slice(0, 3).map((plugin, i) => /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
         "div",
         {
           className: `catex-sidebar-btn ${activePlugin === plugin.id ? "active" : ""}`,
@@ -22980,11 +23314,11 @@ var CatexExtensions = (() => {
           onMouseEnter: (e) => handleMouseEnter(plugin, e),
           onMouseLeave: handleMouseLeave,
           style: { animationDelay: `${i * 25}ms` },
-          children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("i", { className: `fa-solid ${plugin.icon}` })
+          children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("i", { className: `fa-solid ${plugin.icon}` })
         },
         plugin.id
       )) }),
-      hoveredPlugin && hoverRect && /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
+      hoveredPlugin && hoverRect && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
         Tooltip2,
         {
           text: t(plugins2.find((p) => p.id === hoveredPlugin)?.i18n || ""),
@@ -22996,13 +23330,104 @@ var CatexExtensions = (() => {
   };
   var CatexSidebarSecondary_default = CatexSidebarSecondary;
 
+  // core/lib/catex/handlers/uiEventHandler.ts
+  var UIEventHandler = class _UIEventHandler {
+    constructor() {
+      this.initialize();
+    }
+    static getInstance() {
+      if (!_UIEventHandler.instance) {
+        _UIEventHandler.instance = new _UIEventHandler();
+      }
+      return _UIEventHandler.instance;
+    }
+    initialize() {
+      console.log("[UIEventHandler] Initializing...");
+      window.addEventListener("ui:event", this.handleUIEvent.bind(this));
+      window.addEventListener("catex:host:event", this.handleUIEvent.bind(this));
+    }
+    handleUIEvent(event) {
+      const customEvent = event;
+      const { action, parameters } = customEvent.detail || {};
+      console.log("[UIEventHandler] Received UI event:", {
+        action,
+        parameters,
+        actionName: UI_EVENT_TYPE[action] || "UNKNOWN"
+      });
+      switch (action) {
+        case 2011 /* GEOPROCESSING_SERVERS */:
+          this.handleGeoprocessingServers(parameters);
+          break;
+        case 2012 /* GEOPROCESSING_ADD_JOB */:
+          this.handleGeoprocessingAddJob(parameters);
+          break;
+        case 2013 /* GEOPROCESSING_LIST_JOBS */:
+          this.handleGeoprocessingListJobs(parameters);
+          break;
+        default:
+          console.log("[UIEventHandler] Unhandled event:", action);
+      }
+    }
+    /**
+     * Handle GEOPROCESSING_SERVERS event (2011)
+     * Opens geoprocessing panel and shows servers/tools
+     */
+    handleGeoprocessingServers(parameters) {
+      console.log("[UIEventHandler] Opening geoprocessing panel (servers view)");
+      window.dispatchEvent(new CustomEvent("catex:geoprocessing:open"));
+      window.dispatchEvent(
+        new CustomEvent("catex:geoprocessing:setCategory", {
+          detail: { category: "geoprocessing" }
+        })
+      );
+    }
+    /**
+     * Handle GEOPROCESSING_ADD_JOB event (2012)
+     * Opens geoprocessing panel and triggers add job action
+     */
+    handleGeoprocessingAddJob(parameters) {
+      console.log("[UIEventHandler] Opening geoprocessing panel (add job)", parameters);
+      window.dispatchEvent(new CustomEvent("catex:geoprocessing:open"));
+      if (parameters?.toolId) {
+        window.dispatchEvent(
+          new CustomEvent("catex:geoprocessing:selectTool", {
+            detail: { toolId: parameters.toolId }
+          })
+        );
+      }
+    }
+    /**
+     * Handle GEOPROCESSING_LIST_JOBS event (2013)
+     * Opens geoprocessing panel and shows jobs list
+     */
+    handleGeoprocessingListJobs(parameters) {
+      console.log("[UIEventHandler] Opening geoprocessing panel (jobs view)");
+      window.dispatchEvent(new CustomEvent("catex:geoprocessing:open"));
+      window.dispatchEvent(
+        new CustomEvent("catex:geoprocessing:setCategory", {
+          detail: { category: "jobs" }
+        })
+      );
+    }
+    /**
+     * Cleanup event listeners
+     */
+    destroy() {
+      console.log("[UIEventHandler] Destroying...");
+      window.removeEventListener("ui:event", this.handleUIEvent.bind(this));
+      window.removeEventListener("catex:host:event", this.handleUIEvent.bind(this));
+    }
+  };
+  var uiEventHandler = UIEventHandler.getInstance();
+
   // core/lib/catex/entry.tsx
-  var import_jsx_runtime5 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime6 = __toESM(require_jsx_runtime());
   LanguageSettings.setLanguage("ar");
   watchLanguage((lang) => {
     LanguageSettings.setLanguage(lang);
     console.log(`[catex] Language changed to: ${lang}`);
   });
+  console.log("[catex] UI Event Handler initialized:", uiEventHandler);
   removeElements(removeElements_default.remove);
   hideOnOpen(hideElements_default.hide);
   setTimeout(() => {
@@ -23036,15 +23461,15 @@ var CatexExtensions = (() => {
   var navMount = document.createElement("div");
   navMount.id = "catex-navbar-root";
   document.body.prepend(navMount);
-  (0, import_client.createRoot)(navMount).render(/* @__PURE__ */ (0, import_jsx_runtime5.jsx)(CatexSidebar_default, {}));
+  (0, import_client.createRoot)(navMount).render(/* @__PURE__ */ (0, import_jsx_runtime6.jsx)(CatexSidebar_default, {}));
   var sideMount = document.createElement("div");
   sideMount.id = "catex-sidebar-root";
   document.body.appendChild(sideMount);
-  (0, import_client.createRoot)(sideMount).render(/* @__PURE__ */ (0, import_jsx_runtime5.jsx)(CatexSidebar_default, {}));
+  (0, import_client.createRoot)(sideMount).render(/* @__PURE__ */ (0, import_jsx_runtime6.jsx)(CatexSidebar_default, {}));
   var sideMountSecondary = document.createElement("div");
   sideMountSecondary.id = "catex-sidebar-secondary-root";
   document.body.appendChild(sideMountSecondary);
-  (0, import_client.createRoot)(sideMountSecondary).render(/* @__PURE__ */ (0, import_jsx_runtime5.jsx)(CatexSidebarSecondary_default, {}));
+  (0, import_client.createRoot)(sideMountSecondary).render(/* @__PURE__ */ (0, import_jsx_runtime6.jsx)(CatexSidebarSecondary_default, {}));
   catexRegistry.on("map", "onMouseClick", (event, callback) => {
     onMouseClick(event, (data) => {
       window.dispatchEvent(new CustomEvent("catex:map:click", { detail: data }));
@@ -23059,11 +23484,11 @@ var CatexExtensions = (() => {
     ([, val]) => typeof val === "function"
   );
   root.render(
-    import_react6.default.createElement(
+    import_react7.default.createElement(
       "div",
       null,
       componentList.map(
-        ([name, Comp]) => import_react6.default.createElement(Comp, { key: name })
+        ([name, Comp]) => import_react7.default.createElement(Comp, { key: name })
       )
     )
   );

@@ -3,7 +3,14 @@
     "allow": [
       "Bash(rm:*)",
       "Bash(npm run:*)",
-      "Bash(sed:*)"
+      "Bash(sed:*)",
+      "Bash(git clean:*)",
+      "Bash(curl:*)",
+      "Bash(taskkill:*)",
+      "Bash(netstat:*)",
+      "Bash(npm install:*)",
+      "Bash(npm start)",
+      "Bash(dir:*)"
     ]
   }
 }

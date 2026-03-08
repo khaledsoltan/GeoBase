@@ -17,8 +17,12 @@ export class LanguageSettings {
     this.language = lang;
     this.dictionary = dictionaries[lang] || dictionaries["en"];
     this.listeners.forEach((cb) => cb(lang));
-    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
-    document.documentElement.lang = lang;
+
+    // Only access document in browser context
+    if (typeof document !== 'undefined') {
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+      document.documentElement.lang = lang;
+    }
   }
 
   static getLanguage(): string {
@@ -53,4 +57,4 @@ export class LanguageSettings {
   }
 }
 
-LanguageSettings.setLanguage("ar");
+// Don't set language at module load - it will be set by entry.tsx in browser context

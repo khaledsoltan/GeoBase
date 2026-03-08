@@ -12,6 +12,7 @@ import CatexSidebar from "@/core/components/features/catex/UI/layout/CatexSideba
 import CatexSidebarSecondary from "@/core/components/features/catex/UI/layout/CatexSidebarSecondary/CatexSidebarSecondary";
 import { LanguageSettings } from "@/core/lib/catex/language/LanguageSettings";
 import { watchLanguage } from "@/core/lib/catex/handlers/langHandlers";
+import { uiEventHandler } from "@/core/lib/catex/handlers/uiEventHandler";
 import "@/core/lib/catex/styles/rtl-support.css";
 
 
@@ -23,6 +24,9 @@ watchLanguage((lang) => {
   LanguageSettings.setLanguage(lang);
   console.log(`[catex] Language changed to: ${lang}`);
 });
+
+// Initialize UI event handler to listen for host app events
+console.log("[catex] UI Event Handler initialized:", uiEventHandler);
 
 // Remove elements
 removeElements(removeConfig.remove);
