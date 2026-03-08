@@ -22797,12 +22797,6 @@ var CatexExtensions = (() => {
         icon: "fa-ruler-combined",
         i18n: "plugin.measurement",
         action: 303
-      },
-      {
-        id: "catalog-results",
-        icon: "fa-list-ul",
-        i18n: "plugin.catalogResults",
-        action: 305
       }
     ]
   };

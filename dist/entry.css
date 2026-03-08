@@ -8319,7 +8319,7 @@ html[dir=rtl] .tabpanel {
   background-color: #ffffff !important;
 }
 .Measure-Tools-Button.selected {
-  background-color: #1a750d !important;
+  background-color: #026102 !important;
   color: #d1d1e1 !important;
 }
 .Measure-Tools-Button {
@@ -8331,9 +8331,9 @@ html[dir=rtl] .tabpanel {
   transition: all 0.2s ease !important;
 }
 .Measure-Tools-Button:hover {
-  background-color: #1a750d !important;
+  background-color: #026102 !important;
   color: #ffffff !important;
-  border-color: #1a750d !important;
+  border-color: #026102 !important;
   transition: all 0.2s ease !important;
 }
 .Edit-Tools-Button {
@@ -8345,9 +8345,9 @@ html[dir=rtl] .tabpanel {
   transition: all 0.2s ease !important;
 }
 .Edit-Tools-Button:hover {
-  background-color: #1a750d !important;
+  background-color: #026102 !important;
   color: #ffffff !important;
-  border-color: #1a750d !important;
+  border-color: #026102 !important;
   transform: scale(1.05) !important;
   transition: all 0.2s ease !important;
 }
@@ -8358,7 +8358,7 @@ html[dir=rtl] .tabpanel {
   justify-content: center !important;
   width: 100% !important;
   height: 100% !important;
-  background-color: #1a750d !important;
+  background-color: #026102 !important;
 }
 .Edit-Tools-Button-SVG,
 .Measure-Tools-Button-SVG,
@@ -8372,7 +8372,7 @@ img.Edit-Tools-Button-SVG {
   color: inherit !important;
   fill: currentColor !important;
   pointer-events: none !important;
-  background-color: #1a750d !important;
+  background-color: #026102 !important;
 }
 img,
 svg {
@@ -8395,14 +8395,14 @@ svg {
 }
 span.lcdIcon,
 .lcdIcon {
-  background-color: #1a750d !important;
+  background-color: #026102 !important;
   color: #ffffff !important;
 }
 span.lcdIcon:hover,
 span.lcdIcon.lcdIconRectangle:hover,
 span.lcdIcon.lcdIconDrawPoint:hover,
 .lcdIcon:hover {
-  background-color: #1a750d !important;
+  background-color: #026102 !important;
   color: #ffffff !important;
 }
 .tabpanel-content-body {
@@ -8445,6 +8445,56 @@ button:not(:disabled):focus,
   transform: none !important;
   box-shadow: none !important;
   filter: none !important;
+}
+.CatalogView-body {
+  height: 100% !important;
+  min-width: 138px !important;
+  position: relative !important;
+  background-color: #ffffff !important;
+}
+.CatalogView-toolbar {
+  padding: 5px 12px 0 12px !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 348px !important;
+  background-color: #ffffff !important;
+}
+.Catalog-Tools {
+  padding: 0 !important;
+  padding-bottom: 5px !important;
+  margin: 0 !important;
+  background-color: #ffffff !important;
+  color: #c8c8c8 !important;
+  width: 100% !important;
+  min-width: 138px !important;
+  overflow-x: hidden !important;
+}
+.Catalog-page-size {
+  padding: 0 !important;
+  margin: 0 !important;
+  margin-bottom: 5px !important;
+  background-color: #ffffff !important;
+  color: #c8c8c8 !important;
+}
+.Catalog-score {
+  padding: 0 !important;
+  margin: 0 !important;
+  margin-bottom: 5px !important;
+  background-color: #242c3a !important;
+  color: #c8c8c8 !important;
+  width: 100% !important;
+  overflow-x: hidden !important;
+}
+.sidepanel {
+  height: auto !important;
+  width: 100% !important;
+  min-width: 138px !important;
+  background-color: #ffffff !important;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+  padding: 5px !important;
 }
 /*! Bundled license information:
 
