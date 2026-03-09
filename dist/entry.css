@@ -7759,6 +7759,540 @@ html[dir=rtl] .catex-geoprocessing-close {
     opacity: 1;
   }
 }
+.catex-geoprocessing-form-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.25);
+  z-index: 9502;
+  max-width: 600px;
+  width: 90%;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -50%) scale(0.95);
+  transition: all 0.3s ease;
+}
+.catex-geoprocessing-form-modal.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+.catex-geoprocessing-form-header {
+  padding: 20px;
+  background:
+    linear-gradient(
+      135deg,
+      #1B6B3A 0%,
+      #145028 100%);
+  border-bottom: 1px solid #0d3d1a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px 10px 0 0;
+  flex-shrink: 0;
+}
+.catex-geoprocessing-form-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  flex: 1;
+}
+.catex-geoprocessing-form-close {
+  background: none;
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 24px;
+  line-height: 1;
+  transition: color 0.2s ease;
+  margin-left: 12px;
+}
+.catex-geoprocessing-form-close:hover {
+  color: #B8860B;
+}
+.catex-geoprocessing-form-description {
+  padding: 16px 20px;
+  background: #f5f5f5;
+  border-bottom: 1px solid #e5e5e5;
+  flex-shrink: 0;
+}
+.catex-geoprocessing-form-tabs {
+  display: flex;
+  gap: 0;
+  background: #fff;
+  border-bottom: 2px solid #e5e5e5;
+  flex-shrink: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.catex-geoprocessing-form-tab {
+  flex: 1;
+  min-width: 120px;
+  padding: 12px 16px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: #666;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.catex-geoprocessing-form-tab i {
+  font-size: 14px;
+}
+.catex-geoprocessing-form-tab:hover {
+  color: #1B6B3A;
+  background: #f9f9f9;
+}
+.catex-geoprocessing-form-tab.active {
+  color: #1B6B3A;
+  border-bottom-color: #1B6B3A;
+  background: #fafafa;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .catex-geoprocessing-form-tab {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+.catex-geoprocessing-form-description p {
+  margin: 0;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.5;
+}
+.catex-geoprocessing-form-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+.catex-geoprocessing-form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.catex-geoprocessing-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.catex-geoprocessing-form-label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+.catex-geoprocessing-form-label .required {
+  color: #d32f2f;
+  margin-left: 2px;
+  font-weight: 700;
+}
+.catex-geoprocessing-form-field-desc {
+  font-size: 12px;
+  color: #666;
+  margin: 0;
+  font-style: italic;
+  line-height: 1.4;
+}
+.catex-geoprocessing-form-input {
+  padding: 10px 12px;
+  border: 1px solid #d0d0d0;
+  border-radius: 6px;
+  background: #fff;
+  color: #333;
+  font-size: 13px;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+.catex-geoprocessing-form-input:hover {
+  border-color: #1B6B3A;
+}
+.catex-geoprocessing-form-input:focus {
+  outline: none;
+  border-color: #1B6B3A;
+  box-shadow: 0 0 0 3px rgba(27, 107, 58, 0.1);
+  background: #fafafa;
+}
+.catex-form-type-text .catex-geoprocessing-form-input {
+  width: 100%;
+}
+.catex-form-type-number .catex-geoprocessing-form-input {
+  width: 100%;
+}
+.catex-geoprocessing-form-select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%23333' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 20px;
+  padding-right: 32px;
+}
+.catex-geoprocessing-form-select option {
+  padding: 6px;
+}
+.catex-form-type-file .catex-geoprocessing-form-input {
+  padding: 8px;
+  cursor: pointer;
+}
+.catex-form-type-file .catex-geoprocessing-form-input::file-selector-button {
+  padding: 6px 12px;
+  background: #1B6B3A;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 12px;
+  transition: background 0.2s ease;
+  margin-right: 8px;
+}
+.catex-form-type-file .catex-geoprocessing-form-input::file-selector-button:hover {
+  background: #145028;
+}
+.catex-geoprocessing-form-empty {
+  color: #999;
+  font-size: 13px;
+  text-align: center;
+  font-style: italic;
+  padding: 40px 20px;
+  margin: 0;
+}
+.catex-geoprocessing-form-footer {
+  padding: 16px 20px;
+  background: #f5f5f5;
+  border-top: 1px solid #e5e5e5;
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  border-radius: 0 0 10px 10px;
+}
+.catex-geoprocessing-form-cancel,
+.catex-geoprocessing-form-submit {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+.catex-geoprocessing-form-cancel {
+  background: #e5e5e5;
+  color: #333;
+}
+.catex-geoprocessing-form-cancel:hover:not(:disabled) {
+  background: #d0d0d0;
+}
+.catex-geoprocessing-form-submit {
+  background: #1B6B3A;
+  color: #fff;
+  min-width: 120px;
+}
+.catex-geoprocessing-form-submit:hover:not(:disabled) {
+  background: #145028;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(27, 107, 58, 0.2);
+}
+.catex-geoprocessing-form-submit:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(27, 107, 58, 0.1);
+}
+.catex-geoprocessing-form-cancel:disabled,
+.catex-geoprocessing-form-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.catex-geoprocessing-form-body::-webkit-scrollbar {
+  width: 6px;
+}
+.catex-geoprocessing-form-body::-webkit-scrollbar-track {
+  background: #f5f5f5;
+  border-radius: 3px;
+}
+.catex-geoprocessing-form-body::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+.catex-geoprocessing-form-body::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+html[dir=rtl] .catex-geoprocessing-form-header {
+  flex-direction: row-reverse;
+}
+html[dir=rtl] .catex-geoprocessing-form-close {
+  margin-left: 0;
+  margin-right: 12px;
+}
+html[dir=rtl] .catex-geoprocessing-form-footer {
+  justify-content: flex-start;
+  flex-direction: row-reverse;
+}
+html[dir=rtl] .catex-geoprocessing-form-select {
+  background-position: left 8px center;
+  padding-right: 12px;
+  padding-left: 32px;
+}
+.catex-geoprocessing-form-view {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  height: 100%;
+}
+.catex-geoprocessing-form-description-panel {
+  padding: 12px 0;
+  border-bottom: 1px solid #e5e5e5;
+  flex-shrink: 0;
+}
+.catex-geoprocessing-form-description-panel p {
+  margin: 0;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.5;
+}
+.catex-geoprocessing-panel-form-tabs {
+  display: flex;
+  gap: 0;
+  background: #1B6B3A;
+  border-bottom: 2px solid #145028;
+  flex-shrink: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0;
+}
+.catex-geoprocessing-panel-form-tab {
+  flex: 1;
+  min-width: 100px;
+  padding: 14px 12px;
+  background: #1B6B3A;
+  border: none;
+  color: #fff !important;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+.catex-geoprocessing-panel-form-tab i {
+  font-size: 12px;
+  color: #fff !important;
+}
+.catex-geoprocessing-panel-form-tab.active {
+  color: #fff !important;
+  background: #1B6B3A;
+}
+.catex-geoprocessing-panel-form-fields-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 0;
+  display: flex;
+  flex-direction: column;
+}
+.catex-geoprocessing-panel-form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 16px;
+}
+.catex-geoprocessing-panel-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.catex-geoprocessing-panel-form-label {
+  font-weight: 600;
+  font-size: 13px;
+  color: #333;
+}
+.catex-geoprocessing-panel-form-label .required {
+  color: #d32f2f;
+  margin-left: 2px;
+  font-weight: 700;
+}
+.catex-geoprocessing-panel-form-field-desc {
+  font-size: 11px;
+  color: #666;
+  margin: 0;
+  font-style: italic;
+  line-height: 1.4;
+}
+.catex-geoprocessing-panel-form-input {
+  padding: 10px 12px;
+  border: 1px solid #d0d0d0;
+  border-radius: 6px;
+  background: #fff;
+  color: #333;
+  font-size: 13px;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+.catex-geoprocessing-panel-form-input:hover {
+  border-color: #1B6B3A;
+}
+.catex-geoprocessing-panel-form-input:focus {
+  outline: none;
+  border-color: #1B6B3A;
+  box-shadow: 0 0 0 3px rgba(27, 107, 58, 0.1);
+  background: #fafafa;
+}
+.catex-geoprocessing-panel-form-select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%23333' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 20px;
+  padding-right: 32px;
+}
+.catex-geoprocessing-panel-form-select option {
+  padding: 6px;
+}
+.catex-form-type-file .catex-geoprocessing-panel-form-input {
+  padding: 8px;
+  cursor: pointer;
+}
+.catex-form-type-file .catex-geoprocessing-panel-form-input::file-selector-button {
+  padding: 6px 12px;
+  background: #1B6B3A;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 12px;
+  transition: background 0.2s ease;
+  margin-right: 8px;
+}
+.catex-form-type-file .catex-geoprocessing-panel-form-input::file-selector-button:hover {
+  background: #145028;
+}
+.catex-geoprocessing-form-footer-panel {
+  position: fixed;
+  bottom: 40px;
+  display: flex;
+  gap: 12px;
+  justify-content: flex-start;
+  align-items: center;
+  flex-shrink: 0;
+  z-index: 9501;
+  padding: 12px 20px;
+}
+html[dir=ltr] .catex-geoprocessing-form-footer-panel {
+  left: 70px;
+  flex-direction: row;
+}
+html[dir=rtl] .catex-geoprocessing-form-footer-panel {
+  right: 70px;
+  flex-direction: row-reverse;
+}
+.catex-geoprocessing-panel-form-back {
+  padding: 14px 24px;
+  background: #666;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  white-space: nowrap;
+}
+.catex-geoprocessing-panel-form-back:hover:not(:disabled) {
+  background: #555;
+  color: #fff;
+}
+.catex-geoprocessing-panel-form-back:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(27, 107, 58, 0.1);
+}
+.catex-geoprocessing-panel-form-back:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.catex-geoprocessing-panel-form-back i {
+  font-size: 12px;
+}
+.catex-geoprocessing-panel-form-submit {
+  padding: 14px 32px;
+  background: #1B6B3A;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  min-width: 140px;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.catex-geoprocessing-panel-form-submit:hover:not(:disabled) {
+  background: #145028;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(27, 107, 58, 0.3);
+}
+.catex-geoprocessing-panel-form-submit:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(27, 107, 58, 0.2);
+}
+.catex-geoprocessing-panel-form-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+html[dir=rtl] .catex-geoprocessing-panel-form-tab {
+  flex-direction: row-reverse;
+}
+html[dir=rtl] .catex-geoprocessing-panel-form-select {
+  background-position: left 8px center;
+  padding-right: 12px;
+  padding-left: 32px;
+}
+html[dir=rtl] .catex-form-type-file .catex-geoprocessing-panel-form-input::file-selector-button {
+  margin-right: 0;
+  margin-left: 8px;
+}
+html[dir=rtl] .catex-geoprocessing-panel-form-back {
+  flex-direction: row-reverse;
+}
+.catex-geoprocessing-panel-form-fields-container::-webkit-scrollbar {
+  width: 6px;
+}
+.catex-geoprocessing-panel-form-fields-container::-webkit-scrollbar-track {
+  background: #f5f5f5;
+  border-radius: 3px;
+}
+.catex-geoprocessing-panel-form-fields-container::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+.catex-geoprocessing-panel-form-fields-container::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
 
 /* core/components/features/catex/UI/layout/CatexSidebar/CatexSidebar.css */
 .catex-sidebar {

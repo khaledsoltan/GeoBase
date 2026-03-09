@@ -21950,6 +21950,9 @@ var CatexExtensions = (() => {
     "tools.slicing": "Slicing",
     "tools.effects": "Effects",
     "tools.pictureSettings": "Picture Settings",
+    "tools.geoprocessingServers": "Geoprocessing Servers",
+    "tools.geoprocessingAddJob": "Add Geoprocessing Job",
+    "tools.geoprocessingListJobs": "List Geoprocessing Jobs",
     "user.adminDashboard": "Admin Dashboard",
     "user.preferences": "Preferences",
     "user.workspace": "Workspace",
@@ -21990,6 +21993,7 @@ var CatexExtensions = (() => {
     "footer.scale": "Scale 1: {value}",
     "general.search": "Search",
     "general.close": "Close",
+    "general.back": "Back",
     "general.cancel": "Cancel",
     "general.confirm": "Confirm",
     "general.loading": "Loading...",
@@ -22001,6 +22005,7 @@ var CatexExtensions = (() => {
     "geoprocessing.jobs": "Jobs",
     "geoprocessing.jobsList": "Jobs List",
     "geoprocessing.noJobs": "No jobs available",
+    "geoprocessing.noProcesses": "No processes available",
     "geoprocessing.tools": "Geoprocessing Tools",
     "geoprocessing.selectAction": "Select Action",
     "geoprocessing.chooseAction": "Choose an action...",
@@ -22014,7 +22019,28 @@ var CatexExtensions = (() => {
     "geoprocessing.clip": "Clip",
     "geoprocessing.clipDesc": "Extract features within a boundary",
     "geoprocessing.dissolve": "Dissolve",
-    "geoprocessing.dissolveDesc": "Merge adjacent features with same attributes"
+    "geoprocessing.dissolveDesc": "Merge adjacent features with same attributes",
+    "geoprocessing.chartToChartChangeDetection": "Chart To Chart Change Detection",
+    "geoprocessing.chartToChartChangeDetectionDesc": "Detects changes between two thematic chart images",
+    "geoprocessing.classifyFeature": "Classify Feature",
+    "geoprocessing.classifyFeatureDesc": "Extract features of a particular class from a raster image",
+    "geoprocessing.featureToFeatureChangeDetection": "Feature To Feature Change Detection",
+    "geoprocessing.featureToFeatureChangeDetectionDesc": "Compare two feature sets and detect changes in both directions",
+    "geoprocessing.geodeticReprojectRaster": "Geodetic Reproject Raster",
+    "geoprocessing.geodeticReprojectRasterDesc": "Reproject raster image to a new projection system",
+    "geoprocessing.geospatialPDF": "Geospatial PDF",
+    "geoprocessing.geospatialPDFDesc": "Create a Geospatial PDF file from imagery and overlays",
+    "geoprocessing.mapAspect": "Map Aspect",
+    "geoprocessing.mapAspectDesc": "Derive a terrain aspect map from DEM data",
+    "geoprocessing.slope": "Slope",
+    "geoprocessing.slopeDesc": "Derive a slope gradient map from DEM data",
+    "geoprocessing.noInputs": "No inputs required",
+    "geoprocessing.selectOption": "Select an option...",
+    "geoprocessing.inputFiles": "Input Files",
+    "geoprocessing.parameters": "Parameters",
+    "geoprocessing.outputFiles": "Output Files",
+    "geoprocessing.settings": "Settings",
+    "geoprocessing.fields": "Fields"
   };
 
   // core/lib/config/dict/ar.json
@@ -22084,6 +22110,9 @@ var CatexExtensions = (() => {
     "tools.slicing": "\u0627\u0644\u062A\u0642\u0637\u064A\u0639",
     "tools.effects": "\u0627\u0644\u062A\u0623\u062B\u064A\u0631\u0627\u062A",
     "tools.pictureSettings": "\u0625\u0639\u062F\u0627\u062F\u0627\u062A \u0627\u0644\u0635\u0648\u0631\u0629",
+    "tools.geoprocessingServers": "\u062E\u0648\u0627\u062F\u0645 \u0627\u0644\u0645\u0639\u0627\u0644\u062C\u0629 \u0627\u0644\u062C\u063A\u0631\u0627\u0641\u064A\u0629",
+    "tools.geoprocessingAddJob": "\u0625\u0636\u0627\u0641\u0629 \u0648\u0638\u064A\u0641\u0629 \u0645\u0639\u0627\u0644\u062C\u0629 \u062C\u063A\u0631\u0627\u0641\u064A\u0629",
+    "tools.geoprocessingListJobs": "\u0639\u0631\u0636 \u0642\u0627\u0626\u0645\u0629 \u0648\u0638\u0627\u0626\u0641 \u0627\u0644\u0645\u0639\u0627\u0644\u062C\u0629 \u0627\u0644\u062C\u063A\u0631\u0627\u0641\u064A\u0629",
     "user.adminDashboard": "\u0644\u0648\u062D\u0629 \u0627\u0644\u0645\u0633\u0624\u0648\u0644",
     "user.preferences": "\u0627\u0644\u062A\u0641\u0636\u064A\u0644\u0627\u062A",
     "user.workspace": "\u0645\u0633\u0627\u062D\u0629 \u0627\u0644\u0639\u0645\u0644",
@@ -22124,6 +22153,7 @@ var CatexExtensions = (() => {
     "footer.scale": "\u0627\u0644\u0645\u0642\u064A\u0627\u0633 1: {value}",
     "general.search": "\u0628\u062D\u062B",
     "general.close": "\u0625\u063A\u0644\u0627\u0642",
+    "general.back": "\u0631\u062C\u0648\u0639",
     "general.cancel": "\u0625\u0644\u063A\u0627\u0621",
     "general.confirm": "\u062A\u0623\u0643\u064A\u062F",
     "general.loading": "\u062C\u0627\u0631\u064A \u0627\u0644\u062A\u062D\u0645\u064A\u0644...",
@@ -22135,6 +22165,7 @@ var CatexExtensions = (() => {
     "geoprocessing.jobs": "\u0627\u0644\u0648\u0638\u0627\u0626\u0641",
     "geoprocessing.jobsList": "\u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u0648\u0638\u0627\u0626\u0641",
     "geoprocessing.noJobs": "\u0644\u0627 \u062A\u0648\u062C\u062F \u0648\u0638\u0627\u0626\u0641 \u0645\u062A\u0627\u062D\u0629",
+    "geoprocessing.noProcesses": "\u0644\u0627 \u062A\u0648\u062C\u062F \u0639\u0645\u0644\u064A\u0627\u062A \u0645\u062A\u0627\u062D\u0629",
     "geoprocessing.tools": "\u0623\u062F\u0648\u0627\u062A \u0627\u0644\u0645\u0639\u0627\u0644\u062C\u0629 \u0627\u0644\u062C\u063A\u0631\u0627\u0641\u064A\u0629",
     "geoprocessing.selectAction": "\u0627\u062E\u062A\u0631 \u0627\u0644\u0625\u062C\u0631\u0627\u0621",
     "geoprocessing.chooseAction": "\u0627\u062E\u062A\u0631 \u0625\u062C\u0631\u0627\u0621...",
@@ -22148,7 +22179,28 @@ var CatexExtensions = (() => {
     "geoprocessing.clip": "\u0627\u0644\u0642\u0635",
     "geoprocessing.clipDesc": "\u0627\u0633\u062A\u062E\u0631\u0627\u062C \u0627\u0644\u0645\u0639\u0627\u0644\u0645 \u0636\u0645\u0646 \u062D\u062F\u0648\u062F \u0645\u0639\u064A\u0646\u0629",
     "geoprocessing.dissolve": "\u0627\u0644\u0625\u0630\u0627\u0628\u0629",
-    "geoprocessing.dissolveDesc": "\u062F\u0645\u062C \u0627\u0644\u0645\u0639\u0627\u0644\u0645 \u0627\u0644\u0645\u062A\u062C\u0627\u0648\u0631\u0629 \u0628\u0646\u0641\u0633 \u0627\u0644\u062E\u0635\u0627\u0626\u0635"
+    "geoprocessing.dissolveDesc": "\u062F\u0645\u062C \u0627\u0644\u0645\u0639\u0627\u0644\u0645 \u0627\u0644\u0645\u062A\u062C\u0627\u0648\u0631\u0629 \u0628\u0646\u0641\u0633 \u0627\u0644\u062E\u0635\u0627\u0626\u0635",
+    "geoprocessing.chartToChartChangeDetection": "\u0643\u0634\u0641 \u0627\u0644\u062A\u063A\u064A\u0631\u0627\u062A \u0645\u0646 \u062E\u0631\u064A\u0637\u0629 \u0625\u0644\u0649 \u062E\u0631\u064A\u0637\u0629",
+    "geoprocessing.chartToChartChangeDetectionDesc": "\u0643\u0634\u0641 \u0627\u0644\u062A\u063A\u064A\u064A\u0631\u0627\u062A \u0628\u064A\u0646 \u0635\u0648\u0631\u062A\u064A \u062E\u0631\u064A\u0637\u0629 \u0645\u0648\u0636\u0648\u0639\u064A\u0629",
+    "geoprocessing.classifyFeature": "\u062A\u0635\u0646\u064A\u0641 \u0627\u0644\u0645\u0639\u0627\u0644\u0645",
+    "geoprocessing.classifyFeatureDesc": "\u0627\u0633\u062A\u062E\u0631\u0627\u062C \u0645\u0639\u0627\u0644\u0645 \u0645\u0646 \u0641\u0626\u0629 \u0645\u0639\u064A\u0646\u0629 \u0645\u0646 \u0635\u0648\u0631\u0629 \u0646\u0642\u0637\u064A\u0629",
+    "geoprocessing.featureToFeatureChangeDetection": "\u0643\u0634\u0641 \u0627\u0644\u062A\u063A\u064A\u0631\u0627\u062A \u0645\u0646 \u0645\u0639\u0627\u0644\u0645 \u0625\u0644\u0649 \u0645\u0639\u0627\u0644\u0645",
+    "geoprocessing.featureToFeatureChangeDetectionDesc": "\u0645\u0642\u0627\u0631\u0646\u0629 \u0645\u062C\u0645\u0648\u0639\u062A\u064A \u0645\u0639\u0627\u0644\u0645 \u0648\u0627\u0643\u062A\u0634\u0627\u0641 \u0627\u0644\u062A\u063A\u064A\u064A\u0631\u0627\u062A \u0641\u064A \u0643\u0644\u0627 \u0627\u0644\u0627\u062A\u062C\u0627\u0647\u064A\u0646",
+    "geoprocessing.geodeticReprojectRaster": "\u0625\u0639\u0627\u062F\u0629 \u0625\u0633\u0642\u0627\u0637 \u0646\u0642\u0637\u064A\u0629 \u062C\u064A\u0648\u062F\u064A\u0633\u064A\u0629",
+    "geoprocessing.geodeticReprojectRasterDesc": "\u0625\u0639\u0627\u062F\u0629 \u0625\u0633\u0642\u0627\u0637 \u0635\u0648\u0631\u0629 \u0646\u0642\u0637\u064A\u0629 \u0625\u0644\u0649 \u0646\u0638\u0627\u0645 \u0625\u0633\u0642\u0627\u0637 \u062C\u062F\u064A\u062F",
+    "geoprocessing.geospatialPDF": "\u0645\u0644\u0641 PDF \u062C\u063A\u0631\u0627\u0641\u064A \u0645\u0643\u0627\u0646\u064A",
+    "geoprocessing.geospatialPDFDesc": "\u0625\u0646\u0634\u0627\u0621 \u0645\u0644\u0641 PDF \u062C\u063A\u0631\u0627\u0641\u064A \u0645\u0643\u0627\u0646\u064A \u0645\u0646 \u0627\u0644\u0635\u0648\u0631 \u0648\u0627\u0644\u0639\u0646\u0627\u0635\u0631 \u0627\u0644\u0631\u0633\u0648\u0645\u064A\u0629",
+    "geoprocessing.mapAspect": "\u0627\u062A\u062C\u0627\u0647 \u0627\u0644\u0627\u0646\u062D\u062F\u0627\u0631",
+    "geoprocessing.mapAspectDesc": "\u0627\u0634\u062A\u0642\u0627\u0642 \u062E\u0631\u064A\u0637\u0629 \u0627\u062A\u062C\u0627\u0647 \u0627\u0644\u062A\u0636\u0627\u0631\u064A\u0633 \u0645\u0646 \u0628\u064A\u0627\u0646\u0627\u062A \u0627\u0644\u0646\u0645\u0648\u0630\u062C \u0627\u0644\u0631\u0642\u0645\u064A",
+    "geoprocessing.slope": "\u0627\u0644\u0627\u0646\u062D\u062F\u0627\u0631",
+    "geoprocessing.slopeDesc": "\u0627\u0634\u062A\u0642\u0627\u0642 \u062E\u0631\u064A\u0637\u0629 \u062A\u062F\u0631\u062C \u0627\u0644\u0627\u0646\u062D\u062F\u0627\u0631 \u0645\u0646 \u0628\u064A\u0627\u0646\u0627\u062A \u0627\u0644\u0646\u0645\u0648\u0630\u062C \u0627\u0644\u0631\u0642\u0645\u064A",
+    "geoprocessing.noInputs": "\u0644\u0627 \u062A\u0648\u062C\u062F \u0645\u062F\u062E\u0644\u0627\u062A \u0645\u0637\u0644\u0648\u0628\u0629",
+    "geoprocessing.selectOption": "\u0627\u062E\u062A\u0631 \u062E\u064A\u0627\u0631\u064B\u0627...",
+    "geoprocessing.inputFiles": "\u0645\u0644\u0641\u0627\u062A \u0627\u0644\u0625\u062F\u062E\u0627\u0644",
+    "geoprocessing.parameters": "\u0627\u0644\u0645\u0639\u0627\u0645\u0644\u0627\u062A",
+    "geoprocessing.outputFiles": "\u0645\u0644\u0641\u0627\u062A \u0627\u0644\u0625\u062E\u0631\u0627\u062C",
+    "geoprocessing.settings": "\u0627\u0644\u0625\u0639\u062F\u0627\u062F\u0627\u062A",
+    "geoprocessing.fields": "\u0627\u0644\u062D\u0642\u0648\u0644"
   };
 
   // core/lib/catex/language/LanguageSettings.tsx
@@ -22357,7 +22409,11 @@ var CatexExtensions = (() => {
         { i18n: "tools.browseCatalogs", action: 304 },
         { i18n: "tools.slicing", action: 306 },
         { i18n: "tools.effects", action: 2004 },
-        { i18n: "tools.pictureSettings", action: 2005 }
+        { i18n: "tools.pictureSettings", action: 2005 },
+        { divider: true },
+        { i18n: "tools.geoprocessingServers", action: 2011 },
+        { i18n: "tools.geoprocessingAddJob", action: 2012 },
+        { i18n: "tools.geoprocessingListJobs", action: 2013 }
       ]
     },
     user: {
@@ -22727,14 +22783,164 @@ var CatexExtensions = (() => {
 
   // core/components/features/catex/UI/geoprocessing/GeoprocessingPanel.tsx
   var import_jsx_runtime3 = __toESM(require_jsx_runtime());
+  var ALLOWED_PROCESSES = [
+    "ChartToChartChangeDetection",
+    "ClassifyFeature",
+    "FeatureToFeatureChangeDetection",
+    "GeodeticReprojectRaster",
+    "GeospatialPDF",
+    "MapAspect",
+    "Slope"
+  ];
+  var PROCESS_TRANSLATION_MAP = {
+    "ChartToChartChangeDetection": {
+      name: "geoprocessing.chartToChartChangeDetection",
+      desc: "geoprocessing.chartToChartChangeDetectionDesc",
+      icon: "fa-chart-area"
+    },
+    "ClassifyFeature": {
+      name: "geoprocessing.classifyFeature",
+      desc: "geoprocessing.classifyFeatureDesc",
+      icon: "fa-tags"
+    },
+    "FeatureToFeatureChangeDetection": {
+      name: "geoprocessing.featureToFeatureChangeDetection",
+      desc: "geoprocessing.featureToFeatureChangeDetectionDesc",
+      icon: "fa-arrows-alt"
+    },
+    "GeodeticReprojectRaster": {
+      name: "geoprocessing.geodeticReprojectRaster",
+      desc: "geoprocessing.geodeticReprojectRasterDesc",
+      icon: "fa-globe"
+    },
+    "GeospatialPDF": {
+      name: "geoprocessing.geospatialPDF",
+      desc: "geoprocessing.geospatialPDFDesc",
+      icon: "fa-file-pdf"
+    },
+    "MapAspect": {
+      name: "geoprocessing.mapAspect",
+      desc: "geoprocessing.mapAspectDesc",
+      icon: "fa-compass"
+    },
+    "Slope": {
+      name: "geoprocessing.slope",
+      desc: "geoprocessing.slopeDesc",
+      icon: "fa-mountain"
+    }
+  };
   var GeoprocessingPanel = () => {
     const [isOpen, setIsOpen] = (0, import_react4.useState)(false);
-    const [selectedCategory, setSelectedCategory] = (0, import_react4.useState)("geoprocessing");
-    const [selectedAction, setSelectedAction] = (0, import_react4.useState)("");
+    const [serverName, setServerName] = (0, import_react4.useState)("");
+    const [serverUrl, setServerUrl] = (0, import_react4.useState)("");
+    const [processes, setProcesses] = (0, import_react4.useState)([]);
+    const [loading, setLoading] = (0, import_react4.useState)(false);
+    const [selectedProcess, setSelectedProcess] = (0, import_react4.useState)(null);
+    const [formValues, setFormValues] = (0, import_react4.useState)({});
+    const [submitting, setSubmitting] = (0, import_react4.useState)(false);
+    const [activeFormTab, setActiveFormTab] = (0, import_react4.useState)(0);
+    const [panelView, setPanelView] = (0, import_react4.useState)("tools");
     const { t, isRTL } = useLanguage();
+    const buildOgcUrl = (baseUrl, path) => {
+      const cleanBase = baseUrl.replace(/\/$/, "");
+      const cleanPath = path.startsWith("/") ? path : `/${path}`;
+      if (cleanBase.endsWith("/oapi-p")) {
+        return `${cleanBase}${cleanPath}`;
+      }
+      if (!cleanBase.includes("/oapi-p")) {
+        return `${cleanBase}/oapi-p${cleanPath}`;
+      }
+      return `${cleanBase}${cleanPath}`;
+    };
+    const fetchProcessDetails = async (processId) => {
+      try {
+        console.log("[Geoprocessing] Fetching process details for:", processId);
+        const ogcBaseUrl = "http://192.168.100.50";
+        const url = buildOgcUrl(ogcBaseUrl, `/processes/${processId}`);
+        console.log("[Geoprocessing] Fetch URL:", url);
+        const response = await fetch(url);
+        if (!response.ok) {
+          console.warn(`[Geoprocessing] Failed to fetch details for ${processId}, status:`, response.status);
+          return null;
+        }
+        const data = await response.json();
+        console.log("[Geoprocessing] Process details received:", {
+          id: data.id,
+          inputCount: Object.keys(data.inputs || {}).length,
+          outputCount: Object.keys(data.outputs || {}).length
+        });
+        return {
+          id: data.id || processId,
+          title: data.title || data.summary,
+          description: data.description || data.abstract,
+          version: data.version,
+          keywords: data.keywords,
+          jobControlOptions: data.jobControlOptions,
+          inputs: data.inputs || {},
+          outputs: data.outputs || {}
+        };
+      } catch (error) {
+        console.error("[Geoprocessing] Error fetching process details for", processId, ":", error);
+        return null;
+      }
+    };
+    const fetchGeoprocessingProcesses = async () => {
+      try {
+        const ogcBaseUrl = "http://192.168.100.50";
+        console.log("[Geoprocessing] Fetching processes from:", ogcBaseUrl);
+        const url = buildOgcUrl(ogcBaseUrl, "/processes");
+        console.log("[Geoprocessing] Fetch URL:", url);
+        const response = await fetch(url);
+        const data = await response.json();
+        let processList = [];
+        if (data.processes && Array.isArray(data.processes)) {
+          processList = data.processes;
+        } else if (Array.isArray(data)) {
+          processList = data;
+        } else if (data.content && Array.isArray(data.content)) {
+          processList = data.content;
+        }
+        const filteredProcesses = processList.filter(
+          (process2) => ALLOWED_PROCESSES.includes(process2.id)
+        );
+        const detailedProcesses = await Promise.all(
+          filteredProcesses.map(async (process2) => {
+            const details = await fetchProcessDetails(process2.id);
+            return details || process2;
+          })
+        );
+        setProcesses(detailedProcesses);
+        console.log("[Geoprocessing] Processes loaded:", detailedProcesses.length, "from", processList.length, "total");
+      } catch (error) {
+        console.error("[Geoprocessing] Error fetching processes:", error);
+        setProcesses([]);
+      }
+    };
+    const fetchGeoprocessingServers = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(
+          "http://192.168.100.50/catalogexplorer/api/user/geoprocessing/servers?size=100&page=0&sort=name"
+        );
+        const data = await response.json();
+        if (data.content && data.content.length > 0) {
+          const firstServer = data.content[0];
+          setServerName(firstServer.name);
+          setServerUrl(firstServer.url);
+          console.log("[Geoprocessing] Server loaded:", firstServer.name);
+        }
+      } catch (error) {
+        console.error("[Geoprocessing] Error fetching servers:", error);
+        setServerName("Geoprocessing");
+      } finally {
+        setLoading(false);
+      }
+    };
     (0, import_react4.useEffect)(() => {
-      const handleOpen = () => {
+      const handleOpen = async () => {
         setIsOpen(true);
+        await fetchGeoprocessingServers();
+        await fetchGeoprocessingProcesses();
         dispatchUIEvent({
           action: 2011 /* GEOPROCESSING_SERVERS */
         });
@@ -22746,18 +22952,6 @@ var CatexExtensions = (() => {
       const handleReset = () => setIsOpen(false);
       window.addEventListener("catex:sidebar:resetActive", handleReset);
       return () => window.removeEventListener("catex:sidebar:resetActive", handleReset);
-    }, []);
-    (0, import_react4.useEffect)(() => {
-      const handleSetCategory = (event) => {
-        const customEvent = event;
-        const { category } = customEvent.detail || {};
-        if (category) {
-          console.log("[Geoprocessing] Setting category from UI event:", category);
-          setSelectedCategory(category);
-        }
-      };
-      window.addEventListener("catex:geoprocessing:setCategory", handleSetCategory);
-      return () => window.removeEventListener("catex:geoprocessing:setCategory", handleSetCategory);
     }, []);
     (0, import_react4.useEffect)(() => {
       const handleSelectTool = (event) => {
@@ -22783,74 +22977,204 @@ var CatexExtensions = (() => {
         })
       );
     };
-    const handleCategoryChange = (category) => {
-      setSelectedCategory(category);
-      if (category === "jobs") {
-        dispatchUIEvent({
-          action: 2013 /* GEOPROCESSING_LIST_JOBS */
-        });
-      } else if (category === "geoprocessing") {
-        dispatchUIEvent({
-          action: 2011 /* GEOPROCESSING_SERVERS */
-        });
-      }
-    };
     const handleToolClick = (toolId) => {
       console.log(`[Geoprocessing] Tool clicked: ${toolId}`);
-      dispatchUIEvent({
-        action: 2012 /* GEOPROCESSING_ADD_JOB */,
-        parameters: {
-          toolId,
-          toolName: toolId
+      const process2 = processes.find((p) => p.id === toolId);
+      if (process2) {
+        setSelectedProcess(process2);
+        setFormValues({});
+        setActiveFormTab(0);
+        setPanelView("form");
+      }
+    };
+    const handleBackToTools = () => {
+      setPanelView("tools");
+      setSelectedProcess(null);
+      setFormValues({});
+      setActiveFormTab(0);
+    };
+    const handleFormChange = (inputName, value) => {
+      setFormValues((prev) => ({
+        ...prev,
+        [inputName]: value
+      }));
+    };
+    const handleFormSubmit = async () => {
+      if (!selectedProcess) return;
+      try {
+        setSubmitting(true);
+        console.log(`[Geoprocessing] Submitting job for process:`, selectedProcess.id, "with values:", formValues);
+        const result = await executeGeoprocessingJob(
+          selectedProcess.id,
+          selectedProcess.title || selectedProcess.id,
+          formValues
+        );
+        if (result.error) {
+          console.error("[Geoprocessing] Job execution failed:", result.error);
+          alert(`Error executing job: ${result.error}`);
+          return;
+        }
+        console.log("[Geoprocessing] Job submitted successfully:", result.jobId);
+        dispatchUIEvent({
+          action: 2012 /* GEOPROCESSING_ADD_JOB */,
+          parameters: {
+            toolId: selectedProcess.id,
+            toolName: selectedProcess.title || selectedProcess.id,
+            inputs: formValues,
+            jobId: result.jobId,
+            status: result.status
+          }
+        });
+        alert(`Job submitted successfully! Job ID: ${result.jobId}`);
+        setSelectedProcess(null);
+        setFormValues({});
+      } catch (error) {
+        console.error("[Geoprocessing] Error submitting form:", error);
+        alert(`Error: ${error instanceof Error ? error.message : "Unknown error"}`);
+      } finally {
+        setSubmitting(false);
+      }
+    };
+    const handleFormCancel = () => {
+      handleBackToTools();
+    };
+    const getInputType = (input) => {
+      if (input.schema?.enum && Array.isArray(input.schema.enum)) {
+        return "select";
+      }
+      if (input.additionalParameters?.parameters) {
+        const hasFileInfo = input.additionalParameters.parameters.some(
+          (param) => param.name === "IMAGINE.File" || param.value?.[0]?.FileFilter
+        );
+        if (hasFileInfo) {
+          return "file";
+        }
+      }
+      if (input.schema?.type === "number") {
+        return "number";
+      }
+      return "text";
+    };
+    const getEnumOptions = (input) => {
+      return input.schema?.enum ? Array.isArray(input.schema.enum) ? input.schema.enum : [] : [];
+    };
+    const getDefaultValue = (input) => {
+      const defaultVal = input.schema?.default;
+      return defaultVal ? String(defaultVal) : "";
+    };
+    const groupInputsIntoTabs = (inputs) => {
+      const tabs = [];
+      const inputFiles = [];
+      const parameters = [];
+      const outputFiles = [];
+      const settings = [];
+      Object.entries(inputs).forEach(([name, input]) => {
+        const lowerName = name.toLowerCase();
+        const isFile = getInputType(input) === "file";
+        const isOutput = lowerName.includes("out") || lowerName.includes("output");
+        const isParam = getInputType(input) === "select" || getInputType(input) === "number";
+        if (isFile && isOutput) {
+          outputFiles.push([name, input]);
+        } else if (isFile) {
+          inputFiles.push([name, input]);
+        } else if (isParam) {
+          parameters.push([name, input]);
+        } else {
+          settings.push([name, input]);
         }
       });
-    };
-    const handleExecuteAction = () => {
-      if (!selectedAction) {
-        console.warn("[Geoprocessing] No action selected");
-        return;
+      if (inputFiles.length > 0) {
+        tabs.push({
+          title: "geoprocessing.inputFiles",
+          icon: "fa-file-import",
+          fields: inputFiles
+        });
       }
-      console.log(`[Geoprocessing] Executing action: ${selectedAction}`);
-      dispatchUIEvent({
-        action: 2012 /* GEOPROCESSING_ADD_JOB */,
-        parameters: {
-          toolId: selectedAction,
-          toolName: selectedAction
+      if (parameters.length > 0) {
+        tabs.push({
+          title: "geoprocessing.parameters",
+          icon: "fa-sliders-h",
+          fields: parameters
+        });
+      }
+      if (outputFiles.length > 0) {
+        tabs.push({
+          title: "geoprocessing.outputFiles",
+          icon: "fa-file-export",
+          fields: outputFiles
+        });
+      }
+      if (settings.length > 0) {
+        tabs.push({
+          title: "geoprocessing.settings",
+          icon: "fa-cog",
+          fields: settings
+        });
+      }
+      if (tabs.length === 0) {
+        tabs.push({
+          title: "geoprocessing.fields",
+          icon: "fa-list",
+          fields: Object.entries(inputs)
+        });
+      }
+      return tabs;
+    };
+    const executeGeoprocessingJob = async (processId, processTitle, inputs) => {
+      try {
+        const ogcBaseUrl = "http://192.168.100.50";
+        console.log("[Geoprocessing] Executing job:", {
+          processId,
+          ogcBaseUrl,
+          inputs
+        });
+        const formattedInputs = {};
+        Object.entries(inputs).forEach(([key, value]) => {
+          if (value) {
+            formattedInputs[key] = {
+              value
+            };
+          }
+        });
+        const executeUrl = buildOgcUrl(ogcBaseUrl, `/processes/${processId}/execution`);
+        const requestBody = {
+          inputs: formattedInputs,
+          responseType: "document"
+        };
+        console.log("[Geoprocessing] Sending request to:", executeUrl);
+        console.log("[Geoprocessing] Request body:", requestBody);
+        const response = await fetch(executeUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+          },
+          body: JSON.stringify(requestBody)
+        });
+        if (!response.ok) {
+          const errorData = await response.text();
+          console.error(
+            `[Geoprocessing] API Error (${response.status}):`,
+            errorData
+          );
+          return {
+            error: `API Error: ${response.status} - ${response.statusText}`
+          };
         }
-      });
-    };
-    const tools = [
-      {
-        id: "buffer",
-        icon: "fa-circle-notch",
-        nameKey: "geoprocessing.buffer",
-        descKey: "geoprocessing.bufferDesc"
-      },
-      {
-        id: "intersect",
-        icon: "fa-object-group",
-        nameKey: "geoprocessing.intersect",
-        descKey: "geoprocessing.intersectDesc"
-      },
-      {
-        id: "union",
-        icon: "fa-layer-group",
-        nameKey: "geoprocessing.union",
-        descKey: "geoprocessing.unionDesc"
-      },
-      {
-        id: "clip",
-        icon: "fa-cut",
-        nameKey: "geoprocessing.clip",
-        descKey: "geoprocessing.clipDesc"
-      },
-      {
-        id: "dissolve",
-        icon: "fa-compress",
-        nameKey: "geoprocessing.dissolve",
-        descKey: "geoprocessing.dissolveDesc"
+        const result = await response.json();
+        console.log("[Geoprocessing] Job execution response:", result);
+        const jobId = result.jobID || result.id || result.uuid;
+        return {
+          jobId,
+          status: "submitted"
+        };
+      } catch (error) {
+        console.error("[Geoprocessing] Error executing job:", error);
+        return {
+          error: error instanceof Error ? error.message : "Unknown error"
+        };
       }
-    ];
+    };
     if (!isOpen) return null;
     return /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(import_jsx_runtime3.Fragment, { children: [
       /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "catex-geoprocessing-overlay", onClick: handleClose }),
@@ -22874,82 +23198,151 @@ var CatexExtensions = (() => {
               )
             }
           ),
-          /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("h4", { className: "catex-geoprocessing-title", children: t("plugin.geoprocessing") })
+          /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("h4", { className: "catex-geoprocessing-title", children: loading ? `${t("plugin.geoprocessing")}...` : serverName || t("plugin.geoprocessing") })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "catex-geoprocessing-body", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "catex-geoprocessing-category", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("label", { htmlFor: "category-select", children: [
-              t("geoprocessing.category"),
-              ":"
-            ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
-              "select",
-              {
-                id: "category-select",
-                className: "catex-geoprocessing-select",
-                value: selectedCategory,
-                onChange: (e) => handleCategoryChange(e.target.value),
-                children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("option", { value: "geoprocessing", children: t("geoprocessing.geoprocessing") }),
-                  /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("option", { value: "jobs", children: t("geoprocessing.jobs") })
-                ]
-              }
-            )
-          ] }),
-          selectedCategory === "geoprocessing" && /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "catex-geoprocessing-section", children: [
+          panelView === "tools" && /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "catex-geoprocessing-section", children: [
             /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("h3", { children: t("geoprocessing.tools") }),
-            /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "catex-geoprocessing-action-selector", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("label", { htmlFor: "action-select", children: [
-                t("geoprocessing.selectAction"),
-                ":"
-              ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
-                "select",
+            processes.length > 0 ? /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "catex-geoprocessing-tools", children: processes.map((process2) => {
+              const translationKeys = PROCESS_TRANSLATION_MAP[process2.id];
+              const displayName = translationKeys ? t(translationKeys.name) : process2.title || process2.id;
+              const displayDesc = translationKeys ? t(translationKeys.desc) : process2.description;
+              const iconClass = translationKeys?.icon || "fa-cogs";
+              return /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
+                "div",
                 {
-                  id: "action-select",
-                  className: "catex-geoprocessing-select",
-                  value: selectedAction,
-                  onChange: (e) => setSelectedAction(e.target.value),
+                  className: "catex-geoprocessing-tool",
+                  onClick: () => handleToolClick(process2.id),
                   children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("option", { value: "", children: t("geoprocessing.chooseAction") }),
-                    tools.map((tool) => /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("option", { value: tool.id, children: t(tool.nameKey) }, tool.id))
+                    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("i", { className: `fa-solid ${iconClass} catex-geoprocessing-tool-icon` }),
+                    /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "catex-geoprocessing-tool-content", children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", { className: "catex-geoprocessing-tool-name", children: displayName }),
+                      displayDesc && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", { className: "catex-geoprocessing-tool-desc", children: displayDesc })
+                    ] })
                   ]
-                }
-              ),
-              /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
+                },
+                process2.id
+              );
+            }) }) : /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", { className: "catex-geoprocessing-empty", children: t("geoprocessing.noProcesses") || "No processes available" })
+          ] }),
+          panelView === "form" && selectedProcess && /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "catex-geoprocessing-form-view", children: [
+            selectedProcess.description && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "catex-geoprocessing-form-description-panel", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", { children: selectedProcess.description }) }),
+            selectedProcess.inputs && Object.keys(selectedProcess.inputs).length > 0 && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(import_jsx_runtime3.Fragment, { children: (() => {
+              const tabs = groupInputsIntoTabs(selectedProcess.inputs);
+              return tabs.length > 1 ? /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "catex-geoprocessing-panel-form-tabs", children: tabs.map((tab, index) => /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
                 "button",
                 {
-                  className: "catex-geoprocessing-execute-btn",
-                  onClick: handleExecuteAction,
-                  disabled: !selectedAction,
+                  className: `catex-geoprocessing-panel-form-tab ${activeFormTab === index ? "active" : ""}`,
+                  onClick: () => setActiveFormTab(index),
                   children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("i", { className: "fa-solid fa-play" }),
-                    t("geoprocessing.execute")
+                    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("i", { className: `fa-solid ${tab.icon}` }),
+                    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("span", { children: t(tab.title) })
                   ]
-                }
-              )
-            ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "catex-geoprocessing-tools", children: tools.map((tool) => /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
-              "div",
-              {
-                className: `catex-geoprocessing-tool ${selectedAction === tool.id ? "selected" : ""}`,
-                onClick: () => setSelectedAction(tool.id),
-                children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("i", { className: `fa-solid ${tool.icon} catex-geoprocessing-tool-icon` }),
-                  /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "catex-geoprocessing-tool-content", children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", { className: "catex-geoprocessing-tool-name", children: t(tool.nameKey) }),
-                    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", { className: "catex-geoprocessing-tool-desc", children: t(tool.descKey) })
-                  ] })
-                ]
-              },
-              tool.id
-            )) })
-          ] }),
-          selectedCategory === "jobs" && /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "catex-geoprocessing-section", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("h3", { children: t("geoprocessing.jobsList") }),
-            /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "catex-geoprocessing-jobs", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", { className: "catex-geoprocessing-empty", children: t("geoprocessing.noJobs") }) })
+                },
+                index
+              )) }) : null;
+            })() }),
+            /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "catex-geoprocessing-panel-form-fields-container", children: selectedProcess.inputs && Object.keys(selectedProcess.inputs).length > 0 ? (() => {
+              const tabs = groupInputsIntoTabs(selectedProcess.inputs);
+              const currentTab = tabs[activeFormTab];
+              return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "catex-geoprocessing-panel-form-fields", children: currentTab.fields.map(([inputName, input]) => {
+                const inputType = getInputType(input);
+                const enumOptions = getEnumOptions(input);
+                const defaultValue = getDefaultValue(input);
+                const currentValue = formValues[inputName] || defaultValue || "";
+                return /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
+                  "div",
+                  {
+                    className: `catex-geoprocessing-panel-form-field catex-form-type-${inputType}`,
+                    children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("label", { htmlFor: inputName, className: "catex-geoprocessing-panel-form-label", children: [
+                        input.title || inputName,
+                        input.minOccurs ? /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("span", { className: "required", children: "*" }) : ""
+                      ] }),
+                      input.description && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", { className: "catex-geoprocessing-panel-form-field-desc", children: input.description }),
+                      inputType === "text" && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
+                        "input",
+                        {
+                          id: inputName,
+                          type: "text",
+                          className: "catex-geoprocessing-panel-form-input",
+                          placeholder: `Enter ${input.title || inputName}`,
+                          value: currentValue,
+                          onChange: (e) => handleFormChange(inputName, e.target.value),
+                          required: input.minOccurs ? true : false
+                        }
+                      ),
+                      inputType === "number" && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
+                        "input",
+                        {
+                          id: inputName,
+                          type: "number",
+                          className: "catex-geoprocessing-panel-form-input",
+                          placeholder: `Enter ${input.title || inputName}`,
+                          value: currentValue,
+                          onChange: (e) => handleFormChange(inputName, e.target.value),
+                          required: input.minOccurs ? true : false,
+                          step: "any"
+                        }
+                      ),
+                      inputType === "select" && /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
+                        "select",
+                        {
+                          id: inputName,
+                          className: "catex-geoprocessing-panel-form-input catex-geoprocessing-panel-form-select",
+                          value: currentValue,
+                          onChange: (e) => handleFormChange(inputName, e.target.value),
+                          required: input.minOccurs ? true : false,
+                          children: [
+                            /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("option", { value: "", children: t("geoprocessing.selectOption") || "Select an option..." }),
+                            enumOptions.map((option) => /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("option", { value: option, children: option }, option))
+                          ]
+                        }
+                      ),
+                      inputType === "file" && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
+                        "input",
+                        {
+                          id: inputName,
+                          type: "file",
+                          className: "catex-geoprocessing-panel-form-input catex-geoprocessing-panel-form-file",
+                          onChange: (e) => {
+                            const fileName = e.target.files?.[0]?.name || "";
+                            handleFormChange(inputName, fileName);
+                          },
+                          required: input.minOccurs ? true : false
+                        }
+                      )
+                    ]
+                  },
+                  inputName
+                );
+              }) });
+            })() : /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", { className: "catex-geoprocessing-empty", children: t("geoprocessing.noInputs") || "No inputs required" }) })
           ] })
         ] })
+      ] }),
+      panelView === "form" && selectedProcess && /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "catex-geoprocessing-form-footer-panel", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
+          "button",
+          {
+            className: "catex-geoprocessing-panel-form-back",
+            onClick: handleBackToTools,
+            disabled: submitting,
+            children: [
+              /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("i", { className: "fa-solid fa-arrow-left" }),
+              t("general.back") || "Back"
+            ]
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
+          "button",
+          {
+            className: "catex-geoprocessing-panel-form-submit",
+            onClick: handleFormSubmit,
+            disabled: submitting,
+            children: submitting ? `${t("general.loading")}...` : t("geoprocessing.execute")
+          }
+        )
       ] })
     ] });
   };

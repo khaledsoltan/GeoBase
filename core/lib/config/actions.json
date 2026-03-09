@@ -114,7 +114,11 @@
       { "i18n": "tools.browseCatalogs", "action": 304 },
       { "i18n": "tools.slicing", "action": 306 },
       { "i18n": "tools.effects", "action": 2004 },
-      { "i18n": "tools.pictureSettings", "action": 2005 }
+      { "i18n": "tools.pictureSettings", "action": 2005 },
+      { "divider": true },
+      { "i18n": "tools.geoprocessingServers", "action": 2011 },
+      { "i18n": "tools.geoprocessingAddJob", "action": 2012 },
+      { "i18n": "tools.geoprocessingListJobs", "action": 2013 }
     ]
   },
   "user": {
