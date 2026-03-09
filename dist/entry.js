@@ -22048,6 +22048,9 @@ var CatexExtensions = (() => {
     "geoprocessing.selectFile": "Select file from catalog...",
     "geoprocessing.browseCatalog": "Browse Catalog",
     "geoprocessing.noItems": "No items available",
+    "geoprocessing.previewOnMap": "Preview on map",
+    "geoprocessing.previewNotSupported": "Preview not supported for this file type",
+    "geoprocessing.previewError": "Error previewing file on map",
     "geoprocessing.noFileChosen": "No file chosen",
     "geoprocessing.submitting": "Submitting...",
     "geoprocessing.submitSuccess": "Job submitted successfully! Job ID: {jobId}",
@@ -22260,6 +22263,9 @@ var CatexExtensions = (() => {
     "geoprocessing.selectFile": "\u062D\u062F\u062F \u0645\u0644\u0641 \u0645\u0646 \u0627\u0644\u0643\u062A\u0627\u0644\u0648\u062C...",
     "geoprocessing.browseCatalog": "\u062A\u0635\u0641\u062D \u0627\u0644\u0643\u062A\u0627\u0644\u0648\u062C",
     "geoprocessing.noItems": "\u0644\u0627 \u062A\u0648\u062C\u062F \u0639\u0646\u0627\u0635\u0631 \u0645\u062A\u0627\u062D\u0629",
+    "geoprocessing.previewOnMap": "\u0645\u0639\u0627\u064A\u0646\u0629 \u0639\u0644\u0649 \u0627\u0644\u062E\u0631\u064A\u0637\u0629",
+    "geoprocessing.previewNotSupported": "\u0627\u0644\u0645\u0639\u0627\u064A\u0646\u0629 \u063A\u064A\u0631 \u0645\u062F\u0639\u0648\u0645\u0629 \u0644\u0647\u0630\u0627 \u0627\u0644\u0646\u0648\u0639 \u0645\u0646 \u0627\u0644\u0645\u0644\u0641\u0627\u062A",
+    "geoprocessing.previewError": "\u062E\u0637\u0623 \u0641\u064A \u0645\u0639\u0627\u064A\u0646\u0629 \u0627\u0644\u0645\u0644\u0641 \u0639\u0644\u0649 \u0627\u0644\u062E\u0631\u064A\u0637\u0629",
     "geoprocessing.noFileChosen": "\u0644\u0645 \u064A\u062A\u0645 \u0627\u062E\u062A\u064A\u0627\u0631 \u0645\u0644\u0641",
     "geoprocessing.submitting": "\u062C\u0627\u0631\u064A \u0627\u0644\u0625\u0631\u0633\u0627\u0644...",
     "geoprocessing.submitSuccess": "\u062A\u0645 \u0625\u0631\u0633\u0627\u0644 \u0627\u0644\u0648\u0638\u064A\u0641\u0629 \u0628\u0646\u062C\u0627\u062D! \u0645\u0639\u0631\u0641 \u0627\u0644\u0648\u0638\u064A\u0641\u0629: {jobId}",
@@ -23354,23 +23360,54 @@ var CatexExtensions = (() => {
           {
             className: "catex-geoprocessing-catalog-item",
             style: { paddingLeft: `${depth * 20 + 16}px` },
-            onClick: () => {
-              if (isFolder) {
-                toggleFolderExpansion(item.id);
-              } else {
-                selectFile(item);
-              }
-            },
             children: [
               isFolder && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
                 "i",
                 {
-                  className: `fa-solid ${isExpanded ? "fa-chevron-down" : "fa-chevron-right"} catex-geoprocessing-catalog-expand-icon`
+                  className: `fa-solid ${isExpanded ? "fa-chevron-down" : "fa-chevron-right"} catex-geoprocessing-catalog-expand-icon`,
+                  onClick: () => toggleFolderExpansion(item.id)
                 }
               ),
               !isFolder && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("span", { className: "catex-geoprocessing-catalog-spacer" }),
-              /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("i", { className: `fa-solid ${isFolder ? "fa-folder" : "fa-file-image"}` }),
-              /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("span", { children: itemName })
+              /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
+                "i",
+                {
+                  className: `fa-solid ${isFolder ? "fa-folder" : "fa-file-image"}`,
+                  onClick: () => {
+                    if (isFolder) {
+                      toggleFolderExpansion(item.id);
+                    } else {
+                      selectFile(item);
+                    }
+                  }
+                }
+              ),
+              /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
+                "span",
+                {
+                  className: "catex-geoprocessing-catalog-item-name",
+                  onClick: () => {
+                    if (isFolder) {
+                      toggleFolderExpansion(item.id);
+                    } else {
+                      selectFile(item);
+                    }
+                  },
+                  children: itemName
+                }
+              ),
+              !isFolder && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
+                "button",
+                {
+                  className: "catex-geoprocessing-catalog-preview-btn",
+                  onClick: (e) => {
+                    e.stopPropagation();
+                    previewFileOnMap(item);
+                  },
+                  title: t("geoprocessing.previewOnMap") || "Preview on map",
+                  children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("i", { className: "fa-solid fa-eye" })
+                }
+              )
             ]
           },
           item.id
@@ -23414,6 +23451,91 @@ var CatexExtensions = (() => {
       setActiveInputField(null);
       setCurrentFolderId(null);
       setFolderPath([]);
+    };
+    const previewFileOnMap = async (item) => {
+      try {
+        console.log("[Catalog] Previewing file on map:", item);
+        const url = `${keycloak_default.apiBaseUrl}/data/${item.id}`;
+        const response = await authHandler_default.fetch(url);
+        console.log("[Catalog] File details:", response);
+        const itemName = item.name || item.title || item.id || "Preview";
+        const dataType = response.dataType || item.dataType || "";
+        if (dataType.toLowerCase().includes("wmts") || response.wmtsUrl) {
+          const command = {
+            action: 10,
+            parameters: {
+              action: "WMTSLayer",
+              autozoom: true,
+              layer: {
+                label: itemName,
+                minScale: 21809229107316654e-22
+              },
+              model: {
+                url: response.wmtsUrl || response.url || "",
+                layer: response.layer || response.layerName || "",
+                tileMatrixSet: response.tileMatrixSet || "PopularWebMercator512",
+                level0Columns: 1,
+                level0Rows: 1,
+                reference: response.reference || "urn:ogc:def:crs:EPSG::3857",
+                tileWidth: response.tileWidth || 512,
+                tileHeight: response.tileHeight || 512,
+                format: response.format || "image/png",
+                tileMatrices: response.tileMatrices || ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"],
+                tileMatricesLimits: response.tileMatricesLimits || Array(20).fill(null),
+                levelCount: response.levelCount || 20,
+                style: response.style || "default",
+                useProxy: false,
+                credentials: false,
+                requestHeaders: {},
+                requestParameters: {},
+                dataType: "tileset/image",
+                samplingMode: "POINT"
+              }
+            }
+          };
+          if (window.catex?.workspace?.emitCommand) {
+            window.catex.workspace.emitCommand(command);
+            console.log("[Catalog] WMTS layer added to map:", itemName);
+          } else {
+            console.error("[Catalog] catex.workspace.emitCommand not available");
+          }
+        } else if (dataType.toLowerCase().includes("wms") || response.wmsUrl) {
+          const command = {
+            action: 10,
+            parameters: {
+              action: "WMSLayer",
+              autozoom: true,
+              layer: {
+                label: itemName
+              },
+              model: {
+                url: response.wmsUrl || response.url || "",
+                layers: response.layers || response.layer || response.layerName || "",
+                version: response.version || "1.3.0",
+                transparent: true,
+                format: response.format || "image/png",
+                reference: response.reference || "EPSG:3857",
+                useProxy: false,
+                credentials: false,
+                requestHeaders: {},
+                requestParameters: {}
+              }
+            }
+          };
+          if (window.catex?.workspace?.emitCommand) {
+            window.catex.workspace.emitCommand(command);
+            console.log("[Catalog] WMS layer added to map:", itemName);
+          } else {
+            console.error("[Catalog] catex.workspace.emitCommand not available");
+          }
+        } else {
+          console.warn("[Catalog] File type not supported for preview:", dataType);
+          alert(t("geoprocessing.previewNotSupported") || "Preview not supported for this file type");
+        }
+      } catch (error) {
+        console.error("[Catalog] Error previewing file:", error);
+        alert(t("geoprocessing.previewError") || "Error previewing file on map");
+      }
     };
     const handleFormSubmit = async () => {
       if (!selectedProcess) return;

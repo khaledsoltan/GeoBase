@@ -436,22 +436,48 @@ const GeoprocessingPanel: React.FC = () => {
         key={item.id}
         className="catex-geoprocessing-catalog-item"
         style={{ paddingLeft: `${depth * 20 + 16}px` }}
-        onClick={() => {
-          if (isFolder) {
-            toggleFolderExpansion(item.id);
-          } else {
-            selectFile(item);
-          }
-        }}
       >
         {isFolder && (
           <i
             className={`fa-solid ${isExpanded ? "fa-chevron-down" : "fa-chevron-right"} catex-geoprocessing-catalog-expand-icon`}
+            onClick={() => toggleFolderExpansion(item.id)}
           />
         )}
         {!isFolder && <span className="catex-geoprocessing-catalog-spacer" />}
-        <i className={`fa-solid ${isFolder ? "fa-folder" : "fa-file-image"}`} />
-        <span>{itemName}</span>
+        <i
+          className={`fa-solid ${isFolder ? "fa-folder" : "fa-file-image"}`}
+          onClick={() => {
+            if (isFolder) {
+              toggleFolderExpansion(item.id);
+            } else {
+              selectFile(item);
+            }
+          }}
+        />
+        <span
+          className="catex-geoprocessing-catalog-item-name"
+          onClick={() => {
+            if (isFolder) {
+              toggleFolderExpansion(item.id);
+            } else {
+              selectFile(item);
+            }
+          }}
+        >
+          {itemName}
+        </span>
+        {!isFolder && (
+          <button
+            className="catex-geoprocessing-catalog-preview-btn"
+            onClick={(e) => {
+              e.stopPropagation();
+              previewFileOnMap(item);
+            }}
+            title={t("geoprocessing.previewOnMap") || "Preview on map"}
+          >
+            <i className="fa-solid fa-eye" />
+          </button>
+        )}
       </div>
     );
 
@@ -506,6 +532,106 @@ const GeoprocessingPanel: React.FC = () => {
     setActiveInputField(null);
     setCurrentFolderId(null);
     setFolderPath([]);
+  };
+
+  // Preview file on map (WMTS/WMS)
+  const previewFileOnMap = async (item: any) => {
+    try {
+      console.log("[Catalog] Previewing file on map:", item);
+
+      // Get file details from API
+      const url = `${keycloakConfig.apiBaseUrl}/data/${item.id}`;
+      const response = await authHandler.fetch<any>(url);
+
+      console.log("[Catalog] File details:", response);
+
+      const itemName = item.name || item.title || item.id || "Preview";
+
+      // Check if it's WMTS or WMS based on dataType or other properties
+      const dataType = response.dataType || item.dataType || "";
+
+      if (dataType.toLowerCase().includes("wmts") || response.wmtsUrl) {
+        // Create WMTS layer command
+        const command = {
+          action: 10,
+          parameters: {
+            action: "WMTSLayer",
+            autozoom: true,
+            layer: {
+              label: itemName,
+              minScale: 0.0000021809229107316654
+            },
+            model: {
+              url: response.wmtsUrl || response.url || "",
+              layer: response.layer || response.layerName || "",
+              tileMatrixSet: response.tileMatrixSet || "PopularWebMercator512",
+              level0Columns: 1,
+              level0Rows: 1,
+              reference: response.reference || "urn:ogc:def:crs:EPSG::3857",
+              tileWidth: response.tileWidth || 512,
+              tileHeight: response.tileHeight || 512,
+              format: response.format || "image/png",
+              tileMatrices: response.tileMatrices || ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],
+              tileMatricesLimits: response.tileMatricesLimits || Array(20).fill(null),
+              levelCount: response.levelCount || 20,
+              style: response.style || "default",
+              useProxy: false,
+              credentials: false,
+              requestHeaders: {},
+              requestParameters: {},
+              dataType: "tileset/image",
+              samplingMode: "POINT"
+            }
+          }
+        };
+
+        // Dispatch command to host application
+        if (window.catex?.workspace?.emitCommand) {
+          window.catex.workspace.emitCommand(command);
+          console.log("[Catalog] WMTS layer added to map:", itemName);
+        } else {
+          console.error("[Catalog] catex.workspace.emitCommand not available");
+        }
+      } else if (dataType.toLowerCase().includes("wms") || response.wmsUrl) {
+        // Create WMS layer command
+        const command = {
+          action: 10,
+          parameters: {
+            action: "WMSLayer",
+            autozoom: true,
+            layer: {
+              label: itemName,
+            },
+            model: {
+              url: response.wmsUrl || response.url || "",
+              layers: response.layers || response.layer || response.layerName || "",
+              version: response.version || "1.3.0",
+              transparent: true,
+              format: response.format || "image/png",
+              reference: response.reference || "EPSG:3857",
+              useProxy: false,
+              credentials: false,
+              requestHeaders: {},
+              requestParameters: {}
+            }
+          }
+        };
+
+        // Dispatch command to host application
+        if (window.catex?.workspace?.emitCommand) {
+          window.catex.workspace.emitCommand(command);
+          console.log("[Catalog] WMS layer added to map:", itemName);
+        } else {
+          console.error("[Catalog] catex.workspace.emitCommand not available");
+        }
+      } else {
+        console.warn("[Catalog] File type not supported for preview:", dataType);
+        alert(t("geoprocessing.previewNotSupported") || "Preview not supported for this file type");
+      }
+    } catch (error) {
+      console.error("[Catalog] Error previewing file:", error);
+      alert(t("geoprocessing.previewError") || "Error previewing file on map");
+    }
   };
 
   const handleFormSubmit = async () => {

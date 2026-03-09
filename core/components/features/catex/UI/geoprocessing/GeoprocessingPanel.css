@@ -244,7 +244,6 @@ html[dir="rtl"] .catex-geoprocessing-file-input-group {
   background: #fff;
   border: 1px solid transparent;
   border-radius: 4px;
-  cursor: pointer;
   transition: all 0.2s;
   position: relative;
   min-height: 40px;
@@ -261,11 +260,13 @@ html[dir="rtl"] .catex-geoprocessing-file-input-group {
   font-size: 12px;
   flex-shrink: 0;
   width: 16px;
-  transition: transform 0.2s;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
-.catex-geoprocessing-catalog-item:hover .catex-geoprocessing-catalog-expand-icon {
+.catex-geoprocessing-catalog-expand-icon:hover {
   color: #1B6B3A;
+  transform: scale(1.2);
 }
 
 /* Spacer for non-folder items (to align with folders that have expand icons) */
@@ -279,6 +280,7 @@ html[dir="rtl"] .catex-geoprocessing-file-input-group {
   color: #FFC107;
   font-size: 16px;
   flex-shrink: 0;
+  cursor: pointer;
 }
 
 /* File Icon */
@@ -286,17 +288,48 @@ html[dir="rtl"] .catex-geoprocessing-file-input-group {
   color: #1B6B3A;
   font-size: 16px;
   flex-shrink: 0;
+  cursor: pointer;
 }
 
-/* Item Name */
-.catex-geoprocessing-catalog-item > span {
+/* Item Name - Full title display */
+.catex-geoprocessing-catalog-item-name {
   flex: 1;
   font-size: 14px;
   color: #333;
   font-weight: 500;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  cursor: pointer;
+  word-wrap: break-word;
+  line-height: 1.4;
+}
+
+/* Preview Button */
+.catex-geoprocessing-catalog-preview-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  background: #1B6B3A;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+.catex-geoprocessing-catalog-preview-btn:hover {
+  background: #145028;
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(27, 107, 58, 0.3);
+}
+
+.catex-geoprocessing-catalog-preview-btn:active {
+  transform: scale(0.95);
+}
+
+.catex-geoprocessing-catalog-preview-btn i {
+  font-size: 14px;
 }
 
 /* RTL Support for Catalog Tree */
