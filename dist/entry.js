@@ -23041,6 +23041,41 @@ var CatexExtensions = (() => {
   var authHandler = AuthHandler.getInstance();
   var authHandler_default = authHandler;
 
+  // core/lib/config/geoprocessing.config.ts
+  var GEOPROCESSING_CONFIG = {
+    // Proxy server base URL
+    PROXY_BASE_URL: "http://localhost:3001",
+    // Catalog Explorer endpoints (via geoprocessing proxy)
+    SERVERS_ENDPOINT: "/geoprocessing/catalogexplorer/api/user/geoprocessing/servers",
+    // OGC API - Processes endpoints (via ogc proxy)
+    PROCESSES_ENDPOINT: "/ogc/processes",
+    // Query parameters
+    SERVERS_QUERY: "?size=100&page=0&sort=name"
+  };
+  var buildApiUrl = (endpoint) => {
+    const baseUrl = GEOPROCESSING_CONFIG.PROXY_BASE_URL.replace(/\/$/, "");
+    const path = endpoint.startsWith("/") ? endpoint : `/${endpoint}`;
+    return `${baseUrl}${path}`;
+  };
+  var getServersUrl = () => {
+    return buildApiUrl(
+      `${GEOPROCESSING_CONFIG.SERVERS_ENDPOINT}${GEOPROCESSING_CONFIG.SERVERS_QUERY}`
+    );
+  };
+  var getProcessesUrl = () => {
+    return buildApiUrl(GEOPROCESSING_CONFIG.PROCESSES_ENDPOINT);
+  };
+  var getProcessDetailsUrl = (processId) => {
+    return buildApiUrl(
+      `${GEOPROCESSING_CONFIG.PROCESSES_ENDPOINT}/${processId}`
+    );
+  };
+  var getProcessExecutionUrl = (processId) => {
+    return buildApiUrl(
+      `${GEOPROCESSING_CONFIG.PROCESSES_ENDPOINT}/${processId}/execution`
+    );
+  };
+
   // core/components/features/catex/UI/geoprocessing/GeoprocessingPanel.tsx
   var import_jsx_runtime3 = __toESM(require_jsx_runtime());
   var ALLOWED_PROCESSES = [
@@ -23122,22 +23157,10 @@ var CatexExtensions = (() => {
       const translated = t(translationKey);
       return translated !== translationKey ? translated : originalDesc || "";
     };
-    const buildOgcUrl = (baseUrl, path) => {
-      const cleanBase = baseUrl.replace(/\/$/, "");
-      const cleanPath = path.startsWith("/") ? path : `/${path}`;
-      if (cleanBase.endsWith("/oapi-p")) {
-        return `${cleanBase}${cleanPath}`;
-      }
-      if (!cleanBase.includes("/oapi-p")) {
-        return `${cleanBase}/oapi-p${cleanPath}`;
-      }
-      return `${cleanBase}${cleanPath}`;
-    };
     const fetchProcessDetails = async (processId) => {
       try {
         console.log("[Geoprocessing] Fetching process details for:", processId);
-        const ogcBaseUrl = "http://192.168.18.169";
-        const url = buildOgcUrl(ogcBaseUrl, `/processes/${processId}`);
+        const url = getProcessDetailsUrl(processId);
         console.log("[Geoprocessing] Fetch URL:", url);
         const response = await fetch(url);
         if (!response.ok) {
@@ -23168,9 +23191,8 @@ var CatexExtensions = (() => {
     const fetchGeoprocessingProcesses = async () => {
       try {
         setLoadingProcesses(true);
-        const ogcBaseUrl = "http://192.168.18.169";
-        console.log("[Geoprocessing] Fetching processes from:", ogcBaseUrl);
-        const url = buildOgcUrl(ogcBaseUrl, "/processes");
+        const url = getProcessesUrl();
+        console.log("[Geoprocessing] Fetching processes from:", url);
         console.log("[Geoprocessing] Fetch URL:", url);
         const response = await fetch(url);
         const data = await response.json();
@@ -23203,9 +23225,7 @@ var CatexExtensions = (() => {
     const fetchGeoprocessingServers = async () => {
       try {
         setLoading(true);
-        const response = await fetch(
-          "http://192.168.18.169/catalogexplorer/api/user/geoprocessing/servers?size=100&page=0&sort=name"
-        );
+        const response = await fetch(getServersUrl());
         const data = await response.json();
         if (data.content && data.content.length > 0) {
           const firstServer = data.content[0];
@@ -23661,10 +23681,8 @@ var CatexExtensions = (() => {
     };
     const executeGeoprocessingJob = async (processId, processTitle, inputs) => {
       try {
-        const ogcBaseUrl = "http://192.168.18.169";
         console.log("[Geoprocessing] Executing job:", {
           processId,
-          ogcBaseUrl,
           inputs
         });
         const formattedInputs = {};
@@ -23675,7 +23693,7 @@ var CatexExtensions = (() => {
             };
           }
         });
-        const executeUrl = buildOgcUrl(ogcBaseUrl, `/processes/${processId}/execution`);
+        const executeUrl = getProcessExecutionUrl(processId);
         const requestBody = {
           inputs: formattedInputs,
           responseType: "document"

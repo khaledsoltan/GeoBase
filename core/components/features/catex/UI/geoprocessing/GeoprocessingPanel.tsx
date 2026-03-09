@@ -3,6 +3,12 @@ import { useLanguage } from "@/core/lib/catex/language/useLanguage";
 import { UI_EVENT_TYPE, UIEventInterface } from "@/core/components/features/catex/types/UIEventTypes";
 import authHandler from "@/core/lib/catex/handlers/authHandler";
 import keycloakConfig from "@/core/lib/config/keycloak.json";
+import {
+  getServersUrl,
+  getProcessesUrl,
+  getProcessDetailsUrl,
+  getProcessExecutionUrl,
+} from "@/core/lib/config/geoprocessing.config";
 import "./GeoprocessingPanel.css";
 
 interface GeoprocessingServer {
@@ -127,29 +133,12 @@ const GeoprocessingPanel: React.FC = () => {
     return translated !== translationKey ? translated : (originalDesc || "");
   };
 
-  // Build proper OGC API URL (handle both with and without /oapi-p)
-  const buildOgcUrl = (baseUrl: string, path: string): string => {
-    // Remove trailing slash from base URL
-    const cleanBase = baseUrl.replace(/\/$/, "");
-    // Ensure path starts with /
-    const cleanPath = path.startsWith("/") ? path : `/${path}`;
-    // If base already ends with /oapi-p, don't add it again
-    if (cleanBase.endsWith("/oapi-p")) {
-      return `${cleanBase}${cleanPath}`;
-    }
-    // If base doesn't have /oapi-p, add it
-    if (!cleanBase.includes("/oapi-p")) {
-      return `${cleanBase}/oapi-p${cleanPath}`;
-    }
-    return `${cleanBase}${cleanPath}`;
-  };
 
   // Fetch detailed process information including inputs and outputs
   const fetchProcessDetails = async (processId: string): Promise<GeoprocessingProcess | null> => {
     try {
       console.log("[Geoprocessing] Fetching process details for:", processId);
-      const ogcBaseUrl = "http://192.168.18.169";
-      const url = buildOgcUrl(ogcBaseUrl, `/processes/${processId}`);
+      const url = getProcessDetailsUrl(processId);
       console.log("[Geoprocessing] Fetch URL:", url);
       const response = await fetch(url);
       if (!response.ok) {
@@ -183,9 +172,8 @@ const GeoprocessingPanel: React.FC = () => {
   const fetchGeoprocessingProcesses = async () => {
     try {
       setLoadingProcesses(true);
-      const ogcBaseUrl = "http://192.168.18.169";
-      console.log("[Geoprocessing] Fetching processes from:", ogcBaseUrl);
-      const url = buildOgcUrl(ogcBaseUrl, "/processes");
+      const url = getProcessesUrl();
+      console.log("[Geoprocessing] Fetching processes from:", url);
       console.log("[Geoprocessing] Fetch URL:", url);
       const response = await fetch(url);
       const data = await response.json();
@@ -228,9 +216,7 @@ const GeoprocessingPanel: React.FC = () => {
   const fetchGeoprocessingServers = async () => {
     try {
       setLoading(true);
-      const response = await fetch(
-        "http://192.168.18.169/catalogexplorer/api/user/geoprocessing/servers?size=100&page=0&sort=name"
-      );
+      const response = await fetch(getServersUrl());
       const data = await response.json();
 
       if (data.content && data.content.length > 0) {
@@ -811,11 +797,8 @@ const GeoprocessingPanel: React.FC = () => {
     inputs: Record<string, string>
   ): Promise<{ jobId?: string; status?: string; error?: string }> => {
     try {
-      const ogcBaseUrl = "http://192.168.18.169";
-
       console.log("[Geoprocessing] Executing job:", {
         processId,
-        ogcBaseUrl,
         inputs,
       });
 
@@ -830,7 +813,7 @@ const GeoprocessingPanel: React.FC = () => {
       });
 
       // Build the execute request URL
-      const executeUrl = buildOgcUrl(ogcBaseUrl, `/processes/${processId}/execution`);
+      const executeUrl = getProcessExecutionUrl(processId);
       const requestBody = {
         inputs: formattedInputs,
         responseType: "document",
