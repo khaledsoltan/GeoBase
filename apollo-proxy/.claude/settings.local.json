@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(set PORT=3002:*)",
+      "Bash(npm start)",
+      "Bash(timeout:*)",
+      "Bash(powershell -Command \"cd ''D:\\\\GeoAssistant\\\\apollo-proxy''; $env:PORT=3002; npm start\")",
+      "Bash(npx cross-env PORT=3002 npm start)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(tasklist:*)",
+      "Bash(taskkill:*)",
+      "Bash(cmd //c \"taskkill //PID 4732 //F\")",
+      "Bash(powershell:*)"
+    ]
+  }
+}
