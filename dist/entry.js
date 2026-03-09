@@ -23101,6 +23101,8 @@ var CatexExtensions = (() => {
     const [loadingFolders, setLoadingFolders] = (0, import_react4.useState)(false);
     const [currentFolderId, setCurrentFolderId] = (0, import_react4.useState)(null);
     const [folderPath, setFolderPath] = (0, import_react4.useState)([]);
+    const [expandedFolders, setExpandedFolders] = (0, import_react4.useState)(/* @__PURE__ */ new Set());
+    const [folderChildren, setFolderChildren] = (0, import_react4.useState)(/* @__PURE__ */ new Map());
     const { t, isRTL } = useLanguage();
     const translateFieldName = (fieldName) => {
       const key = fieldName.replace(/\s+/g, "").replace(/^./, (char) => char.toLowerCase());
@@ -23287,6 +23289,7 @@ var CatexExtensions = (() => {
           response = await authHandler_default.fetch(url);
           items = response.results || [];
           console.log("[Catalog] Root folders loaded:", items.length);
+          setFolders(items);
         } else {
           url = `${keycloak_default.apiBaseUrl}/data/filter?pageSize=100&page=1&sortBy=creationTime&sortOrder=DESC&rsqlQuery=parent==${parentId}`;
           console.log("[Catalog] Loading child items for parent:", parentId, "from:", url);
@@ -23305,14 +23308,80 @@ var CatexExtensions = (() => {
               allKeys: Object.keys(items[0])
             });
           }
+          setFolderChildren((prev) => {
+            const newMap = new Map(prev);
+            newMap.set(parentId, items);
+            return newMap;
+          });
         }
-        setFolders(items);
       } catch (err) {
         console.error("[Catalog] Error loading folders:", err);
-        setFolders([]);
+        if (parentId === null) {
+          setFolders([]);
+        }
       } finally {
         setLoadingFolders(false);
       }
+    };
+    const toggleFolderExpansion = async (folderId) => {
+      const isExpanded = expandedFolders.has(folderId);
+      if (isExpanded) {
+        setExpandedFolders((prev) => {
+          const newSet = new Set(prev);
+          newSet.delete(folderId);
+          return newSet;
+        });
+      } else {
+        setExpandedFolders((prev) => new Set(prev).add(folderId));
+        if (!folderChildren.has(folderId)) {
+          await loadFolders(folderId);
+        }
+      }
+    };
+    const isItemFolder = (item) => {
+      return item.type === "folder" || item.type === "FOLDER" || item.dataType === "folder" || item.dataType === "FOLDER" || item.folder === true || item.isFolder === true || !item.dataType && !item.type || item.dataType === null && item.type === null;
+    };
+    const renderTreeItem = (item, depth = 0) => {
+      const isFolder = isItemFolder(item);
+      const itemName = item.name || item.title || item.id || "Unnamed";
+      const isExpanded = expandedFolders.has(item.id);
+      const hasChildren = folderChildren.has(item.id);
+      const children = hasChildren ? folderChildren.get(item.id) || [] : [];
+      const elements = [];
+      elements.push(
+        /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
+          "div",
+          {
+            className: "catex-geoprocessing-catalog-item",
+            style: { paddingLeft: `${depth * 20 + 16}px` },
+            onClick: () => {
+              if (isFolder) {
+                toggleFolderExpansion(item.id);
+              } else {
+                selectFile(item);
+              }
+            },
+            children: [
+              isFolder && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
+                "i",
+                {
+                  className: `fa-solid ${isExpanded ? "fa-chevron-down" : "fa-chevron-right"} catex-geoprocessing-catalog-expand-icon`
+                }
+              ),
+              !isFolder && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("span", { className: "catex-geoprocessing-catalog-spacer" }),
+              /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("i", { className: `fa-solid ${isFolder ? "fa-folder" : "fa-file-image"}` }),
+              /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("span", { children: itemName })
+            ]
+          },
+          item.id
+        )
+      );
+      if (isFolder && isExpanded && hasChildren) {
+        children.forEach((child) => {
+          elements.push(...renderTreeItem(child, depth + 1));
+        });
+      }
+      return elements;
     };
     const navigateToFolder = (folder) => {
       setCurrentFolderId(folder.id);
@@ -23716,64 +23785,26 @@ var CatexExtensions = (() => {
               "button",
               {
                 className: "catex-geoprocessing-form-back-button",
-                onClick: navigateBack,
+                onClick: () => {
+                  setPanelView("form");
+                  setActiveInputField(null);
+                  setExpandedFolders(/* @__PURE__ */ new Set());
+                  setFolderChildren(/* @__PURE__ */ new Map());
+                },
                 children: [
                   /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("i", { className: "fa-solid fa-arrow-left" }),
                   /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("span", { children: t("general.back") })
                 ]
               }
             ) }),
-            /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "catex-geoprocessing-catalog-breadcrumbs", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("span", { className: "catex-geoprocessing-catalog-breadcrumb-item", children: t("geoprocessing.browseCatalog") || "Browse Catalog" }),
-              folderPath.map((folder, index) => /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("span", { children: [
-                /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("i", { className: "fa-solid fa-chevron-right" }),
-                /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("span", { className: "catex-geoprocessing-catalog-breadcrumb-item", children: folder.name })
-              ] }, folder.id))
-            ] }),
-            loadingFolders ? /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "catex-geoprocessing-loader", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "catex-geoprocessing-catalog-header", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("h3", { children: t("geoprocessing.browseCatalog") || "Browse Catalog" }) }),
+            loadingFolders && folders.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "catex-geoprocessing-loader", children: [
               /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("i", { className: "fa-solid fa-spinner fa-spin", style: { fontSize: "24px", color: "#1B6B3A" } }),
               /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("p", { children: [
                 t("general.loading"),
                 "..."
               ] })
-            ] }) : folders.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "catex-geoprocessing-empty", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", { children: t("geoprocessing.noItems") || "No items found" }) }) : /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "catex-geoprocessing-catalog-list", children: folders.map((item) => {
-              const isFolder = item.type === "folder" || item.type === "FOLDER" || item.dataType === "folder" || item.dataType === "FOLDER" || item.folder === true || item.isFolder === true || // If dataType is null/undefined and type is null/undefined, assume it's a folder
-              !item.dataType && !item.type || // Check if it has a specific data type that indicates it's NOT a file
-              item.dataType === null && item.type === null;
-              const itemName = item.name || item.title || item.id || "Unnamed";
-              console.log("[Catalog] Item render:", {
-                id: item.id,
-                name: itemName,
-                isFolder,
-                type: item.type,
-                dataType: item.dataType
-              });
-              return /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
-                "div",
-                {
-                  className: "catex-geoprocessing-catalog-item",
-                  onClick: () => {
-                    console.log("[Catalog] Item clicked:", {
-                      id: item.id,
-                      name: itemName,
-                      isFolder,
-                      willNavigate: isFolder
-                    });
-                    if (isFolder) {
-                      navigateToFolder(item);
-                    } else {
-                      selectFile(item);
-                    }
-                  },
-                  children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("i", { className: `fa-solid ${isFolder ? "fa-folder" : "fa-file-image"}` }),
-                    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("span", { children: itemName }),
-                    isFolder && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("i", { className: "fa-solid fa-chevron-right catex-geoprocessing-catalog-arrow" })
-                  ]
-                },
-                item.id
-              );
-            }) })
+            ] }) : folders.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "catex-geoprocessing-empty", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", { children: t("geoprocessing.noItems") || "No items found" }) }) : /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "catex-geoprocessing-catalog-tree", children: folders.map((item) => renderTreeItem(item, 0)) })
           ] })
         ] })
       ] }),

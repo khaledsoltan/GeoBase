@@ -100,6 +100,8 @@ const GeoprocessingPanel: React.FC = () => {
   const [loadingFolders, setLoadingFolders] = useState(false);
   const [currentFolderId, setCurrentFolderId] = useState<string | null>(null);
   const [folderPath, setFolderPath] = useState<Array<{ id: string; name: string }>>([]);
+  const [expandedFolders, setExpandedFolders] = useState<Set<string>>(new Set());
+  const [folderChildren, setFolderChildren] = useState<Map<string, any[]>>(new Map());
   const { t, isRTL } = useLanguage();
 
   // Helper function to translate field names
@@ -342,6 +344,7 @@ const GeoprocessingPanel: React.FC = () => {
         response = await authHandler.fetch<any>(url);
         items = response.results || [];
         console.log("[Catalog] Root folders loaded:", items.length);
+        setFolders(items);
       } else {
         // Load child folders/files - get ALL items (folders and files)
         url = `${keycloakConfig.apiBaseUrl}/data/filter?pageSize=100&page=1&sortBy=creationTime&sortOrder=DESC&rsqlQuery=parent==${parentId}`;
@@ -363,15 +366,103 @@ const GeoprocessingPanel: React.FC = () => {
             allKeys: Object.keys(items[0])
           });
         }
-      }
 
-      setFolders(items);
+        // Store children in the map
+        setFolderChildren(prev => {
+          const newMap = new Map(prev);
+          newMap.set(parentId, items);
+          return newMap;
+        });
+      }
     } catch (err) {
       console.error("[Catalog] Error loading folders:", err);
-      setFolders([]);
+      if (parentId === null) {
+        setFolders([]);
+      }
     } finally {
       setLoadingFolders(false);
     }
+  };
+
+  // Toggle folder expansion
+  const toggleFolderExpansion = async (folderId: string) => {
+    const isExpanded = expandedFolders.has(folderId);
+
+    if (isExpanded) {
+      // Collapse folder
+      setExpandedFolders(prev => {
+        const newSet = new Set(prev);
+        newSet.delete(folderId);
+        return newSet;
+      });
+    } else {
+      // Expand folder
+      setExpandedFolders(prev => new Set(prev).add(folderId));
+
+      // Load children if not already loaded
+      if (!folderChildren.has(folderId)) {
+        await loadFolders(folderId);
+      }
+    }
+  };
+
+  // Check if item is a folder
+  const isItemFolder = (item: any): boolean => {
+    return (
+      item.type === "folder" ||
+      item.type === "FOLDER" ||
+      item.dataType === "folder" ||
+      item.dataType === "FOLDER" ||
+      item.folder === true ||
+      item.isFolder === true ||
+      (!item.dataType && !item.type) ||
+      (item.dataType === null && item.type === null)
+    );
+  };
+
+  // Render tree item recursively
+  const renderTreeItem = (item: any, depth: number = 0): JSX.Element[] => {
+    const isFolder = isItemFolder(item);
+    const itemName = item.name || item.title || item.id || "Unnamed";
+    const isExpanded = expandedFolders.has(item.id);
+    const hasChildren = folderChildren.has(item.id);
+    const children = hasChildren ? folderChildren.get(item.id) || [] : [];
+
+    const elements: JSX.Element[] = [];
+
+    // Render the item itself
+    elements.push(
+      <div
+        key={item.id}
+        className="catex-geoprocessing-catalog-item"
+        style={{ paddingLeft: `${depth * 20 + 16}px` }}
+        onClick={() => {
+          if (isFolder) {
+            toggleFolderExpansion(item.id);
+          } else {
+            selectFile(item);
+          }
+        }}
+      >
+        {isFolder && (
+          <i
+            className={`fa-solid ${isExpanded ? "fa-chevron-down" : "fa-chevron-right"} catex-geoprocessing-catalog-expand-icon`}
+          />
+        )}
+        {!isFolder && <span className="catex-geoprocessing-catalog-spacer" />}
+        <i className={`fa-solid ${isFolder ? "fa-folder" : "fa-file-image"}`} />
+        <span>{itemName}</span>
+      </div>
+    );
+
+    // Render children if expanded
+    if (isFolder && isExpanded && hasChildren) {
+      children.forEach(child => {
+        elements.push(...renderTreeItem(child, depth + 1));
+      });
+    }
+
+    return elements;
   };
 
   // Navigate into a folder
@@ -914,36 +1005,31 @@ const GeoprocessingPanel: React.FC = () => {
             </div>
           )}
 
-          {/* CATALOG VIEW */}
+          {/* CATALOG VIEW - Tree Structure */}
           {panelView === "catalog" && (
             <div className="catex-geoprocessing-section">
               {/* Back Button */}
               <div className="catex-geoprocessing-form-back-container">
                 <button
                   className="catex-geoprocessing-form-back-button"
-                  onClick={navigateBack}
+                  onClick={() => {
+                    setPanelView("form");
+                    setActiveInputField(null);
+                    setExpandedFolders(new Set());
+                    setFolderChildren(new Map());
+                  }}
                 >
                   <i className="fa-solid fa-arrow-left" />
                   <span>{t("general.back")}</span>
                 </button>
               </div>
 
-              {/* Breadcrumbs */}
-              <div className="catex-geoprocessing-catalog-breadcrumbs">
-                <span className="catex-geoprocessing-catalog-breadcrumb-item">
-                  {t("geoprocessing.browseCatalog") || "Browse Catalog"}
-                </span>
-                {folderPath.map((folder, index) => (
-                  <span key={folder.id}>
-                    <i className="fa-solid fa-chevron-right" />
-                    <span className="catex-geoprocessing-catalog-breadcrumb-item">
-                      {folder.name}
-                    </span>
-                  </span>
-                ))}
+              {/* Catalog Title */}
+              <div className="catex-geoprocessing-catalog-header">
+                <h3>{t("geoprocessing.browseCatalog") || "Browse Catalog"}</h3>
               </div>
 
-              {loadingFolders ? (
+              {loadingFolders && folders.length === 0 ? (
                 <div className="catex-geoprocessing-loader">
                   <i className="fa-solid fa-spinner fa-spin" style={{ fontSize: "24px", color: "#1B6B3A" }} />
                   <p>{t("general.loading")}...</p>
@@ -953,58 +1039,8 @@ const GeoprocessingPanel: React.FC = () => {
                   <p>{t("geoprocessing.noItems") || "No items found"}</p>
                 </div>
               ) : (
-                <div className="catex-geoprocessing-catalog-list">
-                  {folders.map((item) => {
-                    // Enhanced folder detection - check multiple possible field indicators
-                    const isFolder =
-                      item.type === "folder" ||
-                      item.type === "FOLDER" ||
-                      item.dataType === "folder" ||
-                      item.dataType === "FOLDER" ||
-                      item.folder === true ||
-                      item.isFolder === true ||
-                      // If dataType is null/undefined and type is null/undefined, assume it's a folder
-                      (!item.dataType && !item.type) ||
-                      // Check if it has a specific data type that indicates it's NOT a file
-                      (item.dataType === null && item.type === null);
-
-                    const itemName = item.name || item.title || item.id || "Unnamed";
-
-                    console.log("[Catalog] Item render:", {
-                      id: item.id,
-                      name: itemName,
-                      isFolder,
-                      type: item.type,
-                      dataType: item.dataType
-                    });
-
-                    return (
-                      <div
-                        key={item.id}
-                        className="catex-geoprocessing-catalog-item"
-                        onClick={() => {
-                          console.log("[Catalog] Item clicked:", {
-                            id: item.id,
-                            name: itemName,
-                            isFolder,
-                            willNavigate: isFolder
-                          });
-
-                          if (isFolder) {
-                            // Navigate into folder
-                            navigateToFolder(item);
-                          } else {
-                            // Select file
-                            selectFile(item);
-                          }
-                        }}
-                      >
-                        <i className={`fa-solid ${isFolder ? "fa-folder" : "fa-file-image"}`} />
-                        <span>{itemName}</span>
-                        {isFolder && <i className="fa-solid fa-chevron-right catex-geoprocessing-catalog-arrow" />}
-                      </div>
-                    );
-                  })}
+                <div className="catex-geoprocessing-catalog-tree">
+                  {folders.map((item) => renderTreeItem(item, 0))}
                 </div>
               )}
             </div>
