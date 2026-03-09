@@ -162,6 +162,176 @@ html[dir="rtl"] .catex-geoprocessing-close {
   font-weight: 600;
 }
 
+/* File Input Group */
+.catex-geoprocessing-file-input-group {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.catex-geoprocessing-file-input-group .catex-geoprocessing-panel-form-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.catex-geoprocessing-choose-file-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #1B6B3A;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.catex-geoprocessing-choose-file-btn:hover {
+  background: #155a2f;
+  box-shadow: 0 2px 8px rgba(27, 107, 58, 0.2);
+}
+
+.catex-geoprocessing-choose-file-btn i {
+  font-size: 14px;
+}
+
+.catex-geoprocessing-choose-file-btn:active {
+  transform: scale(0.98);
+}
+
+/* RTL Support for File Input */
+html[dir="rtl"] .catex-geoprocessing-file-input-group {
+  flex-direction: row-reverse;
+}
+
+/* Catalog Browser List */
+
+/* Catalog Breadcrumbs */
+.catex-geoprocessing-catalog-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: #f5f5f5;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: #333;
+  flex-wrap: wrap;
+}
+
+.catex-geoprocessing-catalog-breadcrumbs > span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.catex-geoprocessing-catalog-breadcrumbs > span:first-child {
+  font-weight: 600;
+  color: #1B6B3A;
+}
+
+.catex-geoprocessing-catalog-breadcrumbs i.fa-chevron-right {
+  color: #999;
+  font-size: 10px;
+}
+
+.catex-geoprocessing-catalog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: calc(100vh - 400px);
+  overflow-y: auto;
+}
+
+.catex-geoprocessing-catalog-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.catex-geoprocessing-catalog-item:hover {
+  background: #e8f5e9;
+  border-color: #1B6B3A;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transform: translateX(2px);
+}
+
+.catex-geoprocessing-catalog-item i.fa-folder {
+  color: #FFC107;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.catex-geoprocessing-catalog-item i.fa-file-image {
+  color: #1B6B3A;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.catex-geoprocessing-catalog-item > span {
+  flex: 1;
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.catex-geoprocessing-catalog-item > i.fa-chevron-right {
+  color: #999;
+  font-size: 12px;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.catex-geoprocessing-catalog-item:hover > i.fa-chevron-right {
+  color: #1B6B3A;
+  transform: translateX(3px);
+}
+
+/* RTL Support for Catalog */
+html[dir="rtl"] .catex-geoprocessing-catalog-item:hover {
+  transform: translateX(-2px);
+}
+
+html[dir="rtl"] .catex-geoprocessing-catalog-item:hover > i.fa-chevron-right {
+  transform: translateX(-3px);
+}
+
+/* Scrollbar for catalog list */
+.catex-geoprocessing-catalog-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.catex-geoprocessing-catalog-list::-webkit-scrollbar-track {
+  background: #f5f5f5;
+  border-radius: 3px;
+}
+
+.catex-geoprocessing-catalog-list::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+.catex-geoprocessing-catalog-list::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
 /* Action Selector */
 .catex-geoprocessing-action-selector {
   margin-bottom: 20px;
@@ -289,6 +459,36 @@ html[dir="rtl"] .catex-geoprocessing-close {
   text-align: center;
   font-style: italic;
   margin: 0;
+}
+
+/* Loader */
+.catex-geoprocessing-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  gap: 12px;
+}
+
+.catex-geoprocessing-loader p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.catex-geoprocessing-loader i {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Scrollbar */
@@ -680,6 +880,73 @@ html[dir="rtl"] .catex-geoprocessing-form-select {
   height: 100%;
 }
 
+/* Form Back Button Container */
+.catex-geoprocessing-form-back-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #e5e5e5;
+  margin-bottom: 16px;
+}
+
+/* Form Back Button */
+.catex-geoprocessing-form-back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #1B6B3A;
+  border: 1px solid #1B6B3A;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-self: flex-start;
+  font-family: inherit;
+}
+
+.catex-geoprocessing-form-back-button:hover:not(:disabled) {
+  background: #fff;
+  border-color: #1B6B3A;
+  color: #1B6B3A;
+  box-shadow: 0 2px 8px rgba(27, 107, 58, 0.15);
+}
+
+.catex-geoprocessing-form-back-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.catex-geoprocessing-form-back-button i {
+  font-size: 12px;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.catex-geoprocessing-form-back-button:hover:not(:disabled) i {
+  color: #1B6B3A;
+}
+
+/* Form Tool Title */
+.catex-geoprocessing-form-tool-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1B6B3A;
+}
+
+/* RTL Support for Form Back Button */
+html[dir="rtl"] .catex-geoprocessing-form-back-button {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .catex-geoprocessing-form-back-button i {
+  transform: scaleX(-1);
+}
+
 /* Form Description Panel */
 .catex-geoprocessing-form-description-panel {
   padding: 12px 0;
@@ -767,8 +1034,15 @@ html[dir="rtl"] .catex-geoprocessing-form-select {
 
 .catex-geoprocessing-panel-form-label .required {
   color: #d32f2f;
-  margin-left: 2px;
   font-weight: 700;
+}
+
+html[dir="ltr"] .catex-geoprocessing-panel-form-label .required {
+  margin-left: 2px;
+}
+
+html[dir="rtl"] .catex-geoprocessing-panel-form-label .required {
+  margin-right: 2px;
 }
 
 /* Form Field Description */
@@ -957,6 +1231,10 @@ html[dir="rtl"] .catex-form-type-file .catex-geoprocessing-panel-form-input::fil
 
 html[dir="rtl"] .catex-geoprocessing-panel-form-back {
   flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .catex-geoprocessing-panel-form-back i {
+  transform: scaleX(-1);
 }
 
 /* Scrollbar for form fields container */

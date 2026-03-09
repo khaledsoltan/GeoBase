@@ -1,0 +1,8 @@
+{
+  "url": "http://localhost:3002/keycloak/realms/ApolloSrv/protocol/openid-connect/token",
+  "clientId": "apollo-api",
+  "clientSecret": "55PHxvAFM9s09sqAjjcPza8Umhtm6nLa",
+  "grantType": "client_credentials",
+  "scope": "openid profile email",
+  "apiBaseUrl": "http://localhost:3002/apollo/api"
+}

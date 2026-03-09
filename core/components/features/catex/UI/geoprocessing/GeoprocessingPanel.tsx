@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useLanguage } from "@/core/lib/catex/language/useLanguage";
 import { UI_EVENT_TYPE, UIEventInterface } from "@/core/components/features/catex/types/UIEventTypes";
+import authHandler from "@/core/lib/catex/handlers/authHandler";
+import keycloakConfig from "@/core/lib/config/keycloak.json";
 import "./GeoprocessingPanel.css";
 
 interface GeoprocessingServer {
@@ -86,12 +88,42 @@ const GeoprocessingPanel: React.FC = () => {
   const [serverUrl, setServerUrl] = useState<string>("");
   const [processes, setProcesses] = useState<GeoprocessingProcess[]>([]);
   const [loading, setLoading] = useState(false);
+  const [loadingProcesses, setLoadingProcesses] = useState(false);
   const [selectedProcess, setSelectedProcess] = useState<GeoprocessingProcess | null>(null);
   const [formValues, setFormValues] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const [activeFormTab, setActiveFormTab] = useState(0);
-  const [panelView, setPanelView] = useState<"tools" | "form">("tools");
+  const [panelView, setPanelView] = useState<"tools" | "form" | "catalog">("tools");
+  const [showCatalogBrowser, setShowCatalogBrowser] = useState(false);
+  const [activeInputField, setActiveInputField] = useState<string | null>(null);
+  const [folders, setFolders] = useState<any[]>([]);
+  const [loadingFolders, setLoadingFolders] = useState(false);
+  const [currentFolderId, setCurrentFolderId] = useState<string | null>(null);
+  const [folderPath, setFolderPath] = useState<Array<{ id: string; name: string }>>([]);
   const { t, isRTL } = useLanguage();
+
+  // Helper function to translate field names
+  const translateFieldName = (fieldName: string): string => {
+    // Convert field name to camelCase key
+    const key = fieldName
+      .replace(/\s+/g, "")
+      .replace(/^./, (char) => char.toLowerCase());
+    const translationKey = `geoprocessing.field.${key}`;
+    const translated = t(translationKey);
+    // Return translation if it exists, otherwise return original
+    return translated !== translationKey ? translated : fieldName;
+  };
+
+  // Helper function to translate field descriptions
+  const translateFieldDesc = (fieldName: string, originalDesc?: string): string => {
+    const key = fieldName
+      .replace(/\s+/g, "")
+      .replace(/^./, (char) => char.toLowerCase());
+    const translationKey = `geoprocessing.field.${key}Desc`;
+    const translated = t(translationKey);
+    // Return translation if it exists, otherwise return original description
+    return translated !== translationKey ? translated : (originalDesc || "");
+  };
 
   // Build proper OGC API URL (handle both with and without /oapi-p)
   const buildOgcUrl = (baseUrl: string, path: string): string => {
@@ -114,7 +146,7 @@ const GeoprocessingPanel: React.FC = () => {
   const fetchProcessDetails = async (processId: string): Promise<GeoprocessingProcess | null> => {
     try {
       console.log("[Geoprocessing] Fetching process details for:", processId);
-      const ogcBaseUrl = "http://192.168.100.50";
+      const ogcBaseUrl = "http://192.168.18.169";
       const url = buildOgcUrl(ogcBaseUrl, `/processes/${processId}`);
       console.log("[Geoprocessing] Fetch URL:", url);
       const response = await fetch(url);
@@ -148,7 +180,8 @@ const GeoprocessingPanel: React.FC = () => {
   // Fetch geoprocessing processes/models from server
   const fetchGeoprocessingProcesses = async () => {
     try {
-      const ogcBaseUrl = "http://192.168.100.50";
+      setLoadingProcesses(true);
+      const ogcBaseUrl = "http://192.168.18.169";
       console.log("[Geoprocessing] Fetching processes from:", ogcBaseUrl);
       const url = buildOgcUrl(ogcBaseUrl, "/processes");
       console.log("[Geoprocessing] Fetch URL:", url);
@@ -184,6 +217,8 @@ const GeoprocessingPanel: React.FC = () => {
     } catch (error) {
       console.error("[Geoprocessing] Error fetching processes:", error);
       setProcesses([]);
+    } finally {
+      setLoadingProcesses(false);
     }
   };
 
@@ -192,7 +227,7 @@ const GeoprocessingPanel: React.FC = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        "http://192.168.100.50/catalogexplorer/api/user/geoprocessing/servers?size=100&page=0&sort=name"
+        "http://192.168.18.169/catalogexplorer/api/user/geoprocessing/servers?size=100&page=0&sort=name"
       );
       const data = await response.json();
 
@@ -291,6 +326,97 @@ const GeoprocessingPanel: React.FC = () => {
     }));
   };
 
+  // Load folders for catalog browser
+  const loadFolders = async (parentId: string | null = null) => {
+    try {
+      setLoadingFolders(true);
+
+      let url: string;
+      let response: any;
+      let items: any[] = [];
+
+      if (parentId === null) {
+        // Load root folders
+        url = `${keycloakConfig.apiBaseUrl}/folder/detailed?foldersOnly=true&page=1&pageSize=65536`;
+        console.log("[Catalog] Loading root folders from:", url);
+        response = await authHandler.fetch<any>(url);
+        items = response.results || [];
+        console.log("[Catalog] Root folders loaded:", items.length);
+      } else {
+        // Load child folders/files - get ALL items (folders and files)
+        url = `${keycloakConfig.apiBaseUrl}/data/filter?pageSize=100&page=1&sortBy=creationTime&sortOrder=DESC&rsqlQuery=parent==${parentId}`;
+        console.log("[Catalog] Loading child items for parent:", parentId, "from:", url);
+        response = await authHandler.fetch<any>(url);
+        items = response.data || [];
+        console.log("[Catalog] Child items loaded:", items.length);
+
+        // Log first item structure to debug
+        if (items.length > 0) {
+          console.log("[Catalog] Sample item structure:", {
+            id: items[0].id,
+            name: items[0].name,
+            title: items[0].title,
+            type: items[0].type,
+            dataType: items[0].dataType,
+            folder: items[0].folder,
+            isFolder: items[0].isFolder,
+            allKeys: Object.keys(items[0])
+          });
+        }
+      }
+
+      setFolders(items);
+    } catch (err) {
+      console.error("[Catalog] Error loading folders:", err);
+      setFolders([]);
+    } finally {
+      setLoadingFolders(false);
+    }
+  };
+
+  // Navigate into a folder
+  const navigateToFolder = (folder: any) => {
+    setCurrentFolderId(folder.id);
+    setFolderPath([...folderPath, { id: folder.id, name: folder.name || folder.title }]);
+    loadFolders(folder.id);
+  };
+
+  // Navigate back to parent folder
+  const navigateBack = () => {
+    if (folderPath.length === 0) {
+      // Already at root, go back to form view
+      setPanelView("form");
+      return;
+    }
+
+    if (folderPath.length === 1) {
+      // Go back to root
+      setCurrentFolderId(null);
+      setFolderPath([]);
+      loadFolders(null);
+    } else {
+      // Go back to parent folder
+      const newPath = folderPath.slice(0, -1);
+      const parentFolder = newPath[newPath.length - 1];
+      setCurrentFolderId(parentFolder.id);
+      setFolderPath(newPath);
+      loadFolders(parentFolder.id);
+    }
+  };
+
+  // Select a file (not folder)
+  const selectFile = (item: any) => {
+    if (activeInputField) {
+      // Use the file path or ID
+      const filePath = item.filePath || item.id;
+      handleFormChange(activeInputField, filePath);
+    }
+    setPanelView("form");
+    setActiveInputField(null);
+    setCurrentFolderId(null);
+    setFolderPath([]);
+  };
+
   const handleFormSubmit = async () => {
     if (!selectedProcess) return;
 
@@ -307,7 +433,7 @@ const GeoprocessingPanel: React.FC = () => {
 
       if (result.error) {
         console.error("[Geoprocessing] Job execution failed:", result.error);
-        alert(`Error executing job: ${result.error}`);
+        alert(t("geoprocessing.submitError").replace("{error}", result.error));
         return;
       }
 
@@ -326,14 +452,15 @@ const GeoprocessingPanel: React.FC = () => {
       });
 
       // Show success message
-      alert(`Job submitted successfully! Job ID: ${result.jobId}`);
+      alert(t("geoprocessing.submitSuccess").replace("{jobId}", result.jobId || ""));
 
       // Close the form
       setSelectedProcess(null);
       setFormValues({});
     } catch (error) {
       console.error("[Geoprocessing] Error submitting form:", error);
-      alert(`Error: ${error instanceof Error ? error.message : "Unknown error"}`);
+      const errorMessage = error instanceof Error ? error.message : t("geoprocessing.unknownError");
+      alert(t("geoprocessing.submitError").replace("{error}", errorMessage));
     } finally {
       setSubmitting(false);
     }
@@ -467,7 +594,7 @@ const GeoprocessingPanel: React.FC = () => {
     inputs: Record<string, string>
   ): Promise<{ jobId?: string; status?: string; error?: string }> => {
     try {
-      const ogcBaseUrl = "http://192.168.100.50";
+      const ogcBaseUrl = "http://192.168.18.169";
 
       console.log("[Geoprocessing] Executing job:", {
         processId,
@@ -570,7 +697,12 @@ const GeoprocessingPanel: React.FC = () => {
             <div className="catex-geoprocessing-section">
               <h3>{t("geoprocessing.tools")}</h3>
 
-              {processes.length > 0 ? (
+              {loadingProcesses ? (
+                <div className="catex-geoprocessing-loader">
+                  <i className="fa-solid fa-spinner fa-spin" style={{ fontSize: "24px", color: "#1B6B3A" }} />
+                  <p>{t("geoprocessing.loadingProcesses")}</p>
+                </div>
+              ) : processes.length > 0 ? (
                 <div className="catex-geoprocessing-tools">
                   {processes.map((process) => {
                     const translationKeys = PROCESS_TRANSLATION_MAP[process.id];
@@ -604,7 +736,7 @@ const GeoprocessingPanel: React.FC = () => {
                   })}
                 </div>
               ) : (
-                <p className="catex-geoprocessing-empty">{t("geoprocessing.noProcesses") || "No processes available"}</p>
+                <p className="catex-geoprocessing-empty">{t("geoprocessing.noProcesses")}</p>
               )}
             </div>
           )}
@@ -612,10 +744,30 @@ const GeoprocessingPanel: React.FC = () => {
           {/* FORM VIEW */}
           {panelView === "form" && selectedProcess && (
             <div className="catex-geoprocessing-form-view">
+              {/* Back Button */}
+              <div className="catex-geoprocessing-form-back-container">
+                <button
+                  className="catex-geoprocessing-form-back-button"
+                  onClick={handleBackToTools}
+                  disabled={submitting}
+                >
+                  <i className="fa-solid fa-arrow-left" />
+                  <span>{t("general.back")}</span>
+                </button>
+                <h3 className="catex-geoprocessing-form-tool-title">
+                  {translateFieldName(selectedProcess.title || selectedProcess.id)}
+                </h3>
+              </div>
+
               {/* Form Description */}
               {selectedProcess.description && (
                 <div className="catex-geoprocessing-form-description-panel">
-                  <p>{selectedProcess.description}</p>
+                  <p>
+                    {(() => {
+                      const translationKeys = PROCESS_TRANSLATION_MAP[selectedProcess.id];
+                      return translationKeys ? t(translationKeys.desc) : selectedProcess.description;
+                    })()}
+                  </p>
                 </div>
               )}
 
@@ -663,12 +815,12 @@ const GeoprocessingPanel: React.FC = () => {
                               className={`catex-geoprocessing-panel-form-field catex-form-type-${inputType}`}
                             >
                               <label htmlFor={inputName} className="catex-geoprocessing-panel-form-label">
-                                {input.title || inputName}
+                                {translateFieldName(input.title || inputName)}
                                 {input.minOccurs ? <span className="required">*</span> : ""}
                               </label>
-                              {input.description && (
+                              {(input.description || translateFieldDesc(input.title || inputName, input.description)) && (
                                 <p className="catex-geoprocessing-panel-form-field-desc">
-                                  {input.description}
+                                  {translateFieldDesc(input.title || inputName, input.description)}
                                 </p>
                               )}
 
@@ -678,10 +830,11 @@ const GeoprocessingPanel: React.FC = () => {
                                   id={inputName}
                                   type="text"
                                   className="catex-geoprocessing-panel-form-input"
-                                  placeholder={`Enter ${input.title || inputName}`}
+                                  placeholder={t("geoprocessing.enterField").replace("{field}", input.title || inputName)}
                                   value={currentValue}
                                   onChange={(e) => handleFormChange(inputName, e.target.value)}
                                   required={input.minOccurs ? true : false}
+                                  dir={isRTL ? "rtl" : "ltr"}
                                 />
                               )}
 
@@ -691,11 +844,12 @@ const GeoprocessingPanel: React.FC = () => {
                                   id={inputName}
                                   type="number"
                                   className="catex-geoprocessing-panel-form-input"
-                                  placeholder={`Enter ${input.title || inputName}`}
+                                  placeholder={t("geoprocessing.enterField").replace("{field}", input.title || inputName)}
                                   value={currentValue}
                                   onChange={(e) => handleFormChange(inputName, e.target.value)}
                                   required={input.minOccurs ? true : false}
                                   step="any"
+                                  dir={isRTL ? "rtl" : "ltr"}
                                 />
                               )}
 
@@ -707,8 +861,9 @@ const GeoprocessingPanel: React.FC = () => {
                                   value={currentValue}
                                   onChange={(e) => handleFormChange(inputName, e.target.value)}
                                   required={input.minOccurs ? true : false}
+                                  dir={isRTL ? "rtl" : "ltr"}
                                 >
-                                  <option value="">{t("geoprocessing.selectOption") || "Select an option..."}</option>
+                                  <option value="">{t("geoprocessing.selectOption")}</option>
                                   {enumOptions.map((option) => (
                                     <option key={option} value={option}>
                                       {option}
@@ -719,16 +874,32 @@ const GeoprocessingPanel: React.FC = () => {
 
                               {/* File Input */}
                               {inputType === "file" && (
-                                <input
-                                  id={inputName}
-                                  type="file"
-                                  className="catex-geoprocessing-panel-form-input catex-geoprocessing-panel-form-file"
-                                  onChange={(e) => {
-                                    const fileName = e.target.files?.[0]?.name || "";
-                                    handleFormChange(inputName, fileName);
-                                  }}
-                                  required={input.minOccurs ? true : false}
-                                />
+                                <div className="catex-geoprocessing-file-input-group">
+                                  <input
+                                    id={inputName}
+                                    type="text"
+                                    className="catex-geoprocessing-panel-form-input catex-geoprocessing-panel-form-file"
+                                    value={formValues[inputName] || ""}
+                                    placeholder={t("geoprocessing.selectFile")}
+                                    readOnly
+                                    required={input.minOccurs ? true : false}
+                                    dir={isRTL ? "rtl" : "ltr"}
+                                  />
+                                  <button
+                                    type="button"
+                                    className="catex-geoprocessing-choose-file-btn"
+                                    onClick={() => {
+                                      setActiveInputField(inputName);
+                                      setPanelView("catalog");
+                                      setCurrentFolderId(null);
+                                      setFolderPath([]);
+                                      loadFolders(null);
+                                    }}
+                                  >
+                                    <i className="fa-solid fa-folder-open" />
+                                    <span>{t("geoprocessing.chooseFile")}</span>
+                                  </button>
+                                </div>
                               )}
                             </div>
                           );
@@ -740,6 +911,102 @@ const GeoprocessingPanel: React.FC = () => {
                   <p className="catex-geoprocessing-empty">{t("geoprocessing.noInputs") || "No inputs required"}</p>
                 )}
               </div>
+            </div>
+          )}
+
+          {/* CATALOG VIEW */}
+          {panelView === "catalog" && (
+            <div className="catex-geoprocessing-section">
+              {/* Back Button */}
+              <div className="catex-geoprocessing-form-back-container">
+                <button
+                  className="catex-geoprocessing-form-back-button"
+                  onClick={navigateBack}
+                >
+                  <i className="fa-solid fa-arrow-left" />
+                  <span>{t("general.back")}</span>
+                </button>
+              </div>
+
+              {/* Breadcrumbs */}
+              <div className="catex-geoprocessing-catalog-breadcrumbs">
+                <span className="catex-geoprocessing-catalog-breadcrumb-item">
+                  {t("geoprocessing.browseCatalog") || "Browse Catalog"}
+                </span>
+                {folderPath.map((folder, index) => (
+                  <span key={folder.id}>
+                    <i className="fa-solid fa-chevron-right" />
+                    <span className="catex-geoprocessing-catalog-breadcrumb-item">
+                      {folder.name}
+                    </span>
+                  </span>
+                ))}
+              </div>
+
+              {loadingFolders ? (
+                <div className="catex-geoprocessing-loader">
+                  <i className="fa-solid fa-spinner fa-spin" style={{ fontSize: "24px", color: "#1B6B3A" }} />
+                  <p>{t("general.loading")}...</p>
+                </div>
+              ) : folders.length === 0 ? (
+                <div className="catex-geoprocessing-empty">
+                  <p>{t("geoprocessing.noItems") || "No items found"}</p>
+                </div>
+              ) : (
+                <div className="catex-geoprocessing-catalog-list">
+                  {folders.map((item) => {
+                    // Enhanced folder detection - check multiple possible field indicators
+                    const isFolder =
+                      item.type === "folder" ||
+                      item.type === "FOLDER" ||
+                      item.dataType === "folder" ||
+                      item.dataType === "FOLDER" ||
+                      item.folder === true ||
+                      item.isFolder === true ||
+                      // If dataType is null/undefined and type is null/undefined, assume it's a folder
+                      (!item.dataType && !item.type) ||
+                      // Check if it has a specific data type that indicates it's NOT a file
+                      (item.dataType === null && item.type === null);
+
+                    const itemName = item.name || item.title || item.id || "Unnamed";
+
+                    console.log("[Catalog] Item render:", {
+                      id: item.id,
+                      name: itemName,
+                      isFolder,
+                      type: item.type,
+                      dataType: item.dataType
+                    });
+
+                    return (
+                      <div
+                        key={item.id}
+                        className="catex-geoprocessing-catalog-item"
+                        onClick={() => {
+                          console.log("[Catalog] Item clicked:", {
+                            id: item.id,
+                            name: itemName,
+                            isFolder,
+                            willNavigate: isFolder
+                          });
+
+                          if (isFolder) {
+                            // Navigate into folder
+                            navigateToFolder(item);
+                          } else {
+                            // Select file
+                            selectFile(item);
+                          }
+                        }}
+                      >
+                        <i className={`fa-solid ${isFolder ? "fa-folder" : "fa-file-image"}`} />
+                        <span>{itemName}</span>
+                        {isFolder && <i className="fa-solid fa-chevron-right catex-geoprocessing-catalog-arrow" />}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           )}
         </div>
