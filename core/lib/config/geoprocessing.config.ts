@@ -68,8 +68,9 @@ export const getProcessExecutionUrl = (processId: string): string => {
 };
 
 /**
- * Get WMS preview URL (direct to OGC WMS)
+ * Get WMS preview URL (via Apollo proxy)
  */
 export const getWmsPreviewUrl = (dataId: string): string => {
-  return buildOgcUrl(`/apollo/ogc/wms/preview_data_${dataId}`);
+  const baseUrl = GEOPROCESSING_CONFIG.PROXY_BASE_URL.replace(/\/$/, "");
+  return `${baseUrl}/apollo/ogc/wms/preview_data_${dataId}`;
 };

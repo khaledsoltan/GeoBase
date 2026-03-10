@@ -23078,7 +23078,8 @@ var CatexExtensions = (() => {
     );
   };
   var getWmsPreviewUrl = (dataId) => {
-    return buildOgcUrl(`/apollo/ogc/wms/preview_data_${dataId}`);
+    const baseUrl = GEOPROCESSING_CONFIG.PROXY_BASE_URL.replace(/\/$/, "");
+    return `${baseUrl}/apollo/ogc/wms/preview_data_${dataId}`;
   };
 
   // core/components/features/catex/UI/geoprocessing/GeoprocessingPanel.tsx
@@ -23488,7 +23489,7 @@ var CatexExtensions = (() => {
         }
         const itemName = item.name || item.title || item.id || "Preview";
         const wmsUrl = getWmsPreviewUrl(item.id);
-        console.log("[Catalog] WMS URL (via proxy):", wmsUrl);
+        console.log("[Catalog] WMS URL (via Apollo proxy):", wmsUrl);
         const getCapabilitiesUrl = `${wmsUrl}?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0`;
         console.log("[Catalog] Fetching GetCapabilities from:", getCapabilitiesUrl);
         let layerName = `preview_data_${item.id}`;

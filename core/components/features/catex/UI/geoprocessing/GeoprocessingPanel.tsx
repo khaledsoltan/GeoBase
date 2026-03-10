@@ -536,10 +536,10 @@ const GeoprocessingPanel: React.FC = () => {
 
       const itemName = item.name || item.title || item.id || "Preview";
 
-      // Construct WMS URL using direct connection: http://192.168.18.169/apollo/ogc/wms/preview_data_{id}
+      // Construct WMS URL using Apollo proxy: http://localhost:3002/apollo/ogc/wms/preview_data_{id}
       const wmsUrl = getWmsPreviewUrl(item.id);
 
-      console.log("[Catalog] WMS URL (via proxy):", wmsUrl);
+      console.log("[Catalog] WMS URL (via Apollo proxy):", wmsUrl);
 
       // Get layer name from GetCapabilities
       const getCapabilitiesUrl = `${wmsUrl}?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0`;
