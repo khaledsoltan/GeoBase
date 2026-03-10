@@ -23043,37 +23043,42 @@ var CatexExtensions = (() => {
 
   // core/lib/config/geoprocessing.config.ts
   var GEOPROCESSING_CONFIG = {
-    // Proxy server base URL (Apollo Proxy Server)
+    // Direct OGC API URL (for geoprocessing processes)
+    OGC_BASE_URL: "http://192.168.18.169",
+    // Apollo Proxy URL (for catalog/data API only)
     PROXY_BASE_URL: "http://localhost:3002",
-    // Catalog Explorer endpoints (via Apollo proxy)
-    SERVERS_ENDPOINT: "/apollo/catalogexplorer/api/user/geoprocessing/servers",
-    // OGC API - Processes endpoints (via Apollo proxy)
-    PROCESSES_ENDPOINT: "/apollo/ogc/processes",
+    // Catalog Explorer endpoints (via direct connection)
+    SERVERS_ENDPOINT: "/catalogexplorer/api/user/geoprocessing/servers",
+    // OGC API - Processes endpoints (direct, no proxy)
+    PROCESSES_ENDPOINT: "/oapi-p/processes",
     // Query parameters
     SERVERS_QUERY: "?size=100&page=0&sort=name"
   };
-  var buildApiUrl = (endpoint) => {
-    const baseUrl = GEOPROCESSING_CONFIG.PROXY_BASE_URL.replace(/\/$/, "");
+  var buildOgcUrl = (endpoint) => {
+    const baseUrl = GEOPROCESSING_CONFIG.OGC_BASE_URL.replace(/\/$/, "");
     const path = endpoint.startsWith("/") ? endpoint : `/${endpoint}`;
     return `${baseUrl}${path}`;
   };
   var getServersUrl = () => {
-    return buildApiUrl(
+    return buildOgcUrl(
       `${GEOPROCESSING_CONFIG.SERVERS_ENDPOINT}${GEOPROCESSING_CONFIG.SERVERS_QUERY}`
     );
   };
   var getProcessesUrl = () => {
-    return buildApiUrl(GEOPROCESSING_CONFIG.PROCESSES_ENDPOINT);
+    return buildOgcUrl(GEOPROCESSING_CONFIG.PROCESSES_ENDPOINT);
   };
   var getProcessDetailsUrl = (processId) => {
-    return buildApiUrl(
+    return buildOgcUrl(
       `${GEOPROCESSING_CONFIG.PROCESSES_ENDPOINT}/${processId}`
     );
   };
   var getProcessExecutionUrl = (processId) => {
-    return buildApiUrl(
+    return buildOgcUrl(
       `${GEOPROCESSING_CONFIG.PROCESSES_ENDPOINT}/${processId}/execution`
     );
+  };
+  var getWmsPreviewUrl = (dataId) => {
+    return buildOgcUrl(`/apollo/ogc/wms/preview_data_${dataId}`);
   };
 
   // core/components/features/catex/UI/geoprocessing/GeoprocessingPanel.tsx
@@ -23482,7 +23487,7 @@ var CatexExtensions = (() => {
           return;
         }
         const itemName = item.name || item.title || item.id || "Preview";
-        const wmsUrl = `http://localhost:3002/apollo/ogc/wms/preview_data_${item.id}`;
+        const wmsUrl = getWmsPreviewUrl(item.id);
         console.log("[Catalog] WMS URL (via proxy):", wmsUrl);
         const getCapabilitiesUrl = `${wmsUrl}?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0`;
         console.log("[Catalog] Fetching GetCapabilities from:", getCapabilitiesUrl);
