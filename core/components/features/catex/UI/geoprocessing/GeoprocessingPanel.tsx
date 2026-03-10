@@ -520,100 +520,83 @@ const GeoprocessingPanel: React.FC = () => {
     setFolderPath([]);
   };
 
-  // Preview file on map (WMTS/WMS)
+  // Preview file on map (WMS)
   const previewFileOnMap = async (item: any) => {
     try {
       console.log("[Catalog] Previewing file on map:", item);
+      console.log("[Catalog] Item ID:", item.id);
 
-      // Get file details from API
-      const url = `${keycloakConfig.apiBaseUrl}/data/${item.id}`;
-      const response = await authHandler.fetch<any>(url);
-
-      console.log("[Catalog] File details:", response);
+      // Check if catex.workspace is available
+      if (!window.catex?.workspace?.emitCommand) {
+        console.error("[Catalog] catex.workspace.emitCommand not available");
+        alert("Preview feature is only available when running in Catalog Explorer");
+        return;
+      }
 
       const itemName = item.name || item.title || item.id || "Preview";
 
-      // Check if it's WMTS or WMS based on dataType or other properties
-      const dataType = response.dataType || item.dataType || "";
+      // Construct WMS URL using Apollo OGC pattern: https://nvcm.geosystems-me.com/apollo/ogc/wms/preview_data_{id}
+      const wmsBaseUrl = "https://nvcm.geosystems-me.com/apollo/ogc/wms";
+      const wmsUrl = `${wmsBaseUrl}/preview_data_${item.id}`;
 
-      if (dataType.toLowerCase().includes("wmts") || response.wmtsUrl) {
-        // Create WMTS layer command
-        const command = {
-          action: 10,
-          parameters: {
-            action: "WMTSLayer",
-            autozoom: true,
-            layer: {
-              label: itemName,
-              minScale: 0.0000021809229107316654
-            },
-            model: {
-              url: response.wmtsUrl || response.url || "",
-              layer: response.layer || response.layerName || "",
-              tileMatrixSet: response.tileMatrixSet || "PopularWebMercator512",
-              level0Columns: 1,
-              level0Rows: 1,
-              reference: response.reference || "urn:ogc:def:crs:EPSG::3857",
-              tileWidth: response.tileWidth || 512,
-              tileHeight: response.tileHeight || 512,
-              format: response.format || "image/png",
-              tileMatrices: response.tileMatrices || ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],
-              tileMatricesLimits: response.tileMatricesLimits || Array(20).fill(null),
-              levelCount: response.levelCount || 20,
-              style: response.style || "default",
-              useProxy: false,
-              credentials: false,
-              requestHeaders: {},
-              requestParameters: {},
-              dataType: "tileset/image",
-              samplingMode: "POINT"
-            }
+      console.log("[Catalog] WMS URL:", wmsUrl);
+
+      // Get layer name from GetCapabilities
+      const getCapabilitiesUrl = `${wmsUrl}?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0`;
+      console.log("[Catalog] Fetching GetCapabilities from:", getCapabilitiesUrl);
+
+      // Fetch GetCapabilities to get layer name
+      let layerName = `preview_data_${item.id}`;
+      try {
+        const capResponse = await fetch(getCapabilitiesUrl);
+        if (capResponse.ok) {
+          const capText = await capResponse.text();
+          console.log("[Catalog] GetCapabilities response received");
+
+          // Try to extract layer name from XML
+          const layerMatch = capText.match(/<Layer[^>]*>[\s\S]*?<Name>(.*?)<\/Name>/);
+          if (layerMatch && layerMatch[1]) {
+            layerName = layerMatch[1];
+            console.log("[Catalog] Extracted layer name:", layerName);
           }
-        };
-
-        // Dispatch command to host application
-        if (window.catex?.workspace?.emitCommand) {
-          window.catex.workspace.emitCommand(command);
-          console.log("[Catalog] WMTS layer added to map:", itemName);
-        } else {
-          console.error("[Catalog] catex.workspace.emitCommand not available");
         }
-      } else if (dataType.toLowerCase().includes("wms") || response.wmsUrl) {
-        // Create WMS layer command
-        const command = {
-          action: 10,
-          parameters: {
-            action: "WMSLayer",
-            autozoom: true,
-            layer: {
-              label: itemName,
-            },
-            model: {
-              url: response.wmsUrl || response.url || "",
-              layers: response.layers || response.layer || response.layerName || "",
-              version: response.version || "1.3.0",
-              transparent: true,
-              format: response.format || "image/png",
-              reference: response.reference || "EPSG:3857",
-              useProxy: false,
-              credentials: false,
-              requestHeaders: {},
-              requestParameters: {}
-            }
-          }
-        };
-
-        // Dispatch command to host application
-        if (window.catex?.workspace?.emitCommand) {
-          window.catex.workspace.emitCommand(command);
-          console.log("[Catalog] WMS layer added to map:", itemName);
-        } else {
-          console.error("[Catalog] catex.workspace.emitCommand not available");
-        }
-      } else {
-        console.warn("[Catalog] File type not supported for preview:", dataType);
-        alert(t("geoprocessing.previewNotSupported") || "Preview not supported for this file type");
+      } catch (err) {
+        console.warn("[Catalog] Could not fetch GetCapabilities, using default layer name:", err);
       }
+
+      // Create WMS layer command
+      const command = {
+        action: 10,
+        parameters: {
+          action: "WMSLayer",
+          autozoom: true,
+          layer: {
+            label: itemName,
+            visible: true,
+            selectable: false,
+            editable: false
+          },
+          model: {
+            url: wmsUrl,
+            layers: [layerName],
+            version: "1.3.0",
+            transparent: true,
+            format: "image/png",
+            reference: "EPSG:3857",
+            useProxy: false,
+            credentials: false,
+            requestHeaders: {},
+            requestParameters: {}
+          }
+        }
+      };
+
+      console.log("[Catalog] Dispatching WMS command:", JSON.stringify(command, null, 2));
+
+      // Dispatch command to host application
+      window.catex.workspace.emitCommand(command);
+      console.log("[Catalog] WMS layer added to map:", itemName);
+
     } catch (error) {
       console.error("[Catalog] Error previewing file:", error);
       alert(t("geoprocessing.previewError") || "Error previewing file on map");
