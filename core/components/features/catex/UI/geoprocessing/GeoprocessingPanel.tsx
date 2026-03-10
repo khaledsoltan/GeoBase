@@ -577,7 +577,7 @@ const GeoprocessingPanel: React.FC = () => {
             editable: false
           },
           model: {
-            url: wmsUrl,
+            baseURL: wmsUrl,
             layers: [layerName],
             version: "1.3.0",
             transparent: true,
