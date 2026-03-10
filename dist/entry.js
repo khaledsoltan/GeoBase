@@ -23043,12 +23043,12 @@ var CatexExtensions = (() => {
 
   // core/lib/config/geoprocessing.config.ts
   var GEOPROCESSING_CONFIG = {
-    // Proxy server base URL
-    PROXY_BASE_URL: "http://localhost:3001",
-    // Catalog Explorer endpoints (via geoprocessing proxy)
-    SERVERS_ENDPOINT: "/geoprocessing/catalogexplorer/api/user/geoprocessing/servers",
-    // OGC API - Processes endpoints (via ogc proxy)
-    PROCESSES_ENDPOINT: "/ogc/processes",
+    // Proxy server base URL (Apollo Proxy Server)
+    PROXY_BASE_URL: "http://localhost:3002",
+    // Catalog Explorer endpoints (via Apollo proxy)
+    SERVERS_ENDPOINT: "/apollo/catalogexplorer/api/user/geoprocessing/servers",
+    // OGC API - Processes endpoints (via Apollo proxy)
+    PROCESSES_ENDPOINT: "/apollo/ogc/processes",
     // Query parameters
     SERVERS_QUERY: "?size=100&page=0&sort=name"
   };
@@ -23482,9 +23482,8 @@ var CatexExtensions = (() => {
           return;
         }
         const itemName = item.name || item.title || item.id || "Preview";
-        const wmsBaseUrl = "https://nvcm.geosystems-me.com/apollo/ogc/wms";
-        const wmsUrl = `${wmsBaseUrl}/preview_data_${item.id}`;
-        console.log("[Catalog] WMS URL:", wmsUrl);
+        const wmsUrl = `http://localhost:3002/apollo/ogc/wms/preview_data_${item.id}`;
+        console.log("[Catalog] WMS URL (via proxy):", wmsUrl);
         const getCapabilitiesUrl = `${wmsUrl}?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0`;
         console.log("[Catalog] Fetching GetCapabilities from:", getCapabilitiesUrl);
         let layerName = `preview_data_${item.id}`;

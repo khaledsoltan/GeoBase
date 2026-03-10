@@ -5,14 +5,14 @@
  */
 
 export const GEOPROCESSING_CONFIG = {
-  // Proxy server base URL
-  PROXY_BASE_URL: "http://localhost:3001",
+  // Proxy server base URL (Apollo Proxy Server)
+  PROXY_BASE_URL: "http://localhost:3002",
 
-  // Catalog Explorer endpoints (via geoprocessing proxy)
-  SERVERS_ENDPOINT: "/geoprocessing/catalogexplorer/api/user/geoprocessing/servers",
+  // Catalog Explorer endpoints (via Apollo proxy)
+  SERVERS_ENDPOINT: "/apollo/catalogexplorer/api/user/geoprocessing/servers",
 
-  // OGC API - Processes endpoints (via ogc proxy)
-  PROCESSES_ENDPOINT: "/ogc/processes",
+  // OGC API - Processes endpoints (via Apollo proxy)
+  PROCESSES_ENDPOINT: "/apollo/ogc/processes",
 
   // Query parameters
   SERVERS_QUERY: "?size=100&page=0&sort=name",

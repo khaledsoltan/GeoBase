@@ -535,11 +535,10 @@ const GeoprocessingPanel: React.FC = () => {
 
       const itemName = item.name || item.title || item.id || "Preview";
 
-      // Construct WMS URL using Apollo OGC pattern: https://nvcm.geosystems-me.com/apollo/ogc/wms/preview_data_{id}
-      const wmsBaseUrl = "https://nvcm.geosystems-me.com/apollo/ogc/wms";
-      const wmsUrl = `${wmsBaseUrl}/preview_data_${item.id}`;
+      // Construct WMS URL using PROXY server: http://localhost:3002/apollo/ogc/wms/preview_data_{id}
+      const wmsUrl = `http://localhost:3002/apollo/ogc/wms/preview_data_${item.id}`;
 
-      console.log("[Catalog] WMS URL:", wmsUrl);
+      console.log("[Catalog] WMS URL (via proxy):", wmsUrl);
 
       // Get layer name from GetCapabilities
       const getCapabilitiesUrl = `${wmsUrl}?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0`;
